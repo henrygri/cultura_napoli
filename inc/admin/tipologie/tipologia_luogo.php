@@ -84,7 +84,7 @@ function dci_add_luogo_metaboxes() {
     ) );
 
     //argomenti
-    $cmb_argomenti = new_cmb2_box( array(
+    /*$cmb_argomenti = new_cmb2_box( array(
         'id'           => $prefix . 'box_argomenti',
         'title'        => __( 'Argomenti', 'design_comuni_italia' ),
         'object_types' => array( 'luogo' ),
@@ -97,7 +97,7 @@ function dci_add_luogo_metaboxes() {
         'taxonomy'       => 'argomenti',
         'show_option_none' => false,
         'remove_default' => 'true',
-    ) );
+    ) );*/
 
     //APERTURA
     $cmb_apertura = new_cmb2_box( array(

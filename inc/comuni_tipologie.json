@@ -22,8 +22,7 @@
             "group_id": "vivere-il-comune",
             "group_name" : "Vivere il comune",
             "taxonomy" : [
-                "tipi_luogo",
-                "argomenti"
+                "tipi_luogo"
             ]
         },
         "notizia" :  {
