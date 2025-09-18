@@ -3,7 +3,7 @@
 /**
  * Definisce post type Rating (per memorizzare le valutazioni delle pagine del Sito dei Comuni)
  */
-add_action( 'init', 'dci_register_post_type_rating', 100 );
+//add_action( 'init', 'dci_register_post_type_rating', 100 );
 function dci_register_post_type_rating() {
 
     $labels = array(
