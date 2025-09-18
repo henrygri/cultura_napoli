@@ -420,6 +420,16 @@ class Breadcrumb_Trail {
                         $this->items[] = get_the_title();
                         return;
                         break;
+					case 'Eventi':
+                        $this->items[] =  "<a href='".home_url("eventi")."'>".__("Eventi", "design_comuni_italia")."</a>";
+                        $this->items[] = get_the_title();
+                        return;
+                        break;
+					case 'Luoghi':
+                        $this->items[] =  "<a href='".home_url("luoghi")."'>".__("Luoghi", "design_comuni_italia")."</a>";
+                        $this->items[] = get_the_title();
+                        return;
+                        break;
                     case 'Novità':
 						$post = get_post(get_the_ID());
 						if ( is_object( $post ) ){

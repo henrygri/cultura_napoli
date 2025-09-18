@@ -21,7 +21,7 @@ function dci_register_post_type_luogo() {
 		'hierarchical'  => true,
 		'public'        => true,
         'menu_position' => 5,
-        'rewrite' => array('slug' => 'vivere-il-comune/luoghi', 'with_front' => false),
+        'rewrite' => array('slug' => 'luoghi', 'with_front' => false),
 		'menu_icon'     => 'dashicons-location-alt',
         'has_archive'           => false,    //archive page
         'capability_type' => array('luogo', 'luoghi'),
