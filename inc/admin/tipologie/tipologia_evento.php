@@ -85,7 +85,7 @@ function dci_add_eventi_metaboxes() {
     ) );
 
     //tipo evento
-    $cmb_tipo_evento = new_cmb2_box( array(
+    /*$cmb_tipo_evento = new_cmb2_box( array(
         'id'           => $prefix . 'box_tipo_evento',
         'title'        => __( 'Tipo di evento *', 'design_comuni_italia' ),
         'object_types' => array( 'evento' ),
@@ -104,7 +104,7 @@ function dci_add_eventi_metaboxes() {
         'attributes' => array(
             'required' => 'required'
         )
-    ) );
+    ) );*/
 
     $cmb_apertura->add_field( array(
         'id' => $prefix . 'sottotitolo',
