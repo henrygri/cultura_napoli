@@ -14,7 +14,7 @@ function dci_theme_activation() {
     updateCategorieServizio();
 
     //creo le pagine
-    insertPages($pagine = dci_get_pagine_obj());
+    //insertPages($pagine = dci_get_pagine_obj());
 
     //creo i permessi e le capabilites
     createCapabilities();
