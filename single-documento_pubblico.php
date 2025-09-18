@@ -381,9 +381,6 @@ get_header();
                 </div><!-- ./row border-top border-light row-column-border row-column-menu-left -->
             </div><!-- ./container -->
 
-            <?php get_template_part("template-parts/common/valuta-servizio"); ?>
-            <?php get_template_part("template-parts/common/assistenza-contatti"); ?>
-
         <?php
         endwhile; // End of the loop.
         ?>

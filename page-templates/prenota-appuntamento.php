@@ -61,11 +61,7 @@ get_header();
             </div>
             <div id="final-step" class="d-none">
                 <?php get_template_part("template-parts/prenotazione/final-step"); ?>
-			    <?php get_template_part("template-parts/common/valuta-servizio"); ?>
             </div>
-
-
-			<?php get_template_part("template-parts/common/assistenza-contatti"); ?>
 
 		<?php
 			endwhile; // End of the loop.

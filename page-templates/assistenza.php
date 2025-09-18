@@ -278,10 +278,8 @@ get_header();
                 </div>
             </div>
         </div>
-        <?php get_template_part("template-parts/common/valuta-servizio"); ?>
     </div>
 
-    <?php get_template_part("template-parts/common/assistenza-contatti"); ?>
     <?php
 			endwhile; // End of the loop.
 		?>

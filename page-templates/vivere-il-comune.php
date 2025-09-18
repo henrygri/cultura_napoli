@@ -33,10 +33,7 @@ get_header();
 				</p>
 			</section>
 			<?php get_template_part("template-parts/vivere-comune/eventi"); ?>
-			<?php get_template_part("template-parts/vivere-comune/luoghi"); ?>
-			<?php get_template_part("template-parts/common/valuta-servizio"); ?>
-			<?php get_template_part("template-parts/common/assistenza-contatti"); ?>
-							
+			<?php get_template_part("template-parts/vivere-comune/luoghi"); ?>							
 		<?php 
 			endwhile; // End of the loop.
 		?>

@@ -110,8 +110,6 @@ get_header();
                 </div>
             </form>
         </div>  
-        <?php echo get_template_part( 'template-parts/common/valuta-servizio'); ?>
-        <?php echo get_template_part( 'template-parts/common/assistenza-contatti'); ?>
         <?php echo get_template_part( 'template-parts/search/filters-modal'); ?>
     </main>
 

@@ -71,9 +71,7 @@ get_header();
                     </article>
                 </div>
 
-            </div>
-            <?php get_template_part("template-parts/common/valuta-servizio"); ?>
-            
+            </div>            
         <?php
         endwhile; // End of the loop.
         ?>

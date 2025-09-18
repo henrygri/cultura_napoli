@@ -21,8 +21,6 @@ get_header();
 			<?php get_template_part("template-parts/novita/evidenza"); ?>
 			<?php get_template_part("template-parts/novita/tutte-novita"); ?>
 			<?php get_template_part("template-parts/novita/argomenti"); ?>
-			<?php get_template_part("template-parts/common/valuta-servizio"); ?>
-			<?php get_template_part("template-parts/common/assistenza-contatti"); ?>
 		<?php 
 			endwhile; // End of the loop.
 		?>
