@@ -11,6 +11,8 @@ $exclude_files = [
     'tipologia_servizio.php',
     'tipologia_sito_tematico.php',
     'tipologia_unita_organizzativa.php',
+    'tipologia_documento_privato.php',
+    'tipologia_documento_pubblico.php',
 ];
 
 //include tutti i file che descrivono i custom post type del Sito dei Comuni
