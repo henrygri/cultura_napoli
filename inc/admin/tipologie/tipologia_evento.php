@@ -54,6 +54,27 @@ add_action( 'cmb2_init', 'dci_add_eventi_metaboxes' );
 function dci_add_eventi_metaboxes() {
     $prefix = '_dci_evento_';
 
+     //LUOGO
+    $cmb_luogo = new_cmb2_box( array(
+        'id'           => $prefix . 'box_luogo',
+        'title'        => __( 'Luogo dell\'evento', 'design_comuni_italia' ),
+        'object_types' => array( 'evento' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+    ) );
+
+    $cmb_luogo->add_field( array(
+        'id' =>  $prefix . 'luogo_evento',
+        'name'    => __( 'Luogo dell\'evento', 'design_comuni_italia' ),
+        'desc' => __( 'Seleziona il luogo in cui viene organizzato l\'evento.<br>Se il luogo non esiste, <a href="post-new.php?post_type=luogo" target="_blank">crea il luogo</a> prima di iniziare a inserire i dati dell\'evento.' , 'design_comuni_italia' ),
+        'type'    => 'pw_select',
+        'show_option_none' => true,
+        'options' =>  dci_get_posts_options('luogo'),
+        'attributes'    => array(
+            'placeholder' =>  __( 'Seleziona il Luogo', 'design_comuni_italia' ),
+        ),
+    ) );
+
     //APERTURA
     $cmb_apertura = new_cmb2_box( array(
         'id'           => $prefix . 'box_apertura',
@@ -245,26 +266,6 @@ function dci_add_eventi_metaboxes() {
         'type' => 'textarea'
     ) );
 
-    //LUOGO
-    $cmb_luogo = new_cmb2_box( array(
-        'id'           => $prefix . 'box_luogo',
-        'title'        => __( 'Luogo dell\'evento', 'design_comuni_italia' ),
-        'object_types' => array( 'evento' ),
-        'context'      => 'normal',
-        'priority'     => 'high',
-    ) );
-
-    $cmb_luogo->add_field( array(
-        'id' =>  $prefix . 'luogo_evento',
-        'name'    => __( 'Luogo dell\'evento', 'design_comuni_italia' ),
-        'desc' => __( 'Selezione il <a href="edit.php?post_type=luogo">luogo</a> in cui viene organizzato l\'evento. ' , 'design_comuni_italia' ),
-        'type'    => 'pw_select',
-        'show_option_none' => true,
-        'options' =>  dci_get_posts_options('luogo'),
-        'attributes'    => array(
-            'placeholder' =>  __( 'Seleziona il Luogo', 'design_comuni_italia' ),
-        ),
-    ) );
 
   //COSTI
     $cmb_costi = new_cmb2_box( array(
