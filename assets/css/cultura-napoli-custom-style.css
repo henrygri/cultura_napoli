@@ -1,0 +1,142 @@
+/*
+:root{
+  --bootstrap-italia-version:"2.9.2";
+  --bs-link-hover-color:#004d33;
+  --bs-indigo:#554dff;
+  --bs-purple:#9e99ff;
+  --bs-pink:#ffb3bf;
+  --bs-red:#cc334d;
+  --bs-orange:#995c00;
+  --bs-yellow:#ffda73;
+  --bs-green:#008055;
+  --bs-teal:#089b96;
+  --bs-cyan:#00fff7;
+  --bs-gray:#525252;
+  --bs-gray-dark:#262626;
+  --bs-blue:#0073e6;
+  --bs-gray-secondary:#5d7083;
+  --bs-gray-tertiary:#5a768a;
+  --bs-gray-quaternary:#fcfdff
+  ;--bs-gray-100:#f5f5f5;
+  --bs-gray-200:#e6e6e6;
+  --bs-gray-300:#d4d4d4;
+  --bs-gray-400:#a3a3a3;
+  --bs-gray-500:#737373;
+  --bs-gray-600:#525252;
+  --bs-gray-700:#404040;
+  --bs-gray-800:#262626;
+  --bs-gray-900:#1a1a1a;
+  --bs-primary:#007a52;
+  --bs-secondary:#5d7083;
+  --bs-success:#008055;
+  --bs-info:#5d7083;
+  --bs-warning:#995c00;
+  --bs-danger:#cc334d;
+  --bs-light:#e9e6f2;
+  --bs-dark:#17334f;
+  --bs-black:#000;
+  --bs-white:#fff;
+  --bs-100:#f5f5f5;
+  --bs-200:#e6e6e6;
+  --bs-300:#d4d4d4;
+  --bs-400:#a3a3a3;
+  --bs-500:#737373;
+  --bs-600:#525252;
+  --bs-700:#404040;
+  --bs-800:#262626;
+  --bs-900:#1a1a1a;
+  --bs-primary-rgb:0,122,82;
+  --bs-secondary-rgb:93,112,131;
+  --bs-success-rgb:0,128,85;
+  --bs-info-rgb:93,112,131;
+  --bs-warning-rgb:153,92,0;
+  --bs-danger-rgb:204,51,77;
+  --bs-light-rgb:233,230,242;
+  --bs-dark-rgb:23,51,79;
+  --bs-100-rgb:245,245,245;
+  --bs-200-rgb:230,230,230;
+  --bs-300-rgb:212,212,212;
+  --bs-400-rgb:163,163,163;
+  --bs-500-rgb:115,115,115;
+  --bs-600-rgb:82,82,82;
+  --bs-700-rgb:64,64,64;
+  --bs-800-rgb:38,38,38;
+  --bs-900-rgb:26,26,26;
+  --bs-white-rgb:255,255,255;
+  --bs-black-rgb:0,0,0;
+  --bs-body-color-rgb:26,26,26;
+  --bs-body-bg-rgb:255,255,255;
+  --bs-font-sans-serif:"Titillium Web",Geneva,Tahoma,sans-serif;
+  --bs-font-monospace:"Roboto Mono",monospace;
+  --bs-gradient:linear-gradient(180deg,hsla(0,0%,100%,0.15),hsla(0,0%,100%,0));
+  --bs-body-font-family:var(--bs-font-sans-serif);
+  --bs-body-font-size:1rem;
+  --bs-body-font-weight:400;
+  --bs-body-line-height:1.5;
+  --bs-body-color:#1a1a1a;
+  --bs-body-bg:#fff;
+  --bs-border-width:1px;
+  --bs-border-style:solid;
+  --bs-border-color:#c5c7c9;
+  --bs-border-color-translucent:rgba(0,0,0,0.175);
+  --bs-border-radius:4px;
+  --bs-border-radius-sm:2px;
+  --bs-border-radius-lg:8px;
+  --bs-border-radius-xl:1rem;
+  --bs-border-radius-2xl:2rem;
+  --bs-border-radius-pill:50rem;
+  --bs-link-color:#007a52;
+  --bs-link-hover-color:#006242;
+  --bs-code-color:#17334f;
+  --bs-highlight-bg:#ccfffd}
+*/
+
+:root {
+  --bs-primary: #0090D4;
+  --bs-primary-rgb: 0, 144, 212;
+  --bs-primary-hover: #007fba;
+  --bs-primary-dark: #00547a;
+  --bs-link-color: #0090D4;
+  --bs-link-hover-color: #00547a;
+  --bs-font-sans-serif: "Archivo",Geneva,Tahoma,sans-serif;
+}
+
+/*
+ * TYPOGRAPHY
+ */
+
+.h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6 {
+  font-family: 'ClashDisplay-Medium';
+  letter-spacing: .04em;
+}
+.font-sans-serif {
+    font-family:"Archivo",Geneva,Tahoma,sans-serif !important;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+}
+
+.archivo-regular {
+  font-family: "Archivo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+body {
+  font-family: "Archivo", sans-serif;
+  font-weight: 300;
+}
+
+/*
+ * BUTTONS
+ */
+
+ .btn-primary {
+  background-color: var(--bs-primary);
+  border-color:var(--bs-primary);
+}

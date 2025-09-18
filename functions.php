@@ -161,8 +161,10 @@ function dci_scripts() {
 	//load bootstrap-italia-comuni
     wp_enqueue_style( 'dci-comuni', get_template_directory_uri() . '/assets/css/bootstrap-italia-comuni.min.css');
 
-    wp_enqueue_style( 'dci-font', get_template_directory_uri() . '/assets/css/fonts.css', array('dci-comuni'));
+		wp_enqueue_style( 'google-font-archivo', 'https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap', array(), null );
+		wp_enqueue_style( 'dci-font', get_template_directory_uri() . '/assets/css/fonts.css', array('dci-comuni'));
     wp_enqueue_style( 'dci-wp-style', get_template_directory_uri()."/style.css", array('dci-comuni'));
+    wp_enqueue_style( 'custom-wp-style', get_template_directory_uri()."/assets/css/cultura-napoli-custom-style.css", array('dci-comuni'));
 
 
 	wp_enqueue_script( 'dci-modernizr', get_template_directory_uri() . '/assets/js/modernizr.custom.js');
