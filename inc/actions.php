@@ -45,7 +45,7 @@ function force_post_title( $post )  {
                         '_dci_documento_privato_formati',
                         '_dci_documento_pubblico_formati',
                         '_dci_evento_descrizione_completa',
-                        '_dci_evento_a_chi_e_rivolto',
+                        //'_dci_evento_a_chi_e_rivolto',
                         '_dci_messaggio_testo_messaggio',
                         '_dci_notizia_testo_completo',
                         '_dci_pagamento_descrizione_pagamento',
