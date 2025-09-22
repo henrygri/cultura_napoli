@@ -20,6 +20,10 @@ get_header();
 
     $prefix= '_dci_evento_';
     $descrizione_breve = dci_get_meta("descrizione_breve", $prefix, $post->ID);
+    //cover
+    $img_url = dci_get_meta('immagine');
+    $img = get_post( attachment_url_to_postid($img_url) );
+    $image_alt = get_post_meta( $img->ID, '_wp_attachment_image_alt', true);
     //dates
     $start_timestamp = dci_get_meta("data_orario_inizio", $prefix, $post->ID);
     $start_date = date_i18n('d F Y', date($start_timestamp));
@@ -47,7 +51,26 @@ get_header();
     $more_info = dci_get_wysiwyg_field("ulteriori_informazioni", $prefix, $post->ID);
     ?>
 
-    <div class="container px-4 my-4" id="main-container">
+    <section class="it-hero-wrapper it-wrapped-container custom-overlapping">
+      <div class="container">
+        <div class="row mx-0">
+          <div class="col-12 px-0">
+            <div class="it-hero-card it-hero-bottom-overlapping rounded drop-shadow <?php echo ($img? '' : 'mt-0'); ?>">
+              <figure class="figure px-0 img-full w-100">
+                  <img src="<?php echo $img_url; ?>" class="figure-img img-fluid rounded" alt="<?php echo $image_alt; ?>" />
+                  <?php if ($img->post_excerpt)  {?>
+                  <figcaption class="figure-caption text-center pt-3">
+                      <?php echo $img->post_excerpt; ?>
+                  </figcaption>
+                  <?php } ?>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container px-4" id="main-container">
       <div class="row">
         <div class="col px-lg-4">
             <?php get_template_part("template-parts/common/breadcrumb"); ?>
@@ -55,7 +78,7 @@ get_header();
       </div>
       <div class="row">
         <div class="col-lg-8 px-lg-4 py-lg-2">
-          <h1 data-audio><?php the_title(); ?></h1>
+          <h1 class="h2" data-audio><?php the_title(); ?></h1>
           <?php if ($start_timestamp && $end_timestamp) { ?>
           <h2 class="h4 py-2" data-audio>dal <?php echo $start_date; ?> al <?php echo $end_date; ?></h2>
           <?php } ?>
@@ -72,7 +95,7 @@ get_header();
       </div>
     </div>
 
-    <?php get_template_part('template-parts/single/image-large'); ?>
+    <?php // get_template_part('template-parts/single/image-large'); ?>
   
     <div class="container">
       <div class="row border-top row-column-border row-column-menu-left border-light">
@@ -180,7 +203,7 @@ get_header();
 
         <section class="col-lg-8 it-page-sections-container border-light">
           <article id="cos-e" class="it-page-section mb-5" data-audio>
-              <h2 class="mb-3">Cos'è</h2>
+              <h2 class="h3 mb-3">Cos'è</h2>
               <div class="richtext-wrapper font-serif">
                   <?php echo $descrizione; ?>
               </div>
@@ -200,7 +223,7 @@ get_header();
 
           <?php if($destinatari) {?>
           <article id="destinatari" class="it-page-section mb-5">
-            <h2 class="mb-3">A chi è rivolto</h2>
+            <h2 class="h3 mb-3">A chi è rivolto</h2>
             <p><?php echo $destinatari; ?></p>
           </article>
           <?php  } ?>
@@ -217,7 +240,7 @@ get_header();
 
           <?php if ($start_timestamp && $end_timestamp) { ?>
           <article id="date-e-orari" class="it-page-section mb-5">
-              <h2 class="mb-3">Date e orari</h2>
+              <h2 class="h3 mb-3">Date e orari</h2>
               <div class="point-list-wrapper my-4">
                 <div class="point-list">
                     <h3 class="point-list-aside point-list-primary fw-normal">
@@ -268,7 +291,7 @@ get_header();
 
           <?php if( is_array($costi) && count($costi) ) { ?>
           <article id="costi" class="it-page-section mb-5">
-              <h2 class="mb-3">Costi</h2>
+              <h2 class="h3 mb-3">Costi</h2>
               <?php foreach ($costi as $costo) { ?>
               <div class="card no-after border-start mt-3">
                   <div class="card-body">
@@ -293,7 +316,7 @@ get_header();
               $doc = get_post( attachment_url_to_postid($allegati) );
           ?>
           <article id="allegati" class="it-page-section mb-5">
-              <h2 class="mb-3">Allegati</h2>
+              <h2 class="h3 mb-3">Allegati</h2>
               <div class="card card-teaser shadow mt-3 rounded">
                   <div class="card-body">
                   <h3 class="card-title h5 m-0">
@@ -309,7 +332,7 @@ get_header();
 
           <?php if( is_array($appuntamenti) && count($appuntamenti) ) { ?>
           <article id="appuntamenti" class="it-page-section mb-5">
-              <h2 class="mb-3">Appuntamenti</h2>
+              <h2 class="h3 mb-3">Appuntamenti</h2>
               <div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
                   <?php foreach ($appuntamenti as $appuntamento) {
                       get_template_part('template-parts/single/appuntamento');
@@ -320,13 +343,13 @@ get_header();
 
           <article id="contatti" class="it-page-section mb-5">
           <?php if( is_array($punti_contatto) && count($punti_contatto) ) { ?>
-            <h2 class="mb-3">Contatti</h2>
+            <h2 class="h3 mb-3">Contatti</h2>
             <?php foreach ($punti_contatto as $pc_id) {
                 get_template_part('template-parts/single/punto-contatto');
             } ?>
           <?php } ?>
           <?php if( is_array($organizzatori) && count($organizzatori) ) { ?>
-            <h4 class="h5 mt-4">Con il supporto di:</h4>
+            <h4 class="h3 h5 mt-4">Con il supporto di:</h4>
             <?php foreach ($organizzatori as $uo_id) {
                 get_template_part("template-parts/unita-organizzativa/card-full");
             } ?>
