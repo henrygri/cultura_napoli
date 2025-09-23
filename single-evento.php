@@ -399,7 +399,46 @@ get_header();
       </div>
     </div>
     
-    <!-- <?php get_template_part('template-parts/single/more-posts', 'carousel'); ?> -->
+    <?php
+    $current_args = wp_get_post_terms($post->ID, 'argomenti', array('fields' => 'ids'));
+    
+    if (!empty($current_args)) {
+
+        $related_events = new WP_Query(array(
+            'post_type' => 'evento',
+            'posts_per_page' => 6,
+            'post__not_in' => array($post->ID),
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'argomenti',
+                    'field' => 'term_id',
+                    'terms' => $current_args,
+                    'operator' => 'IN'
+                )
+            )
+        ));
+
+        if ($related_events->have_posts()) : ?>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="h4 mt-4 mb-4">Potrebbe interessarti anche...</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <?php 
+                    while ($related_events->have_posts()) : 
+                        $related_events->the_post();
+                        get_template_part("template-parts/evento/card-full");
+                    endwhile; 
+                    ?>
+                </div>
+            </div>
+        <?php 
+        endif;
+        wp_reset_postdata();
+    }
+    ?>
 
   <?php
   endwhile; // End of the loop.
