@@ -400,6 +400,59 @@ get_header();
     </div>
     
     <?php
+    $parent_event_id = dci_get_meta('evento_genitore', '_dci_evento_');
+    if ($parent_event_id) {
+        $parent_event = get_post($parent_event_id);
+        if ($parent_event && $parent_event->post_type == 'evento') : ?>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="h4 mt-4 mb-4">Questo evento fa parte di</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <?php 
+                    $post = $parent_event;
+                    setup_postdata($post);
+                    get_template_part("template-parts/evento/card");
+                    wp_reset_postdata();
+                    ?>
+                </div>
+            </div>
+        <?php endif;
+    } ?>
+
+    <?php
+    $progetti = dci_get_meta('progetti_evento', '_dci_evento_');
+    if (is_array($progetti) && count($progetti) > 0) : ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="h4 mt-4 mb-4">Questo evento fa parte del progetto</h3>
+                </div>
+            </div>
+            <div class="link-list-wrapper">
+                <ul class="link-list">
+                    <?php 
+                    foreach ($progetti as $progetto_id) {
+                        $progetto = get_post($progetto_id);
+                        if ($progetto && $progetto->post_type == 'progetto') {
+                            ?>
+                            <li>
+                                <a class="list-item" href="<?php echo get_permalink($progetto); ?>">
+                                    <span><?php echo $progetto->post_title; ?></span>
+                                </a>
+                            </li>
+                            <?php
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <?php
     $current_args = wp_get_post_terms($post->ID, 'argomenti', array('fields' => 'ids'));
     
     if (!empty($current_args)) {
