@@ -19,7 +19,7 @@ function dci_register_post_type_project() {
     );
     
     $args = array(
-        'label'                 => __( 'Projects', 'design_comuni_italia' ),
+        'label'                 => __( 'Progetti', 'design_comuni_italia' ),
         'labels'                => $labels,
         'supports'              => array('title', 'editor', 'thumbnail'),
         'hierarchical'          => false,
@@ -31,7 +31,7 @@ function dci_register_post_type_project() {
         'description'           => __( "Struttura per la gestione dei progetti del Comune", 'design_comuni_italia' ),
     );
     
-    register_post_type( 'project', $args );
+    register_post_type( 'progetto', $args );
 }
 
 
