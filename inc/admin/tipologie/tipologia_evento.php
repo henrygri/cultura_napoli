@@ -156,6 +156,25 @@ function dci_add_eventi_metaboxes() {
         ),
     ) );
 
+     $cmb_progetti = new_cmb2_box( array(
+        'id'           => $prefix . 'box_progetto',
+        'title'        => __( 'Progetti dell\'evento', 'design_comuni_italia' ),
+        'object_types' => array( 'evento' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+    ) );
+
+     $cmb_progetti->add_field( array(
+        'id' =>  $prefix . 'progetti_evento',
+        'name'    => __( 'Progetti dell\'evento', 'design_comuni_italia' ),
+        'desc' => __( 'Seleziona i progetti dell\'evento.<br>Se il progetto non esiste, <a href="post-new.php?post_type=progetto" target="_blank">crea il progetto</a> prima di iniziare a inserire i dati dell\'evento.' , 'design_comuni_italia' ),
+        'type'    => 'pw_multiselect',
+        'options' =>  dci_get_posts_options('progetto'),
+        'attributes'    => array(
+            'placeholder' =>  __( 'Seleziona uno o più progetti', 'design_comuni_italia' ),
+        ),
+    ) );
+
     //argomenti
     $cmb_argomenti = new_cmb2_box( array(
         'id'           => $prefix . 'box_argomenti',
