@@ -239,7 +239,7 @@ function dci_add_eventi_metaboxes() {
         ),
     ) );
 
-    $cmb_descrizione->add_field( array(
+    /*$cmb_descrizione->add_field( array(
             'id' => $prefix . 'persone',
             'name'       => __('Persone dell\'amministrazione', 'design_comuni_italia' ),
             'desc' => __( 'Link a persone dell\'amministrazione che interverranno all\'evento ', 'design_comuni_italia' ),
@@ -249,7 +249,7 @@ function dci_add_eventi_metaboxes() {
                 'placeholder' =>  __( 'Seleziona le Persone Pubbliche', 'design_comuni_italia' ),
             ),
         )
-    );
+    );*/
 
     $cmb_gallerie_multimediali = new_cmb2_box( array(
         'id'           => $prefix . 'box_gallerie_multimediali',
