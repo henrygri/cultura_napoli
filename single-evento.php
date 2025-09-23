@@ -203,7 +203,7 @@ get_header();
 
         <section class="col-lg-8 it-page-sections-container border-light">
           <article id="cos-e" class="it-page-section mb-5" data-audio>
-              <h2 class="h3 mb-3">Cos'è</h2>
+              <h2 class="h3 mb-2">Cos'è</h2>
               <div class="richtext-wrapper font-serif">
                   <?php echo $descrizione; ?>
               </div>
@@ -223,14 +223,14 @@ get_header();
 
           <?php if($destinatari) {?>
           <article id="destinatari" class="it-page-section mb-5">
-            <h2 class="h3 mb-3">A chi è rivolto</h2>
+            <h2 class="h3 mb-2">A chi è rivolto</h2>
             <p><?php echo $destinatari; ?></p>
           </article>
           <?php  } ?>
 
           <?php if($luogo_evento) {?>
           <article id="luogo" class="it-page-section mb-5">
-            <h2 class="mb-3">Luogo</h2>
+            <h2 class="mb-2">Luogo</h2>
             <?php
                 $luogo = $luogo_evento;
                 get_template_part("template-parts/single/luogo");
@@ -240,7 +240,7 @@ get_header();
 
           <?php if ($start_timestamp && $end_timestamp) { ?>
           <article id="date-e-orari" class="it-page-section mb-5">
-              <h2 class="h3 mb-3">Date e orari</h2>
+              <h2 class="h3 mb-2">Date e orari</h2>
               <div class="point-list-wrapper my-4">
                 <div class="point-list">
                     <h3 class="point-list-aside point-list-primary fw-normal">
@@ -291,7 +291,7 @@ get_header();
 
           <?php if( is_array($costi) && count($costi) ) { ?>
           <article id="costi" class="it-page-section mb-5">
-              <h2 class="h3 mb-3">Costi</h2>
+              <h2 class="h3 mb-2">Costi</h2>
               <?php foreach ($costi as $costo) { ?>
               <div class="card no-after border-start mt-3">
                   <div class="card-body">
@@ -316,7 +316,7 @@ get_header();
               $doc = get_post( attachment_url_to_postid($allegati) );
           ?>
           <article id="allegati" class="it-page-section mb-5">
-              <h2 class="h3 mb-3">Allegati</h2>
+              <h2 class="h3 mb-2">Allegati</h2>
               <div class="card card-teaser shadow mt-3 rounded">
                   <div class="card-body">
                   <h3 class="card-title h5 m-0">
@@ -332,7 +332,7 @@ get_header();
 
           <?php if( is_array($appuntamenti) && count($appuntamenti) ) { ?>
           <article id="appuntamenti" class="it-page-section mb-5">
-              <h2 class="h3 mb-3">Appuntamenti</h2>
+              <h2 class="h3 mb-2">Appuntamenti</h2>
               <div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
                   <?php foreach ($appuntamenti as $appuntamento) {
                       get_template_part('template-parts/single/appuntamento');
@@ -343,7 +343,7 @@ get_header();
 
           <article id="contatti" class="it-page-section mb-5">
           <?php if( is_array($punti_contatto) && count($punti_contatto) ) { ?>
-            <h2 class="h3 mb-3">Contatti</h2>
+            <h2 class="h3 mb-2">Contatti</h2>
             <?php foreach ($punti_contatto as $pc_id) {
                 get_template_part('template-parts/single/punto-contatto');
             } ?>

@@ -16,8 +16,8 @@ foreach ($luoghi as $luogo) {
 }
 
 if($c) { ?>
-    <div class="map-wrapper map-column mt-4">
-        <div class="map-wrapper">
+    <div class="map-wrapper map-column mt-3">
+        <div class="map-wrapper rounded-3">
             <div class="map" id="map_all"></div>
         </div>
     </div>
