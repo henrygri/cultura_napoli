@@ -6,7 +6,6 @@ $img = dci_get_meta('immagine', $prefix, $post->ID);
 $descrizione = dci_get_meta('descrizione_breve', $prefix, $post->ID);
 $timestamp = dci_get_meta('data_orario_inizio', $prefix, $post->ID);
 $arrdata = explode('-', date_i18n("j-F-Y", $timestamp));
-$tipo_evento = get_the_terms($post->ID,'tipi_evento')[0];
 ?>
 
 <div class="col-lg-6 col-xl-4">
@@ -24,12 +23,6 @@ $tipo_evento = get_the_terms($post->ID,'tipi_evento')[0];
                 </div>
             </div>
             <div class="card-body">
-                <div class="category-top">
-                    <a class="category text-decoration-none"
-                        href="<?php echo get_term_link($tipo_evento->term_id); ?>">
-                        <?php echo $tipo_evento->name; ?>
-                    </a>
-                </div>
                 <h3 class="card-title">
                     <a class="text-decoration-none"
                         href="<?php echo get_permalink($post->ID); ?>"
