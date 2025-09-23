@@ -429,7 +429,7 @@ get_header();
                     <?php 
                     while ($related_events->have_posts()) : 
                         $related_events->the_post();
-                        get_template_part("template-parts/evento/card-full");
+                        get_template_part("template-parts/evento/card");
                     endwhile; 
                     ?>
                 </div>

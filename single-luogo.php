@@ -257,7 +257,29 @@ get_header();
       </div>
     </div>
     
-    <!-- <?php get_template_part('template-parts/single/more-posts', 'carousel'); ?> -->
+    <?php 
+    // Get related events for this place
+    $related_events = dci_get_eventi_by_luogo();
+    if($related_events && count($related_events) > 0) {
+    ?>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-12">
+          <h2 class="mb-4">Eventi in questo luogo</h2>
+          <div class="row gap-4">
+            <?php 
+            foreach($related_events as $event) {
+              $post = $event;
+              setup_postdata($post);
+              get_template_part("template-parts/evento/card");
+            }
+            wp_reset_postdata();
+            ?>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php } ?>
 
   <?php
   endwhile; // End of the loop.

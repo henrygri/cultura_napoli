@@ -1,6 +1,33 @@
 <?php
 
 /**
+ * Get events related to a specific place
+ * @param int $luogo_id The ID of the place
+ * @param int $posts_per_page Number of posts to return (-1 for all)
+ * @return array Array of event posts
+ */
+if(!function_exists("dci_get_eventi_by_luogo")) {
+    function dci_get_eventi_by_luogo($luogo_id = '', $posts_per_page = -1) {
+        if($luogo_id == '') {
+            $luogo_id = get_the_ID();
+        }
+
+        $args = array(
+            'post_type' => 'evento',
+            'posts_per_page' => $posts_per_page,
+            'meta_query' => array(
+                array(
+                    'key' => '_dci_evento_luogo_evento',
+                    'value' => $luogo_id,
+                )
+            )
+        );
+
+        return get_posts($args);
+    }
+}
+
+/**
  * Wrapper function around cmb2_get_option
  * @since  0.1.0
  * @param  string $key     Options array key
