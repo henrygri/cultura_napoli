@@ -404,6 +404,7 @@ get_header();
     if ($parent_event_id) {
         $parent_event = get_post($parent_event_id);
         if ($parent_event && $parent_event->post_type == 'evento') : ?>
+        <section class="pt-4 pb-5 bg-100">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -419,12 +420,14 @@ get_header();
                     ?>
                 </div>
             </div>
+        </section>
         <?php endif;
     } ?>
 
     <?php
     $progetti = dci_get_meta('progetti_evento', '_dci_evento_');
     if (is_array($progetti) && count($progetti) > 0) : ?>
+    <section class="pt-4 pb-5 bg-200">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -450,6 +453,7 @@ get_header();
                 </ul>
             </div>
         </div>
+    </section>
     <?php endif; ?>
 
     <?php
@@ -472,6 +476,7 @@ get_header();
         ));
 
         if ($related_events->have_posts()) : ?>
+        <section class="pt-4 pb-5">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -487,7 +492,8 @@ get_header();
                     ?>
                 </div>
             </div>
-        <?php 
+        </section>
+        <?php
         endif;
         wp_reset_postdata();
     }

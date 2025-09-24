@@ -115,6 +115,7 @@
   --cn-giallo-rgb: 216,180,112;
   --cn-rosso: #CD2E25;
   --cn-rosso-rgb: 205, 44, 37;
+
 }
 
 /*
@@ -151,6 +152,20 @@ body {
   font-family: "Archivo", sans-serif;
   font-weight: 300;
 }
+
+
+/*
+ * COLORS
+ */
+ .bg-100 {
+   background-color: rgba(var(--cn-giallo-rgb),.1)!important
+ }
+ .bg-200 {
+   background-color: rgba(var(--cn-giallo-rgb),.2)!important
+ }
+ .bg-300 {
+   background-color: rgba(var(--cn-giallo-rgb),.3)!important
+ }
 
 /*
  * BUTTONS
@@ -355,6 +370,11 @@ body {
   }
 
 /* CARD */
+.card.card-img .img-responsive-wrapper .img-responsive,
+.card.card-img .img-responsive-wrapper .img-responsive.img-responsive-panoramic {
+    padding-bottom: 56.25%
+}
+
 .card .card-body .card-text {
   font-family: var(--bs-font-sans-serif);
 }
@@ -369,7 +389,14 @@ a.read-more .icon {
     fill: var(--bs-primary);
 }
 
-
+a.card-evento { text-decoration: none; }
+.card-evento .img-responsive.rounded,
+.card-evento .img-responsive.rounded-2,
+.card-evento .img-responsive.rounded-3 { overflow: hidden; }
+.card-evento .card-body { padding: 1em 0; }
+.card-evento .card-body .card-title.h5,
+.card-evento .card-body h5.card-title { color: var(--bs-black); margin-bottom:0; }
+.card-evento .card-body .card-text { color: var(--bs-secondary); }
 
 .map-wrapper.map-column { margin: 0; }
 .map-wrapper.rounded-3 { overflow: hidden; }
@@ -457,7 +484,7 @@ select.just-validate-success-field {
 /* Evento
 */
 .single-evento #luogo .card .icon { width: 1em; height: 1em; fill:var(--bs-primary); stroke:var(--bs-primary); stroke-width: .1em; margin-top: -0.2em; }
-.single-evento .card .card-body { padding-top: 1em; padding-left: 0; padding-right: 0; }
-.single-evento .card .card-body .card-title.h5,
-.single-evento .card .card-body h5.card-title { margin-bottom: 0; }
-.single-evento .card::after { margin-top: 0; }
+.single-evento #luogo .card .card-body { padding-top: 1em; padding-left: 0; padding-right: 0; }
+.single-evento #luogo .card .card-body .card-title.h5,
+.single-evento #luogo .card .card-body h5.card-title { margin-bottom: 0; }
+.single-evento #luogo .card::after { margin-top: 0; }
