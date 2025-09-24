@@ -48,7 +48,7 @@ get_header();
 		<?php } ?>
 		
 		<?php get_template_part("template-parts/evento/evidenza"); ?>
-		<?php get_template_part("template-parts/luogo/tutti-eventi"); ?>
+		<?php get_template_part("template-parts/evento/tutti-eventi"); ?>
 							
 		<?php 
 			endwhile; // End of the loop.

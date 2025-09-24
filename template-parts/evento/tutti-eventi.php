@@ -1,7 +1,7 @@
 <?php
 global $the_query, $load_posts, $load_card_type;
 
-    $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 3;
+    $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 12;
     $load_posts = 3;
     $query = isset($_GET['search']) ? dci_removeslashes($_GET['search']) : null;
     $args = array(
@@ -24,7 +24,7 @@ global $the_query, $load_posts, $load_card_type;
         <button type="submit" class="d-none"></button>
         <div class="container">
             <h2 class="title-xxlarge mb-4">
-                Esplora tutti i luoghi
+                Esplora tutti gli eventi
             </h2>
             <div>
                 <div class="cmp-input-search">
@@ -46,7 +46,7 @@ global $the_query, $load_posts, $load_card_type;
                             </span>
                         </div>
                         <p id="autocomplete-label" class="u-grey-light text-paragraph-card mt-2 mb-30 mt-lg-3 mb-lg-40">
-                            <?php echo $the_query->found_posts; ?> luoghi trovati in ordine alfabetico
+                            <?php echo $the_query->found_posts; ?> eventi trovati in ordine alfabetico
                         </p>
                     </div>
                 </div>
@@ -55,7 +55,7 @@ global $the_query, $load_posts, $load_card_type;
                 <?php
                 foreach ( $posts as $post ) {
                     $load_card_type = 'luogo';
-                    get_template_part('template-parts/luogo/card-full');
+                    get_template_part('template-parts/evento/card');
                 }
                 ?>
             </div>

@@ -15,7 +15,7 @@
 		<?php
 			foreach ($eventi as $eventi_id) {
 				$post = get_post($eventi_id);
-				get_template_part("template-parts/evento/card-full");
+				get_template_part("template-parts/evento/card");
 			}
 		?>
 	</div>
