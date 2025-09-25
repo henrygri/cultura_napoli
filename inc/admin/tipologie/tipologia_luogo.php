@@ -83,6 +83,23 @@ function dci_add_luogo_metaboxes() {
         'remove_default' => 'true'
     ) );
 
+     $cmb_quartieri = new_cmb2_box(array(
+        'id' => $prefix . 'box_quartieri',
+        'title' => __('Quartieri', 'design_comuni_italia'),
+        'object_types' => array('luogo'),
+        'context' => 'side',
+        'priority' => 'high',
+    ));
+
+    $cmb_quartieri->add_field( array(
+        'id'        => $prefix . 'quartieri',
+        'name'      => __( 'Quartieri', 'design_comuni_italia' ),
+        'desc'      => __( 'Seleziona i quartieri di riferimento', 'design_comuni_italia' ),
+        'type'           => 'taxonomy_multicheck_hierarchical',
+        'taxonomy'       => 'quartieri',
+        'remove_default' => 'true'
+    ) );
+
     //argomenti
     /*$cmb_argomenti = new_cmb2_box( array(
         'id'           => $prefix . 'box_argomenti',
@@ -276,16 +293,6 @@ function dci_add_luogo_metaboxes() {
         'attributes'    => array(
             'maxlength'  => '255',
             'required'    => 'required'
-        ),
-    ) );
-
-    $cmb_dove->add_field( array(
-        'id'         => $prefix . 'quartiere',
-        'name'       => __( 'Quartiere  ', 'design_comuni_italia' ),
-        'desc'       => __( 'Se il territorio è mappato in quartieri, riportare il Quartiere dove è situato il luogo.', 'design_comuni_italia' ),
-        'type'       => 'text',
-        'attributes'    => array(
-            'maxlength'  => '255',
         ),
     ) );
 

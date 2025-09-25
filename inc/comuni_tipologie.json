@@ -22,7 +22,8 @@
             "group_id": "luoghi",
             "group_name" : "Luoghi",
             "taxonomy" : [
-                "tipi_luogo"
+                "tipi_luogo",
+                "quartieri"
             ]
         },
         "notizia" :  {
