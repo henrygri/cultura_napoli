@@ -57,6 +57,8 @@ function force_post_title( $post )  {
                         '_dci_servizio_output',
                         '_dci_servizio_procedure_collegate',
                         '_dci_servizio_tempi_text',
+                        '_dci_project_descrizione_completa',
+                        '_dci_project_descrizione_breve',
                     ]
                     for (const field_id of required_dci_cmb2_wysiwyg_fields) {
                         if ( jQuery( "#"+field_id ).val() !== undefined && !jQuery( "#"+field_id ).val()) {

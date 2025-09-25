@@ -26,7 +26,8 @@ function dci_register_post_type_project() {
         'public'                => true,
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-grid-view',
-        'has_archive'           => 'progetti',
+        'has_archive'           => false,
+        'map_meta_cap'          => true,
         'capability_type'       => 'post',
         'description'           => __( "Sezione per la gestione dei progetti culturali di lungo corso", 'design_comuni_italia' ),
     );
@@ -41,6 +42,164 @@ function dci_register_post_type_project() {
 add_action( 'cmb2_init', 'dci_add_project_metaboxes' );
 function dci_add_project_metaboxes() {
     $prefix = '_dci_project_';
+
+     $cmb_apertura = new_cmb2_box( array(
+        'id'           => $prefix . 'box_apertura',
+        'title'        => __( 'Apertura', 'design_comuni_italia' ),
+        'object_types' => array( 'progetto' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+    ) );
+
+    $cmb_apertura->add_field( array(
+        'id' => $prefix . 'sottotitolo',
+        'name'        => __( 'Sottotitolo', 'design_comuni_italia' ),
+        'desc' => __( 'Eventuale sottotitolo o titolo abbreviato' , 'design_comuni_italia' ),
+        'type' => 'text',
+        'attributes'    => array(
+            'maxlength'  => '255'
+        )
+    ) );
+
+    $cmb_apertura->add_field( array(
+        'id' => $prefix . 'data_orario_inizio',
+        'name'    => __( 'Data e orario di inizio', 'design_comuni_italia' ),
+        'type'    => 'text_datetime_timestamp',
+        'date_format' => 'd-m-Y',
+    ) );
+
+    $cmb_apertura->add_field( array(
+        'id' => $prefix . 'data_orario_fine',
+        'name'    => __( 'Data e orario di fine', 'design_comuni_italia' ),
+        'type'    => 'text_datetime_timestamp',
+        'date_format' => 'd-m-Y',
+    ) );
+    
+
+    $cmb_apertura->add_field( array(
+        'name'       => __('Immagine', 'design_comuni_italia' ),
+        'desc' => __( 'Immagine del progetto' , 'design_comuni_italia' ),
+        'id'             => $prefix . 'immagine',
+        'type' => 'file',
+        'query_args' => array( 'type' => 'image' ),
+    ));
+
+    $cmb_apertura->add_field( array(
+        'id' => $prefix . 'descrizione_breve',
+        'name'        => __( 'Descrizione breve *', 'design_comuni_italia' ),
+        'desc' => __( 'Descrizione sintentica del progetto, inferiore a 255 caratteri' , 'design_comuni_italia' ),
+        'type' => 'textarea',
+        'attributes'    => array(
+            'maxlength'  => '255',
+            'required'    => 'required'
+        ),
+    ) );
+
+    //COS'E'
+    $cmb_descrizione = new_cmb2_box( array(
+        'id'           => $prefix . 'box_descrizione',
+        'title'        => __( 'Cos\'è', 'design_comuni_italia' ),
+        'object_types' => array( 'progetto' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+    ) );
+
+    $cmb_descrizione->add_field( array(
+        'id' => $prefix . 'descrizione_completa',
+        'name'        => __( 'Descrizione completa *', 'design_comuni_italia' ),
+        'desc' => __( 'Introduzione e descrizione esaustiva del progetto' , 'design_comuni_italia' ),
+        'type' => 'wysiwyg',
+        'options' => array(
+            'media_buttons' => false,
+            'textarea_rows' => 10,
+            'teeny' => false,
+        ),
+        'attributes'    => array(
+            'required'    => 'required'
+        ),
+    ) );
+
+    $cmb_descrizione->add_field( array(
+        'id' => $prefix . 'a_chi_e_rivolto',
+        'name'        => __( 'A chi è rivolto', 'design_comuni_italia' ),
+        'desc' => __( 'Descrizione testuale dei principali destinatari del progetto' , 'design_comuni_italia' ),
+        'type'    => 'wysiwyg',
+        'options' => array(
+            'media_buttons' => false,
+            'textarea_rows' => 10,
+            'teeny' => false,
+        ),
+    ) );
+
+    $cmb_gallerie_multimediali = new_cmb2_box( array(
+        'id'           => $prefix . 'box_gallerie_multimediali',
+        'title'        => __( 'Gallerie multimediali', 'design_comuni_italia' ),
+        'object_types' => array( 'progetto' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+    ) );
+
+    $cmb_gallerie_multimediali->add_field( array(
+        'id'         => $prefix . 'gallery',
+        'name'       => __( 'Galleria di immagini', 'design_comuni_italia' ),
+        'desc'       => __( 'Una o più immagini corredate da didascalie', 'design_comuni_italia' ),
+        'type' => 'file_list',
+        'query_args' => array( 'type' => 'image' ),
+    ) );
+
+    $cmb_gallerie_multimediali->add_field( array(
+        'id'         => $prefix . 'video',
+        'name'       => __( 'Video', 'design_comuni_italia' ),
+        'desc'       => __( 'Un video rappresentativo del progetto (è possibile insirerire un url esterno).', 'design_comuni_italia' ),
+        'type' => 'file',
+        'query_args' => array( 'type' => 'video' ),
+    ) );
+
+    $cmb_gallerie_multimediali->add_field( array(
+        'id'         => $prefix . 'trascrizione',
+        'name'       => __( 'Trascrizione', 'design_comuni_italia' ),
+        'desc'       => __( 'Trascrizione del video', 'design_comuni_italia' ),
+        'type' => 'textarea'
+    ) );
+
+    //DOCUMENTI
+    $cmb_documenti= new_cmb2_box( array(
+        'id'           => $prefix . 'box_documenti',
+        'title'        => __( 'Documenti', 'design_comuni_italia' ),
+        'object_types' => array( 'progetto' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+    ) );
+
+    $cmb_documenti->add_field( array(
+        'id' => $prefix . 'allegati',
+        'name'        => __( 'Allegati', 'design_comuni_italia' ),
+        'desc' => __( 'Eventuali documenti in allegato' , 'design_comuni_italia' ),
+        'type' => 'file',
+    ) );
+
+    //CONTATTI
+    $cmb_contatti = new_cmb2_box( array(
+        'id'           => $prefix . 'box_contatti',
+        'title'        => __( 'Contatti', 'design_comuni_italia' ),
+        'object_types' => array( 'progetto' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+    ) );
+
+    $cmb_contatti->add_field( array(
+        'id' => $prefix . 'punti_contatto',
+        'name'        => __( 'Punti di contatto *', 'design_comuni_italia' ),
+        'desc' => __( 'Telefono, mail o altri punti di contatto<br><a href="post-new.php?post_type=punto_contatto">Inserisci Punto di Contatto</a>' , 'design_comuni_italia' ),
+        'type'    => 'pw_multiselect',
+        'options' => dci_get_posts_options('punto_contatto'),
+        'attributes'    => array(
+            'required'    => 'required',
+            'placeholder' =>  __( ' Seleziona i Punti di Contatto', 'design_comuni_italia' ),
+        ),
+    ) );
+
+
 }
 
 
