@@ -6,9 +6,11 @@
       'post_type'      => 'evento',
       'post_status'    => 'publish',
       'posts_per_page' => $max_posts,
-      'orderby'        => 'post_title',
+      // Ordina per data di inizio crescente
+      'meta_key' => '_dci_evento_data_orario_inizio',
+      'orderby'  => 'meta_value_num',
       'order'          => 'ASC'
-      //TO TO: meta query per prendere eventi con e data di fine evento superiore alla data odierna, ordinati per data di inizio crescente
+      //TO TO: meta query per prendere eventi con e data di fine evento superiore alla data odierna
   );
   $the_query = new WP_Query( $args );
   $posts = $the_query->posts;
