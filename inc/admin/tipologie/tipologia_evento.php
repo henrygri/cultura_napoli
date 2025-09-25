@@ -129,6 +129,7 @@ function dci_add_eventi_metaboxes() {
         'type'    => 'text_datetime_timestamp',
         'date_format' => 'd-m-Y',
     ) );
+    
 
     $cmb_apertura->add_field( array(
         'name'       => __('Immagine', 'design_comuni_italia' ),
@@ -137,6 +138,40 @@ function dci_add_eventi_metaboxes() {
         'type' => 'file',
         'query_args' => array( 'type' => 'image' ),
     ));
+
+    //evento repater
+    $cmb_date = new_cmb2_box( array(
+        'id'           => $prefix . 'box_date',
+        'title'        => __( 'Date evento', 'design_comuni_italia' ),
+        'object_types' => array( 'evento' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+    ) );
+
+    $group_field_id_date = $cmb_date->add_field( array(
+        'id'          => $prefix . 'date',
+        'type'        => 'group',
+        'options'     => array(
+        'group_title'    => __( 'Data {#}', 'design_comuni_italia' ), // {#} gets replaced by row number
+        'add_button'     => __( 'Aggiungi una data', 'design_comuni_italia' ),
+        'remove_button'  => __( 'Rimuovi la data', 'design_comuni_italia' ),
+        'sortable'       => true,
+        ),
+    ) );
+
+    $cmb_date->add_group_field( $group_field_id_date, array(
+        'name'       => __('Data orario inizio', 'design_comuni_italia' ),
+        'id' =>'data_orario_inizio',
+        'type'       => 'text_datetime_timestamp',
+        'date_format' => 'd-m-Y',
+    ) );
+
+    $cmb_date->add_group_field( $group_field_id_date, array(
+        'name'       => __('Data orario fine', 'design_comuni_italia' ),
+        'id' =>'data_orario_fine',
+        'type'       => 'text_datetime_timestamp',
+        'date_format' => 'd-m-Y',
+    ) );
 
     $cmb_evento_genitore = new_cmb2_box( array(
         'id'           => $prefix . 'box_evento_genitore',
