@@ -97,17 +97,17 @@ function dci_add_notizia_metaboxes() {
         ),
     ) );
 
-    $cmb_apertura->add_field( array(
-        'id' => $prefix . 'a_cura_di',
-        'name'    => __( 'A cura di *', 'design_comuni_italia' ),
-        'desc' => __( 'Ufficio che ha curato il comunicato (presumibilmente l\'ufficio comunicazione)' , 'design_comuni_italia' ),
-        'type'    => 'pw_multiselect',
-        'options' => dci_get_posts_options('unita_organizzativa'),
-        'attributes'    => array(
-            'required'    => 'required',
-            'placeholder' =>  __( 'Seleziona le unità organizzative', 'design_comuni_italia' ),
-        ),
-    ) );
+    // $cmb_apertura->add_field( array(
+    //     'id' => $prefix . 'a_cura_di',
+    //     'name'    => __( 'A cura di *', 'design_comuni_italia' ),
+    //     'desc' => __( 'Ufficio che ha curato il comunicato (presumibilmente l\'ufficio comunicazione)' , 'design_comuni_italia' ),
+    //     'type'    => 'pw_multiselect',
+    //     'options' => dci_get_posts_options('unita_organizzativa'),
+    //     'attributes'    => array(
+    //         'required'    => 'required',
+    //         'placeholder' =>  __( 'Seleziona le unità organizzative', 'design_comuni_italia' ),
+    //     ),
+    // ) );
 
     $cmb_apertura->add_field( array(
         'name'       => __('Immagine', 'design_comuni_italia' ),
