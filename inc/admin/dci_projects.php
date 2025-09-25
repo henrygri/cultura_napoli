@@ -26,9 +26,9 @@ function dci_register_post_type_project() {
         'public'                => true,
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-grid-view',
-        'has_archive'           => true,
+        'has_archive'           => 'progetti',
         'capability_type'       => 'post',
-        'description'           => __( "Struttura per la gestione dei progetti del Comune", 'design_comuni_italia' ),
+        'description'           => __( "Sezione per la gestione dei progetti culturali di lungo corso", 'design_comuni_italia' ),
     );
     
     register_post_type( 'progetto', $args );
