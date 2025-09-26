@@ -361,7 +361,7 @@ body {
    }
 }
 
-.custom-overlapping::before { content: ""; display: block; position: absolute; bottom: 0; left: 0; width: 100%; height: 10rem; background: var(--bs-white); }
+.custom-overlapping::before { content: ""; display: block; position: absolute; bottom: 0; left: 0; width: 100%; top: 36rem; height: calc(100% - 36rem); background: var(--bs-white); }
 .custom-overlapping .figure-img { margin-bottom: 0; }
 
 
@@ -398,6 +398,12 @@ a.card-evento { background-color: transparent; text-decoration: none; }
 .card-evento .card-body h5.card-title { color: var(--bs-black); margin-bottom:0; }
 .card-evento .card-body .card-text { color: var(--bs-secondary); }
 .card-evento::after { display: none; }
+
+a.card-full { text-decoration: none; }
+.card-full .card-image-wrapper { position: relative; aspect-ratio: calc(16/9); overflow: hidden; box-shadow: 0 2px 20px 0 rgba(0,0,0,.1) }
+.card-full .card-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center center; hoverflow: hidden; }
+.card-full .card-image img { width: 100%; }
+.card-full .card-body .card-title { color: var(--bs-black); }
 
 .map-wrapper.map-column { margin: 0; }
 .map-wrapper.rounded-3 { overflow: hidden; }

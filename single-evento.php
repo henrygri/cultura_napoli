@@ -472,7 +472,11 @@ get_header();
                     'terms' => $current_args,
                     'operator' => 'IN'
                 )
-            )
+            ),
+            // Ordina per data di inizio crescente
+            'meta_key' => '_dci_evento_data_orario_inizio',
+            'orderby'  => 'meta_value_num',
+            'order'          => 'ASC'
         ));
 
         if ($related_events->have_posts()) : ?>
