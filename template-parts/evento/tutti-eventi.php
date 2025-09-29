@@ -8,9 +8,24 @@ global $the_query, $load_posts, $load_card_type;
         's' => $query,
         'posts_per_page' => $max_posts,
         'post_type'      => 'evento',
-		'post_status'    => 'publish',
-        'orderby'        => 'post_title',
-        'order'          => 'ASC'
+    		'post_status'    => 'publish',
+        // Filtra: escludi eventi con rassegna flaggato
+        'meta_query'   => array(
+            'relation' => 'OR',
+            array(
+                'key'     => '_dci_evento_rassegna',
+                'value'   => 'on',
+                'compare' => '!=', // Prende quelli diversi da "on"
+            ),
+            array(
+                'key'     => '_dci_evento_rassegna',
+                'compare' => 'NOT EXISTS', // Prende quelli senza il meta
+            ),
+        ),
+        // Ordina per data di inizio crescente
+        'meta_key' => '_dci_evento_data_orario_inizio',
+        'orderby'  => 'meta_value_num',
+        'order'    => 'ASC'
     );
     $the_query = new WP_Query( $args );
 
@@ -19,13 +34,14 @@ global $the_query, $load_posts, $load_card_type;
 ?>
 
 
-<div class="bg-grey-card py-5">
+<div class="bg-200 py-5">
     <form role="search" id="search-form" method="get" class="search-form">
         <button type="submit" class="d-none"></button>
         <div class="container">
             <h2 class="title-xxlarge mb-4">
                 Esplora tutti gli eventi
             </h2>
+            <?php /*
             <div>
                 <div class="cmp-input-search">
                     <div class="form-group autocomplete-wrapper mb-0">
@@ -51,6 +67,7 @@ global $the_query, $load_posts, $load_card_type;
                     </div>
                 </div>
             </div>
+            */ ?>
             <div class="row g-4" id="load-more">
                 <?php
                 foreach ( $posts as $post ) {

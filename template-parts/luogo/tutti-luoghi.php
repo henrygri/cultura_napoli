@@ -19,13 +19,14 @@ global $the_query, $load_posts, $load_card_type;
 ?>
 
 
-<div class="bg-grey-card py-5">
+<div class="bg-200 py-5">
     <form role="search" id="search-form" method="get" class="search-form">
         <button type="submit" class="d-none"></button>
         <div class="container">
             <h2 class="title-xxlarge mb-4">
                 Esplora tutti i luoghi
             </h2>
+            <?php /*
             <div>
                 <div class="cmp-input-search">
                     <div class="form-group autocomplete-wrapper mb-0">
@@ -51,6 +52,7 @@ global $the_query, $load_posts, $load_card_type;
                     </div>
                 </div>
             </div>
+            */ ?>
             <div class="row g-4" id="load-more">
                 <?php
                 foreach ( $posts as $post ) {
