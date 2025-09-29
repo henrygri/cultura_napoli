@@ -3,8 +3,10 @@ global $post;
 
 $img = dci_get_meta('immagine', '_dci_evento_',$post->ID);
 $descrizione = dci_get_meta('descrizione_breve', '_dci_evento_',$post->ID);
-$timestamp = dci_get_meta('data_orario_inizio', '_dci_evento_',$post->ID);
-$arrdata = explode('-', date_i18n("j-F-Y", $timestamp));
+$start_timestamp = dci_get_meta('data_orario_inizio', '_dci_evento_',$post->ID);
+$start_arrdata = explode('-', date_i18n("j-F-Y", $start_timestamp));
+$end_timestamp = dci_get_meta('data_orario_fine', '_dci_evento_',$post->ID);
+$end_arrdata = explode('-', date_i18n("j-F-Y", $end_timestamp));
 $luogo_evento_id = dci_get_meta("luogo_evento", '_dci_evento_', $post->ID);
 $luogo_evento = '';
 if ( ! empty( $luogo_evento_id ) ) {
@@ -31,7 +33,13 @@ if ( ! empty( $luogo_evento_id ) ) {
 			<h5 class="card-title"><?php echo $post->post_title ?></h5>
 			<p class="card-text">
 				<?php // echo $descrizione; ?>
-				<?php echo $arrdata[0]; ?> <?php echo $arrdata[1]; ?><br><?php echo $luogo_evento; ?>
+				<?php
+          if ($end_timestamp and $end_arrdata[0] != $start_arrdata[0]) {
+            echo 'Dal '.$start_arrdata[0].' '.$start_arrdata[1].' al '.$end_arrdata[0].' '.$end_arrdata[1];
+          } else {
+            echo $start_arrdata[0].' '.$start_arrdata[1];
+          } ?>
+        <?php echo ($luogo_evento) ? '<br>'.$luogo_evento : ''; ?>
 			</p>
 		</div>
 	</a>
