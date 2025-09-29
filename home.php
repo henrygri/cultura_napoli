@@ -44,17 +44,94 @@ get_header();
 
         <?php get_template_part("template-parts/common/bolli-argomenti"); ?>
 
-        <section class="py-5 bg-100">
+        <section class="py-5 bg-200">
           <div class="container">
             <div class="row py-3">
               <div class="col-12">
                 <h2>I Luoghi della cultura</h2>
               </div>
-              <div class="col-lg-6 pt-3">
-                mappa
+              <div class="col-lg-6 pe-5 pt-3 pt-lg-5">
+                <?php get_template_part("template-parts/luogo/mappa-svg"); ?>
               </div>
-              <div class="col-lg-6 pt-3">
-                Nome municipalità, quartieri, 6 location selezionate per ogni municipalità
+              <div class="col-lg-6 ps-5 pt-3 pt-lg-5">
+                <h3>Municipalità 2</h3>
+                <p class="text-secondary">Avvocata, Montecalvario, Pendino, Porto, Mercato, San Giuseppe</p>
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="card rounded no-after mb-3 card-luogo-small bg-white">
+                      <div class"card-img-wrapper">
+                        <div class="card-img"></div>
+                      </div>
+                      <div class="card-body">
+                        <h4 class="h5">Nome Luogo</h4>
+                        <p class="mb-0">Nome della strada, 00, 80100</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="card rounded no-after mb-3 card-luogo-small bg-white">
+                      <div class"card-img-wrapper">
+                        <div class="card-img"></div>
+                      </div>
+                      <div class="card-body">
+                        <h4 class="h5">Nome Luogo</h4>
+                        <p class="mb-0">Nome della strada, 00, 80100</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="card rounded no-after mb-3 card-luogo-small bg-white">
+                      <div class"card-img-wrapper">
+                        <div class="card-img"></div>
+                      </div>
+                      <div class="card-body">
+                        <h4 class="h5">Nome Luogo</h4>
+                        <p class="mb-0">Nome della strada, 00, 80100</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="card rounded no-after mb-3 card-luogo-small bg-white">
+                      <div class"card-img-wrapper">
+                        <div class="card-img"></div>
+                      </div>
+                      <div class="card-body">
+                        <h4 class="h5">Nome Luogo</h4>
+                        <p class="mb-0">Nome della strada, 00, 80100</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="card rounded no-after mb-3 card-luogo-small bg-white">
+                      <div class"card-img-wrapper">
+                        <div class="card-img"></div>
+                      </div>
+                      <div class="card-body">
+                        <h4 class="h5">Nome Luogo</h4>
+                        <p class="mb-0">Nome della strada, 00, 80100</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="card rounded no-after mb-3 card-luogo-small bg-white">
+                      <div class"card-img-wrapper">
+                        <div class="card-img"></div>
+                      </div>
+                      <div class="card-body">
+                        <h4 class="h5">Nome Luogo</h4>
+                        <p class="mb-0">Nome della strada, 00, 80100</p>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
               </div>
             </div>
           </div>
