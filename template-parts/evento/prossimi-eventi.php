@@ -1,11 +1,24 @@
 <?php
   global $max_posts;
-  
+
   $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 12;
   $args = array(
       'post_type'      => 'evento',
       'post_status'    => 'publish',
       'posts_per_page' => $max_posts,
+      // Filtra: escludi eventi con rassegna flaggato
+      'meta_query' => array(
+          'relation' => 'OR',
+          array(
+              'key'     => '_dci_evento_rassegna',
+              'value'   => 'on',
+              'compare' => '!=', // Prende quelli diversi da "on"
+          ),
+          array(
+              'key'     => '_dci_evento_rassegna',
+              'compare' => 'NOT EXISTS', // Prende quelli senza il meta
+          ),
+      ),
       // Ordina per data di inizio crescente
       'meta_key' => '_dci_evento_data_orario_inizio',
       'orderby'  => 'meta_value_num',
@@ -15,6 +28,7 @@
   $the_query = new WP_Query( $args );
   $posts = $the_query->posts;
 ?>
+
 
 <section class="py-5">
   <div class="container">

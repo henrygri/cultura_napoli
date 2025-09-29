@@ -107,6 +107,13 @@ function dci_add_eventi_metaboxes() {
     ) );*/
 
     $cmb_apertura->add_field( array(
+        'id' => $prefix . 'rassegna',
+        'name' => __( 'È una rassegna?', 'design_comuni_italia' ),
+        'desc' => __( 'Indica se è una rassegna con diversi appuntamenti all\'interno. <br>Se selezionato, questo evento non sarà visibile negli elenchi. <br>La pagina sarà comunque raggiungibile dagli eventi figli e potrà essere inserito negli slideshow.' , 'design_comuni_italia' ),
+        'type' => 'checkbox',
+    ) );
+
+    $cmb_apertura->add_field( array(
         'id' => $prefix . 'sottotitolo',
         'name'        => __( 'Sottotitolo', 'design_comuni_italia' ),
         'desc' => __( 'Eventuale sottotitolo o titolo abbreviato' , 'design_comuni_italia' ),
