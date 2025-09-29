@@ -34,8 +34,8 @@ get_header();
         <section>
           <div class="container py-5 border-top border-bottom">
             <p class="h2">
-              Il calendario ufficiale della cultura a Napoli <br>
-              Scopri cosa succede ogni giorno in città.
+              Il calendario ufficiale della cultura a Napoli, <br>
+              scopri cosa succede ogni giorno in città.
             </p>
           </div>
         </section>
@@ -82,6 +82,9 @@ get_header();
             </div>
         </section>
         <?php get_template_part("template-parts/home/ricerca"); ?>
+
+        <?php get_template_part("template-parts/evento/evidenza"); ?>
+
     </main>
 <?php
 get_footer();
