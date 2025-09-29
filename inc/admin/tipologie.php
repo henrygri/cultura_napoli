@@ -1,6 +1,7 @@
 <?php
 // STUDIOLABO: Lista di file da escludere (solo nome file, non path)
 $exclude_files = [
+    'tipologia_appuntamento.php',
     'tipologia_dataset.php',
     'tipologia_fase.php',
     'tipologia_incarico.php',

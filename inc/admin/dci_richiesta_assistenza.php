@@ -3,7 +3,7 @@
 /**
  * Definisce post type Richiesta Assistenza (per memorizzare le richieste di assistenza da parte degli utenti)
  */
-add_action( 'init', 'dci_register_post_type_richiesta_assistenza', 100 );
+// add_action( 'init', 'dci_register_post_type_richiesta_assistenza', 100 );
 function dci_register_post_type_richiesta_assistenza() {
 
     $labels = array(

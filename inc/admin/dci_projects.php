@@ -26,7 +26,7 @@ function dci_register_post_type_project() {
         'public'                => true,
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-grid-view',
-        'has_archive'           => false,
+        'has_archive'           => true,
         'map_meta_cap'          => true,
         'capability_type'       => 'post',
         'description'           => __( "Sezione per la gestione dei progetti culturali di lungo corso", 'design_comuni_italia' ),
