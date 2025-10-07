@@ -66,7 +66,7 @@ function dci_add_luogo_metaboxes() {
     ));
 
 
-    $cmb_tipo_luogo = new_cmb2_box(array(
+    /*$cmb_tipo_luogo = new_cmb2_box(array(
         'id' => $prefix . 'box_tipo_luogo',
         'title' => __('Tipo di luogo', 'design_comuni_italia'),
         'object_types' => array('luogo'),
@@ -76,12 +76,12 @@ function dci_add_luogo_metaboxes() {
 
     $cmb_tipo_luogo->add_field( array(
         'id'        => $prefix . 'tipo_luogo',
-        //'name'      => __( 'Tipo di Luogo', 'design_comuni_italia' ),
+        'name'      => __( 'Tipo di Luogo', 'design_comuni_italia' ),
         'desc'      => __( 'Non obbligatoria perché il luogo potrebbe non essere un POI', 'design_comuni_italia' ),
         'type'           => 'taxonomy_multicheck_hierarchical',
         'taxonomy'       => 'tipi_luogo',
         'remove_default' => 'true'
-    ) );
+    ) );*/
 
      $cmb_quartieri = new_cmb2_box(array(
         'id' => $prefix . 'box_quartieri',
@@ -383,13 +383,24 @@ function dci_add_luogo_metaboxes() {
 
     $cmb_contatti->add_field( array(
         'id' => $prefix . 'punti_contatto',
-        'name'        => __( 'Punti di contatto *', 'design_comuni_italia' ),
+        'name'        => __( 'Punti di contatto', 'design_comuni_italia' ),
         'desc' => __( 'Telefono, mail o altri punti di contatto<br><a href="post-new.php?post_type=punto_contatto">Inserisci Punto di Contatto</a>' , 'design_comuni_italia' ),
         'type'    => 'pw_multiselect',
         'options' => dci_get_posts_options('punto_contatto'),
         'attributes'    => array(
-            'required'    => 'required',
             'placeholder' =>  __( ' Seleziona i Punti di Contatto', 'design_comuni_italia' ),
+        ),
+    ) );
+
+     $cmb_contatti->add_field( array(
+        'id' => $prefix . 'specifica_contatti',
+        'name'        => __( 'Specifica contatti', 'design_comuni_italia' ),
+        'desc' => __( 'Descrizione testuale' , 'design_comuni_italia' ),
+        'type'    => 'wysiwyg',
+        'options' => array(
+            'media_buttons' => false,
+            'textarea_rows' => 10,
+            'teeny' => false,
         ),
     ) );
 
