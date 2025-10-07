@@ -9,7 +9,6 @@
             "group_id": "eventi",
             "group_name" : "Eventi",
             "taxonomy" : [
-                "tipi_evento",
                 "argomenti"
             ]
         },
@@ -22,7 +21,6 @@
             "group_id": "luoghi",
             "group_name" : "Luoghi",
             "taxonomy" : [
-                "tipi_luogo",
                 "quartieri"
             ]
         },

@@ -7,7 +7,8 @@ $exclude_files = [
     'tassonomia_tipi_unita_organizzativa.php',
     'tassonomia_tipi_incarico.php',
     'tassonomia_stati_pratica.php',
-    'tassonomia_tipi_evento.php'
+    'tassonomia_tipi_evento.php',
+    'tassonomia_tipi_luogo.php'
 ];
 
 //include tutti i file che descrivono le tassonomie del Sito dei Comuni
