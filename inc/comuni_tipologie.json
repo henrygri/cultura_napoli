@@ -152,6 +152,16 @@
                 "tipi_incarico"
             ]
         },
+        "itinerario" : {
+            "name" : "itinerario",
+            "capability" : "post",
+            "prefix" : "_dci_itinerario_",
+            "singular_name" : "itinerario",
+            "plural_name" : "Itinerarii",
+            "taxonomy" : [
+                "argomenti"
+            ]
+        },
         "appuntamento" : {
             "name" : "appuntamento",
             "capability" : "appuntamenti",
