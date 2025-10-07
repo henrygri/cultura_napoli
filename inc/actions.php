@@ -40,7 +40,7 @@ function force_post_title( $post )  {
                     }
                     const required_dci_cmb2_wysiwyg_fields = [
                         '_dci_unita_organizzativa_competenze',
-                        '_dci_luogo_modalita_accesso',
+                        //'_dci_luogo_modalita_accesso',
                         '_dci_dataset_distribuzione',
                         '_dci_documento_privato_formati',
                         '_dci_documento_pubblico_formati',

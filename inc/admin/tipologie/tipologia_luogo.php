@@ -263,16 +263,13 @@ function dci_add_luogo_metaboxes() {
 
     $cmb_accesso->add_field( array(
         'id' => $prefix . 'modalita_accesso',
-        'name'        => __( 'Modalità di accesso *', 'design_comuni_italia' ),
+        'name'        => __( 'Modalità di accesso', 'design_comuni_italia' ),
         'desc' => __( 'Servizi disponibili sulle modalità di accesso al luogo con particolare attenzione agli accessi per disabili.' , 'design_comuni_italia' ),
         'type'       => 'wysiwyg',
         'options' => array(
             'media_buttons' => false, // show insert/upload button(s)
             'textarea_rows' => 10, // rows="..."
             'teeny' => false, // output the minimal editor config used in Press This
-        ),
-        'attributes'    => array(
-            'required'    => 'required'
         ),
     ) );
 
