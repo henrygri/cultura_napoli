@@ -157,6 +157,29 @@ function dci_add_luogo_metaboxes() {
         ),
     ) );
 
+    $cmb_evidenza = new_cmb2_box( array(
+        'id'           => $prefix . 'box_messaggio_evidenza',
+        'title'        => __( 'Messaggio in evidenza', 'design_comuni_italia' ),
+        'object_types' => array( 'luogo' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+    ) );
+
+    $cmb_evidenza->add_field( array(
+        'id' => $prefix . 'titolo_evidenza',
+        'name'      => __( 'Titolo', 'design_comuni_italia' ),
+        'type' => 'text',
+    ) );
+
+    $cmb_evidenza->add_field( array(
+        'id'         => $prefix . 'testo_evidenza',
+        'name'       => __( 'Testo', 'design_comuni_italia' ),
+        'type'       => 'textarea',
+        'attributes'    => array(
+            'maxlength'  => '255',
+        ),
+    ) );
+
     //DESCRIZIONE
     $cmb_descrizione = new_cmb2_box( array(
         'id'           => $prefix . 'box_descrizione',
