@@ -191,6 +191,27 @@ function dci_add_itinerario_metaboxes() {
         'type' => 'file',
     ) );
 
+    // LUOGHI
+    $cmb_luoghi = new_cmb2_box( array(
+        'id'           => $prefix . 'box_luoghi',
+        'title'        => __( 'Luoghi', 'design_comuni_italia' ),
+        'object_types' => array( 'itinerario' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+    ) );
+
+    $cmb_luoghi->add_field( array(
+        'id'      => $prefix . 'luoghi',
+        'name'    => __( 'Luoghi', 'design_comuni_italia' ),
+        'desc'    => __( 'Seleziona gli luoghi percorsi durante l\' itinerario.', 'design_comuni_italia' ),
+        'type'    => 'pw_multiselect',
+        'options' => dci_get_posts_options( 'luogo' ),
+        'attributes' => array(
+            'placeholder' => __( ' Seleziona luoghi', 'design_comuni_italia' ),
+        ),
+    ) );
+
+
     // CONTATTI
     $cmb_contatti = new_cmb2_box( array(
         'id'           => $prefix . 'box_contatti',
