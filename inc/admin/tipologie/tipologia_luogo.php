@@ -296,16 +296,6 @@ function dci_add_luogo_metaboxes() {
         ),
     ) );
 
-    $cmb_dove->add_field( array(
-        'id'         => $prefix . 'circoscrizione',
-        'name'       => __( 'Circoscrizione', 'design_comuni_italia' ),
-        'desc'       => __( 'Se il territorio è mappato in circoscrizioni, riportare la Circoscrizione dove è situato il luogo.', 'design_comuni_italia' ),
-        'type'       => 'text',
-        'attributes'    => array(
-            'maxlength'  => '255',
-        ),
-    ) );
-
     /**
      *
 
