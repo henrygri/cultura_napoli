@@ -408,7 +408,7 @@ function dci_add_luogo_metaboxes() {
 
 
     //ULTERIORI INFORMAZIONI
-    $cmb_informazioni = new_cmb2_box( array(
+    /*$cmb_informazioni = new_cmb2_box( array(
         'id'           => $prefix . 'box_informazioni',
         'title'        => __( 'Ulteriori informazioni', 'design_comuni_italia' ),
         'object_types' => array( 'luogo' ),
@@ -449,6 +449,7 @@ function dci_add_luogo_metaboxes() {
             'teeny' => false,
         ),
     ) );
+     */
 
 }
 
