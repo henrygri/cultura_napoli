@@ -175,7 +175,7 @@ function dci_add_itinerario_metaboxes() {
         'type'  => 'textarea',
     ) );
 
-    // DOCUMENTI
+     //DOCUMENTI
     $cmb_documenti = new_cmb2_box( array(
         'id'           => $prefix . 'box_documenti',
         'title'        => __( 'Documenti', 'design_comuni_italia' ),
@@ -184,11 +184,29 @@ function dci_add_itinerario_metaboxes() {
         'priority'     => 'high',
     ) );
 
-    $cmb_documenti->add_field( array(
-        'id'   => $prefix . 'allegati',
-        'name' => __( 'Allegati', 'design_comuni_italia' ),
-        'desc' => __( 'Eventuali documenti in allegato', 'design_comuni_italia' ),
+    // repeater Documenti
+    $group_field_doc_id = $cmb_documenti->add_field( array(
+        'id'          => $prefix . 'docs',
+        'type'        => 'group',
+        'options'     => array(
+        'group_title'    => __( 'Documento {#}', 'design_comuni_italia' ), // {#} gets replaced by row number
+        'add_button'     => __( 'Aggiungi un documento', 'design_comuni_italia' ),
+        'remove_button'  => __( 'Rimuovi il documento', 'design_comuni_italia' ),
+        'sortable'       => true,
+        ),
+    ) );
+
+    $cmb_documenti->add_group_field( $group_field_doc_id, array(
+        'id' => 'docs_allegato',
+        'name'        => __( 'Allegato', 'design_comuni_italia' ),
+        'desc' => __( 'Eventuali documenti in allegato' , 'design_comuni_italia' ),
         'type' => 'file',
+    ) );
+
+    $cmb_documenti->add_group_field( $group_field_doc_id, array(
+        'id' => 'label_allegato',
+        'name'        => __( 'Etichetta allegato', 'design_comuni_italia' ),
+        'type' => 'text',
     ) );
 
     // LUOGHI
