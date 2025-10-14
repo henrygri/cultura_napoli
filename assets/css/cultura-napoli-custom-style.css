@@ -171,11 +171,23 @@ body {
  * BUTTONS
  */
 
+.btn:hover {
+  color: var(--bs-primary-hover);
+}
+
  .btn-primary {
   background-color: var(--bs-primary);
   border-color:var(--bs-primary);
 }
 
+.btn-outline-primary {
+  color: var(--bs-primary);
+  box-shadow: inset 0 0 0 2px var(--bs-primary);
+}
+.btn-outline-primary:hover {
+    color: var(--bs-primary-hover);
+    box-shadow: inset 0 0 0 2px var(--bs-primary-hover);
+}
 
 /*
  * BOLLI argomenti
@@ -213,6 +225,10 @@ body {
   }
 }
 
+
+.icon-primary {
+  fill: var(--bs-primary) !important;
+}
 
 .link-list-wrapper ul li a:hover:not(.disabled) span {
     color: var(--bs-primary);
@@ -356,7 +372,7 @@ body {
 }
 @media(min-width: 576px) {
    .it-hero-wrapper .it-hero-card.it-hero-bottom-overlapping {
-       margin-top: 0;
+       margin-top: 1rem;
        margin-bottom: 0;
    }
 }
@@ -404,6 +420,18 @@ a.card-full { text-decoration: none; }
 .card-full .card-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center center; hoverflow: hidden; }
 .card-full .card-image img { width: 100%; }
 .card-full .card-body .card-title { color: var(--bs-black); }
+
+
+
+a.card-luogo { background-color: transparent; text-decoration: none; }
+.card-luogo .img-responsive.rounded,
+.card-luogo .img-responsive.rounded-2,
+.card-luogo .img-responsive.rounded-3 { overflow: hidden; }
+.card-luogo .card-body { padding: .7em 0; }
+.card-luogo .card-body .card-title.h5,
+.card-luogo .card-body h5.card-title { color: var(--bs-black); margin-bottom:0; }
+.card-evento .card-body .card-text { color: var(--bs-secondary); }
+
 
 .map-wrapper.map-column { margin: 0; }
 .map-wrapper.rounded-3 { overflow: hidden; }

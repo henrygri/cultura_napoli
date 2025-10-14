@@ -16,7 +16,7 @@
       <a class="text-decoration-none text-black" href="<?php echo get_permalink($luogo->ID); ?>"><?php echo $luogo->post_title; ?></a>
     </h3>
     <div class="card-text text-secondary">
-      <p><?php echo $indirizzo; ?></p>
+      <p><?php echo $indirizzo; ?><br><?php echo dci_get_quartieri($luogo->ID); ?></p>
     </div>
   </div>
 </div>

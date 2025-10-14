@@ -57,7 +57,7 @@ global $the_query, $load_posts, $load_card_type;
                 <?php
                 foreach ( $posts as $post ) {
                     $load_card_type = 'luogo';
-                    get_template_part('template-parts/luogo/card-full');
+                    get_template_part('template-parts/luogo/card');
                 }
                 ?>
             </div>

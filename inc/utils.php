@@ -1176,3 +1176,29 @@ if(!function_exists("dci_removeslashes")) {
         return stripslashes(trim($string)); 
     }
 }
+
+//Restituisce la stringa con i quartieri di un luogo, mostra "Municipalità, Quartiere" se esiste un termine di secondo livello
+function dci_get_quartieri($post_id) {
+    $quartieri = get_the_terms($post_id, 'quartieri');
+    if (!$quartieri || is_wp_error($quartieri)) {
+        return '';
+    }
+    // Cerca un termine di secondo livello
+    foreach ($quartieri as $term) {
+        if ($term->parent > 0) {
+            $parent = get_term($term->parent, 'quartieri');
+            if ($parent && !is_wp_error($parent)) {
+                return '<span class="quartiere">' . esc_html($parent->name . ', ' . $term->name) . '</span>';
+            } else {
+                return '<span class="quartiere">' . esc_html($term->name) . '</span>';
+            }
+        }
+    }
+    // Se non ci sono figli, mostra eventualmente il padre
+    foreach ($quartieri as $term) {
+        if ($term->parent == 0) {
+            return '<span class="quartiere">' . esc_html($term->name) . '</span>';
+        }
+    }
+    return '';
+}
