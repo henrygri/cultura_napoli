@@ -157,7 +157,7 @@
             "capability" : "post",
             "prefix" : "_dci_itinerario_",
             "singular_name" : "itinerario",
-            "plural_name" : "Itinerarii",
+            "plural_name" : "Itinerari",
             "taxonomy" : [
                 "argomenti"
             ]

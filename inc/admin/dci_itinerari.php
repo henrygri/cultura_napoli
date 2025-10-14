@@ -20,12 +20,13 @@ function dci_register_post_type_itinerario() {
     $args = array(
         'label'                 => __( 'Itinerari', 'design_comuni_italia' ),
         'labels'                => $labels,
-        'supports'              => array( 'title', 'editor', 'thumbnail' ),
+        'supports'              => array( 'title', 'thumbnail' ),
         'hierarchical'          => false,
         'public'                => true,
         'menu_position'         => 6,
         'menu_icon'             => 'dashicons-location-alt', // 🧭 più coerente con itinerari
         'has_archive'           => true,
+        'rewrite'               => array( 'slug' => 'itinerari', 'with_front' => false ),
         'map_meta_cap'          => true,
         'capability_type'       => 'post',
         'description'           => __( "Sezione per la gestione degli itinerari culturali di lungo corso", 'design_comuni_italia' ),
@@ -59,19 +60,19 @@ function dci_add_itinerario_metaboxes() {
         'attributes' => array( 'maxlength' => '255' ),
     ) );
 
-    $cmb_apertura->add_field( array(
-        'id'          => $prefix . 'data_orario_inizio',
-        'name'        => __( 'Data e orario di inizio', 'design_comuni_italia' ),
-        'type'        => 'text_datetime_timestamp',
-        'date_format' => 'd-m-Y',
-    ) );
+    // $cmb_apertura->add_field( array(
+    //     'id'          => $prefix . 'data_orario_inizio',
+    //     'name'        => __( 'Data e orario di inizio', 'design_comuni_italia' ),
+    //     'type'        => 'text_datetime_timestamp',
+    //     'date_format' => 'd-m-Y',
+    // ) );
 
-    $cmb_apertura->add_field( array(
-        'id'          => $prefix . 'data_orario_fine',
-        'name'        => __( 'Data e orario di fine', 'design_comuni_italia' ),
-        'type'        => 'text_datetime_timestamp',
-        'date_format' => 'd-m-Y',
-    ) );
+    // $cmb_apertura->add_field( array(
+    //     'id'          => $prefix . 'data_orario_fine',
+    //     'name'        => __( 'Data e orario di fine', 'design_comuni_italia' ),
+    //     'type'        => 'text_datetime_timestamp',
+    //     'date_format' => 'd-m-Y',
+    // ) );
 
     $cmb_apertura->add_field( array(
         'name'       => __( 'Immagine', 'design_comuni_italia' ),
