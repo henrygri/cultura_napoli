@@ -240,43 +240,31 @@ function dci_add_notizia_metaboxes() {
         'priority'     => 'low',
     ) );
 
-    $cmb_documenti->add_field( array(
-        'id' => $prefix . 'documenti',
-        'name'        => __( 'Documenti', 'design_comuni_italia' ),
-        'desc' => __( 'Link a schede di Documenti' , 'design_comuni_italia' ),
-        'type'    => 'pw_multiselect',
-        'options' => dci_get_posts_options('documento_pubblico'),
-        'attributes' => array(
-            'placeholder' =>  __( 'Seleziona i Documenti Pubblici', 'design_comuni_italia' ),
+    // repeater Documenti
+    $group_field_doc_id = $cmb_documenti->add_field( array(
+        'id'          => $prefix . 'docs',
+        'type'        => 'group',
+        'options'     => array(
+        'group_title'    => __( 'Documento {#}', 'design_comuni_italia' ), // {#} gets replaced by row number
+        'add_button'     => __( 'Aggiungi un documento', 'design_comuni_italia' ),
+        'remove_button'  => __( 'Rimuovi il documento', 'design_comuni_italia' ),
+        'sortable'       => true,
         ),
     ) );
 
-    $cmb_documenti->add_field( array(
-        'id' => $prefix . 'allegati',
-        'name'        => __( 'Allegati', 'design_comuni_italia' ),
-        'desc' => __( 'Elenco di documenti allegati alla struttura' , 'design_comuni_italia' ),
-        'type' => 'file_list',
+    $cmb_documenti->add_group_field( $group_field_doc_id, array(
+        'id' => 'docs_allegato',
+        'name'        => __( 'Allegato', 'design_comuni_italia' ),
+        'desc' => __( 'Eventuali documenti in allegato' , 'design_comuni_italia' ),
+        'type' => 'file',
     ) );
 
-    //DATASET
-    $cmb_documenti = new_cmb2_box( array(
-        'id'           => $prefix . 'box_documenti',
-        'title'        => __( 'Documenti', 'design_comuni_italia' ),
-        'object_types' => array( 'notizia' ),
-        'context'      => 'normal',
-        'priority'     => 'low',
+    $cmb_documenti->add_group_field( $group_field_doc_id, array(
+        'id' => 'label_allegato',
+        'name'        => __( 'Etichetta allegato', 'design_comuni_italia' ),
+        'type' => 'text',
     ) );
 
-    $cmb_documenti->add_field( array(
-        'id' => $prefix . 'dataset',
-        'name'        => __( 'Dataset ', 'design_comuni_italia' ),
-        'desc' => __( 'Lista schede Dataset collegate alla notizia' , 'design_comuni_italia' ),
-        'type'    => 'pw_multiselect',
-        'options' => dci_get_posts_options('dataset'),
-        'attributes' => array(
-            'placeholder' =>  __( 'Seleziona i Dataset', 'design_comuni_italia' ),
-        ),
-    ) );
 
 }
 

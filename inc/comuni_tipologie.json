@@ -63,29 +63,6 @@
                 "argomenti"
             ]
         },
-        "documento_pubblico" : {
-            "name" : "documento_pubblico",
-            "capability" : "documenti_pubblici",
-            "prefix" : "_dci_documento_pubblico_",
-            "singular_name" : "Documento Pubblico",
-            "plural_name" : "Documenti Pubblici",
-            "group_id": "amministrazione",
-            "group_name" : "Amministrazione",
-            "taxonomy" : [
-                "tipi_documento",
-                "argomenti"
-            ]
-        },
-        "documento_privato" : {
-            "name" : "documento_privato",
-            "capability" : "documenti_privati",
-            "prefix" : "_dci_documento_privato_",
-            "singular_name" : "Documento Privato",
-            "plural_name" : "Documenti Privati",
-            "taxonomy" : [
-                "argomenti"
-            ]
-        },
         "dataset" : {
             "name" : "dataset",
             "capability" : "datasets",
