@@ -34,12 +34,12 @@ get_header();
             <div
               class="it-hero-card it-hero-bottom-overlapping rounded hero-p pb-lg-80 drop-shadow <?php echo ($img? '' : 'mt-0'); ?>"
             >
-  
+
                 <div class="row justify-content-center">
                   <div class="col-12 col-lg-10">
-                    <?php 
+                    <?php
                       $custom_class = 'mt-0';
-                      get_template_part("template-parts/common/breadcrumb"); 
+                      get_template_part("template-parts/common/breadcrumb");
                     ?>
                   </div>
                 </div>
@@ -55,11 +55,11 @@ get_header();
                   </div>
                   <div class="col-12 col-lg-5 me-lg-5">
                     <div class="card-wrapper card-column">
-                    <?php 
+                    <?php
                         if ((is_array($aree_appartenenza) && count($aree_appartenenza)) || (is_array($assessorati_riferimento) && count($assessorati_riferimento))) { ?>
                     <h3 class="title-xsmall-semi-bold">Questo argomento è gestito da:</h3>
                     <?php } ?>
-                    <?php 
+                    <?php
                         if (is_array($aree_appartenenza) && count($aree_appartenenza)) {
                             foreach ($aree_appartenenza as $uo_id) {
                               $with_border = true;
@@ -71,21 +71,23 @@ get_header();
                               $with_border = true;
                               get_template_part("template-parts/unita-organizzativa/card");
                             }
-                        } 
+                        }
                       ?>
                     </div>
                   </div>
                 </div>
-  
+
             </div>
           </div>
         </div>
       </div>
     </div>
-    <?php get_template_part("template-parts/argomento/novita-detail"); ?>
-    <?php get_template_part("template-parts/argomento/amministrazione-detail"); ?>
-    <?php get_template_part("template-parts/argomento/servizi-detail"); ?>
-    <?php get_template_part("template-parts/argomento/documenti-detail"); ?>
+    <?php get_template_part("template-parts/argomento/itinerari-detail"); ?>
+    <?php get_template_part("template-parts/argomento/eventi-detail"); ?>
+    <?php // get_template_part("template-parts/argomento/novita-detail"); ?>
+    <?php // get_template_part("template-parts/argomento/amministrazione-detail"); ?>
+    <?php // get_template_part("template-parts/argomento/servizi-detail"); ?>
+    <?php // get_template_part("template-parts/argomento/documenti-detail"); ?>
 </main>
 <?php
 get_footer();
