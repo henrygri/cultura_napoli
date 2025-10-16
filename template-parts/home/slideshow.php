@@ -1,15 +1,20 @@
 <?php
-global $scheda;
+  global $scheda;
   $schede = dci_get_option('schede_evidenziate', 'homepage') ?? null;
+
   if ($schede && count($schede) > 0) { ?>
-
-  <?php $count = 1;
-  foreach ($schede as $scheda) {
-      if ($scheda) {
-          get_template_part("template-parts/home/scheda-evidenza-full");
-      }
-      ++$count;
-      break;
-  } ?>
-
+  <div class="splide slider_home">
+      <div class="splide__track">
+        <div class="splide__list">
+          <?php
+          foreach ($schede as $scheda) {
+              if ($scheda) {
+                  echo '<div class="splide__slide p-3">';
+                  get_template_part("template-parts/home/scheda-evidenza-full");
+                  echo '</div>';
+              }
+          } ?>
+        </div>
+      </div>
+  </div>
 <?php } ?>
