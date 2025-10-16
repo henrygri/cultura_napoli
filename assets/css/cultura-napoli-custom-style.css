@@ -212,7 +212,8 @@ body {
  * GRID
  */
 
- .section.section-muted { background: rgba(var(--cn-giallo-rgb),.1);)
+ .section.section-muted { 
+  background: rgba(var(--cn-giallo-rgb),.1);
 }
 
 @media(min-width: 992px) {
@@ -547,3 +548,21 @@ select.just-validate-success-field {
 .single-evento #luogo .card .card-body .card-title.h5,
 .single-evento #luogo .card .card-body h5.card-title { margin-bottom: 0; }
 .single-evento #luogo .card::after { margin-top: 0; }
+
+/*
+/* Splide
+*/
+.slider_home .splide__pagination {
+  gap: .75rem;
+  justify-content: flex-start;
+  padding: 0 calc(var(--bs-gutter-x)*.5) 2rem;
+}
+.slider_home .splide__pagination__page {
+    background: var(--bs-secondary);
+    width: 2rem;
+    height: .1rem;
+}
+.slider_home .splide__pagination__page.is-active {
+    background: var(--bs-primary);
+    height: .15rem;
+}
