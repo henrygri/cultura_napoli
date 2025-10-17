@@ -124,6 +124,7 @@
 
 .h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6 {
   font-family: 'ClashDisplay-Medium';
+  font-weight: normal !important;
   letter-spacing: .04em;
 }
 .font-sans-serif {
@@ -405,14 +406,15 @@ a.read-more .icon {
     fill: var(--bs-primary);
 }
 
+.card .card-body .card-text { color: rgba(var(--bs-dark-rgb),.8); line-height: 1.4em; }
+
 a.card-evento { background-color: transparent; text-decoration: none; }
 .card-evento .img-responsive.rounded,
 .card-evento .img-responsive.rounded-2,
 .card-evento .img-responsive.rounded-3 { overflow: hidden; }
-.card-evento .card-body { padding: .7em 0; }
+.card-evento .card-body { padding: .7em .5em; }
 .card-evento .card-body .card-title.h5,
-.card-evento .card-body h5.card-title { color: var(--bs-black); margin-bottom:0; }
-.card-evento .card-body .card-text { color: var(--bs-secondary); }
+.card-evento .card-body h5.card-title { color: var(--bs-black); line-height: 1.314em; margin-bottom: .4em }
 .card-evento::after { display: none; }
 
 a.card-full { text-decoration: none; }
@@ -427,10 +429,9 @@ a.card-luogo { background-color: transparent; text-decoration: none; }
 .card-luogo .img-responsive.rounded,
 .card-luogo .img-responsive.rounded-2,
 .card-luogo .img-responsive.rounded-3 { overflow: hidden; }
-.card-luogo .card-body { padding: .7em 0; }
+.card-luogo .card-body { padding: .7em .5em; }
 .card-luogo .card-body .card-title.h5,
-.card-luogo .card-body h5.card-title { color: var(--bs-black); margin-bottom:0; }
-.card-evento .card-body .card-text { color: var(--bs-secondary); }
+.card-luogo .card-body h5.card-title { color: var(--bs-black); line-height: 1.314em; margin-bottom: .4em }
 
 
 .map-wrapper.map-column { margin: 0; }

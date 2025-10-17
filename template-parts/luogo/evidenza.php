@@ -6,7 +6,15 @@
 	//Per selezionare i contenuti in evidenza tramite configurazione
 	$luoghi = dci_get_option('luoghi_evidenziati','luoghi');
 
-	$url_luoghi = get_permalink( get_page_by_title('Luoghi') );
+	//$url_luoghi = get_permalink( get_page_by_title('Luoghi') );
+	$page_query = new WP_Query([
+			'post_type' => 'page',
+			'title' => 'Luoghi',
+			'posts_per_page' => 1,
+			'fields' => 'ids',
+			'no_found_rows' => true
+	]);
+	$url_luoghi = $page_query->have_posts() ? get_permalink($page_query->posts[0]) : home_url('luoghi');
 	if (is_array($luoghi) && count($luoghi)) {
 ?>
 

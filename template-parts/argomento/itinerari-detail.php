@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row row-title">
                 <div class="col-12">
-                <h3 class="u-grey-light border-bottom border-semi-dark pb-2 pb-lg-3 mt-lg-3 title-large-semi-bold">
+                <h3 class="title-large-semi-bold mb-0">
                     Itinerari
                 </h3>
                 </div>
