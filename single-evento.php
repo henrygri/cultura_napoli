@@ -85,11 +85,15 @@ get_header();
           <p data-audio>
             <?php echo $descrizione_breve; ?>
           </p>
+          <?php
+              $inline = true;
+              get_template_part('template-parts/single/actions-inverse');
+          ?>
         </div>
         <div class="col-lg-3 offset-lg-1">
           <?php
-              $inline = true;
-              get_template_part('template-parts/single/actions');
+              // $inline = true;
+              // get_template_part('template-parts/single/actions');
           ?>
         </div>
       </div>

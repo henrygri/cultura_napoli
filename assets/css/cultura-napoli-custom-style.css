@@ -413,10 +413,10 @@ a.card-evento { background-color: transparent; text-decoration: none; }
 .card-evento .img-responsive.rounded,
 .card-evento .img-responsive.rounded-2,
 .card-evento .img-responsive.rounded-3 { overflow: hidden; }
-.card-evento .card-body { padding: .7em .5em; }
+.card-evento .card-body { padding: .7em 0; }
 .card-evento .card-body .card-title.h5,
-.card-evento .card-body h5.card-title { color: var(--bs-black); line-height: 1.314em; margin-bottom: .4em }
-.card-evento::after { display: none; }
+.card-evento .card-body h5.card-title { color: var(--bs-black); margin-bottom:0; }
+.card-evento .card-body .card-text { color: var(--bs-secondary); }
 
 a.card-full { text-decoration: none; }
 .card-full .card-image-wrapper { position: relative; aspect-ratio: calc(16/9); overflow: hidden; box-shadow: 0 2px 20px 0 rgba(0,0,0,.1) }
@@ -424,15 +424,24 @@ a.card-full { text-decoration: none; }
 .card-full .card-image img { width: 100%; }
 .card-full .card-body .card-title { color: var(--bs-black); }
 
-
-
 a.card-luogo { background-color: transparent; text-decoration: none; }
 .card-luogo .img-responsive.rounded,
 .card-luogo .img-responsive.rounded-2,
 .card-luogo .img-responsive.rounded-3 { overflow: hidden; }
-.card-luogo .card-body { padding: .7em .5em; }
+.card-luogo .card-body { padding: .7em 0; }
 .card-luogo .card-body .card-title.h5,
-.card-luogo .card-body h5.card-title { color: var(--bs-black); line-height: 1.314em; margin-bottom: .4em }
+.card-luogo .card-body h5.card-title { color: var(--bs-black); margin-bottom:0; }
+.card-evento .card-body .card-text { color: var(--bs-secondary); }
+
+
+.card-itinerario { }
+.card-itinerario .img-responsive.rounded,
+.card-itinerario .img-responsive.rounded-2,
+.card-itinerario .img-responsive.rounded-3 { overflow: hidden; }
+.card-itinerario .img-responsive .img-wrapper:after {
+  content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, .2) 100%); }
+.card-itinerario .card-body { position: absolute; bottom: 0; width: 100%; color: #FFF; }
+.card-itinerario .card-body .card-title { color: #FFF; }
 
 
 .map-wrapper.map-column { margin: 0; }

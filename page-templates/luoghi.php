@@ -13,10 +13,8 @@ get_header();
 		<?php
 		while ( have_posts() ) :
 			the_post();
-			
 			$img = dci_get_option('immagine', 'luoghi');
 			$didascalia = dci_get_option('didascalia', 'luoghi');
-		
 			$args = array(
 				'posts_per_page' => -1,
 				'post_type' => 'luogo',
@@ -27,10 +25,10 @@ get_header();
 		?>
 		<?php 
 			$with_shadow = true;
-			get_template_part("template-parts/hero/hero"); 
+			// get_template_part("template-parts/hero/hero");
 		?>
-			
-		<?php if( $img ) { ?>
+
+		<?php /* if( $img ) { ?>
 			<section class="hero-img mb-20 mb-lg-50">
 				<section class="it-hero-wrapper it-hero-small-size cmp-hero-img-small">
 					<div class="img-responsive-wrapper">
@@ -45,9 +43,10 @@ get_header();
 					<?php echo $didascalia; ?>
 				</p>
 			</section>
-		<?php } ?>
-		
-		<?php get_template_part("template-parts/luogo/evidenza"); ?>
+		<?php } */ ?>
+
+		<!-- <?php get_template_part("template-parts/luogo/evidenza"); ?> -->
+		<?php get_template_part("template-parts/luogo/mappa-quartieri"); ?>
 		<?php get_template_part("template-parts/luogo/tutti-luoghi"); ?>
 							
 		<?php 
@@ -57,6 +56,5 @@ get_header();
 
 <?php
 get_footer();
-
 
 

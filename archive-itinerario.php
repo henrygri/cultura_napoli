@@ -11,7 +11,7 @@
 
     <main>
       <?php
-        $with_shadow = true;
+        $with_shadow = false;
         get_template_part("template-parts/hero/hero-archive");
       ?>
 
@@ -49,25 +49,25 @@
         <section class="section bg-gray-light">
             <div class="container">
                 <div class="row ">
-          						<?php if ( have_posts() ) : ?>
-            							<?php
-            							/* Start the Loop */
-            							while ( have_posts() ) :
-            								the_post();
-            								get_template_part( 'template-parts/progetto/cards-list', get_post_type() );
+                    <?php if ( have_posts() ) : ?>
+                        <?php
+                        /* Start the Loop */
+                        while ( have_posts() ) :
+                            the_post();
+                            get_template_part( 'template-parts/itinerario/cards-list', get_post_type() );
 
-            							endwhile;
-            							?>
-                          <nav class="pagination-wrapper justify-content-center col-12">
-            								<?php echo dci_bootstrap_pagination(); ?>
-                          </nav>
-          						<?php
-          						else :
+                        endwhile;
+                        ?>
+                        <nav class="pagination-wrapper justify-content-center col-12">
+                            <?php echo dci_bootstrap_pagination(); ?>
+                        </nav>
+                    <?php
+                    else :
 
-            							get_template_part( 'template-parts/content', 'none' );
+                        get_template_part( 'template-parts/content', 'none' );
 
-          						endif;
-          						?>
+                    endif;
+                    ?>  
                 </div><!-- /row -->
             </div><!-- /container -->
         </section>
