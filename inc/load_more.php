@@ -110,8 +110,11 @@ function load_more(){
 			$out .= load_template_part("template-parts/domanda-frequente/item");  
 		}
 		if ($load_card_type == "luogo"){
-			$out .= load_template_part("template-parts/luogo/card-full");  
+			$out .= load_template_part("template-parts/luogo/card");  
 		}	
+		if ($load_card_type == "evento"){
+			$out .= load_template_part("template-parts/evento/card");  
+		}
  
  
 		endwhile;

@@ -1,7 +1,7 @@
 <?php
 global $the_query, $load_posts, $load_card_type;
 
-    $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 12;
+    $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 6;
     $load_posts = 3;
     $query = isset($_GET['search']) ? dci_removeslashes($_GET['search']) : null;
     $args = array(
@@ -71,7 +71,7 @@ global $the_query, $load_posts, $load_card_type;
             <div class="row g-4" id="load-more">
                 <?php
                 foreach ( $posts as $post ) {
-                    $load_card_type = 'luogo';
+                    $load_card_type = 'evento';
                     get_template_part('template-parts/evento/card');
                 }
                 ?>
