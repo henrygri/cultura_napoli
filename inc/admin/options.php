@@ -20,15 +20,15 @@ function dci_register_main_options_metabox() {
 
     dci_register_footer_options();
 
-    dci_register_pagina_amministrazione_options();
+    //dci_register_pagina_amministrazione_options();
 
     dci_register_pagina_novita_options();
 
-    dci_register_pagina_servizi_options();
+    //dci_register_pagina_servizi_options();
 
-    dci_register_pagina_documenti_options();
+    //dci_register_pagina_documenti_options();
 
-    dci_register_pagina_vivi_options();
+    //dci_register_pagina_vivi_options();
 	
 	dci_register_pagina_luoghi_options();
 
