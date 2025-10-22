@@ -5,13 +5,13 @@
 ?>
 
 <section id="novita">
-    <div class="bg-grey-card pt-40 pt-md-100 pb-50">
+    <div class="pt-4 pt-md-5 pb-50">
         <div class="container">
             <div class="row row-title">
                 <div class="col-12">
-                <h3 class="title-large-semi-bold mb-0">
-                    Eventi
-                </h3>
+                    <h3 class="title-large-semi-bold mb-0">
+                        Eventi
+                    </h3>
                 </div>
             </div>
             <div class="row pt-4 mt-lg-2 pb-lg-4">

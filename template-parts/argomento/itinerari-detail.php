@@ -4,20 +4,20 @@
     $posts = dci_get_grouped_posts_by_term( 'itinerari' , 'argomenti', $argomento->slug, 3 );
 ?>
 
-<section id="novita">
-    <div class="bg-grey-card pt-40 pt-md-100 pb-50">
+<section id="itinerari">
+    <div class="bg-200 pt-4 pt-md-5 pb-50">
         <div class="container">
             <div class="row row-title">
                 <div class="col-12">
-                <h3 class="title-large-semi-bold mb-0">
+                  <h3 class="title-large-semi-bold mb-0">
                     Itinerari
-                </h3>
+                  </h3>
                 </div>
             </div>
             <div class="row pt-4 mt-lg-2 pb-lg-4">
               <?php
                 foreach ($posts as $post) {
-                  get_template_part('template-parts/progetto/cards-list');
+                  get_template_part('template-parts/itinerario/cards-list');
                 }
               ?>
             </div>
@@ -34,4 +34,3 @@
             </div>
         </div>
     </div>
-</section>

@@ -12,7 +12,7 @@ if ($img) {
     <div class="card card-itinerario no-after">
 
       <div class="img-responsive-wrapper">
-        <div class="img-responsive img-responsive-panoramic rounded-2">
+        <div class="img-responsive img-responsive-panoramic rounded-3">
           <figure class="img-wrapper">
             <?php dci_get_img($img, ''); ?>
           </figure>
