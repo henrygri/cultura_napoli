@@ -1,8 +1,8 @@
 <?php
 global $gallery;
 ?>
- <div class="it-carousel-wrapper it-carousel-landscape-abstract-three-cols splide" data-bs-carousel-splide>
-	<div class="it-header-block">
+<div class="it-carousel-wrapper it-carousel-same-height splide"  data-bs-carousel-splide>
+	<div class="it-header-block visually-hidden">
 		<div class="it-header-block-title">
 			<h3 class="h4">Galleria di immagini</h4>
 		</div>
@@ -18,12 +18,12 @@ global $gallery;
 				<li class="splide__slide">
 					<div class="it-single-slide-wrapper">
 						<figure>
-						<img src="<?php echo $urlg; ?>" alt="<?php echo esc_attr($attach->post_title); ?>" class="img-fluid">
+						<img src="<?php echo $urlg; ?>" alt="<?php echo esc_attr($attach->post_title); ?>">
 						<figcaption class="figure-caption mt-2"><?php echo $attach->post_title; ?></figcaption>
 						</figure>
 					</div>
 				</li>
-		<?php } ?>                            
+		<?php } ?>
 		</ul>
 	</div>
 </div>

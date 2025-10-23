@@ -7,8 +7,8 @@ if ($hide_arguments) $argomenti = array();
 ?>
 
 <?php if (is_array($argomenti) && count($argomenti) ) { ?>
-<div class="mt-4 mb-4">
-    <span class="subtitle-small">Argomenti</span>
+<div class="d-flex mt-4 mb-4">
+    <span class="chips-title">Argomenti</span>
     <ul class="d-flex flex-wrap gap-1">
         <?php foreach ($argomenti as $argomento) { ?>
         <li>
@@ -22,7 +22,7 @@ if ($hide_arguments) $argomenti = array();
 <?php } ?>
 <div class="dropdown <?php echo $inline ? 'd-inline' : '' ?>">
     <button
-        class="btn btn-dropdown dropdown-toggle text-decoration-underline d-inline-flex align-items-center fs-0"
+        class="btn btn-dropdown dropdown-toggle d-inline-flex align-items-center fs-0"
         type="button"
         id="shareActions"
         data-bs-toggle="dropdown"
@@ -33,7 +33,7 @@ if ($hide_arguments) $argomenti = array();
         <svg class="icon" aria-hidden="true">
             <use xlink:href="#it-share"></use>
         </svg>
-        <small>Condividi</small>
+        Condividi
     </button>
     <div class="dropdown-menu shadow-lg" aria-labelledby="shareActions">
         <div class="link-list-wrapper">
@@ -84,7 +84,7 @@ if ($hide_arguments) $argomenti = array();
 </div>
 <div class="dropdown <?php echo $inline ? 'd-inline' : '' ?>">
     <button
-        class="btn btn-dropdown dropdown-toggle text-decoration-underline d-inline-flex align-items-center fs-0"
+        class="btn btn-dropdown dropdown-toggle d-inline-flex align-items-center fs-0"
         type="button"
         id="viewActions"
         data-bs-toggle="dropdown"
@@ -96,7 +96,7 @@ if ($hide_arguments) $argomenti = array();
             xlink:href="#it-more-items"
         ></use>
         </svg>
-        <small>Vedi azioni</small>
+        Vedi azioni
     </button>
     <div class="dropdown-menu shadow-lg" aria-labelledby="viewActions">
         <div class="link-list-wrapper">

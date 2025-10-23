@@ -41,7 +41,6 @@ global $the_query, $load_posts, $load_card_type;
             <h2 class="title-xxlarge mb-4">
                 Esplora tutti gli eventi
             </h2>
-            <?php /*
             <div>
                 <div class="cmp-input-search">
                     <div class="form-group autocomplete-wrapper mb-0">
@@ -67,7 +66,6 @@ global $the_query, $load_posts, $load_card_type;
                     </div>
                 </div>
             </div>
-            */ ?>
             <div class="row g-4" id="load-more">
                 <?php
                 foreach ( $posts as $post ) {

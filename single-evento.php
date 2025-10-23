@@ -208,8 +208,11 @@ get_header();
         <section class="col-lg-8 it-page-sections-container border-light">
           <article id="cos-e" class="it-page-section mb-5" data-audio>
               <h2 class="h3 mb-2">Cos'è</h2>
-              <div class="richtext-wrapper font-serif">
+              <div class="richtext-wrapper mb-5">
                   <?php echo $descrizione; ?>
+                  <p class="my-4">
+                    Questo evento fa parte del progetto <a href="">Nome del Progetto</a>
+                  </p>
               </div>
               <?php if(is_array($persone) && count($persone)) {?>
               <div class="pt-3 mb-4">
@@ -234,7 +237,7 @@ get_header();
 
           <?php if($luogo_evento) {?>
           <article id="luogo" class="it-page-section mb-5">
-            <h2 class="mb-2">Luogo</h2>
+            <h2 class="h3 mb-2">Luogo</h2>
             <?php
                 $luogo = $luogo_evento;
                 get_template_part("template-parts/single/luogo");
