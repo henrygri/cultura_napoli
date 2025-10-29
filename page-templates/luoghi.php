@@ -9,22 +9,23 @@ global $post;
 get_header();
 
 ?>
+
 	<main>
 		<?php
 		while ( have_posts() ) :
 			the_post();
+
 			$img = dci_get_option('immagine', 'luoghi');
 			$didascalia = dci_get_option('didascalia', 'luoghi');
-			$args = array(
-				'posts_per_page' => -1,
-				'post_type' => 'luogo',
-				'post_status'    => 'publish'
-			);
-			$schede_luoghi = get_posts($args);
 
-		?>
-		<?php 
-			$with_shadow = true;
+			// $args = array(
+			// 	'posts_per_page' => -1,
+			// 	'post_type' => 'luogo',
+			// 	'post_status'    => 'publish'
+			// );
+			// $schede_luoghi = get_posts($args);
+			//
+			// $with_shadow = true;
 			// get_template_part("template-parts/hero/hero");
 		?>
 
@@ -45,16 +46,23 @@ get_header();
 			</section>
 		<?php } */ ?>
 
-		<!-- <?php get_template_part("template-parts/luogo/evidenza"); ?> -->
-		<?php get_template_part("template-parts/luogo/mappa-quartieri"); ?>
+		<?php // get_template_part("template-parts/luogo/evidenza"); ?>
+		<section class="bg-200">
+		  <div class="container" id="main-container">
+		    <div class="row justify-content-center">
+		      <div class="col-12">
+		        <?php get_template_part("template-parts/common/breadcrumb"); ?>
+		      </div>
+		    </div>
+			</div>
+			<?php get_template_part("template-parts/luogo/mappa-quartieri"); ?>
+		</section>
 		<?php get_template_part("template-parts/luogo/tutti-luoghi"); ?>
-							
-		<?php 
+
+		<?php
 			endwhile; // End of the loop.
 		?>
 	</main>
 
 <?php
 get_footer();
-
-

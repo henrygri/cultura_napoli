@@ -171,16 +171,31 @@ body {
 /*
  * BUTTONS
  */
+ .btn {
+   --bs-btn-color: var(--bs-black);
+   --bs-btn-hover-color: var(--bs-dark);
+   --bs-btn-active-color: var(--cn-giallo);
+ }
 
 .btn:hover {
   color: var(--bs-primary-hover);
 }
 
- .btn-primary {
+.btn-primary {
   background-color: var(--bs-primary);
   border-color:var(--bs-primary);
 }
-
+.btn-outline {
+  color: var(--bs-black);
+  box-shadow: inset 0 0 0 2px var(--bs-black);
+}
+.btn-outline:hover {
+  color: var(--bs-white);
+  background-color: var(--bs-black);
+}
+.btn-outline:hover .icon {
+  fill: var(--bs-white) !important;
+}
 .btn-outline-primary {
   color: var(--bs-primary);
   box-shadow: inset 0 0 0 2px var(--bs-primary);
@@ -238,11 +253,12 @@ body {
 
 
 
+
 /*
  * GRID
  */
 
- .section.section-muted { 
+ .section.section-muted {
   background: rgba(var(--cn-giallo-rgb),.1);
 }
 
@@ -459,6 +475,7 @@ a.card-evento { background-color: transparent; text-decoration: none; }
 .card-evento .card-body h5.card-title { color: var(--bs-black); margin-bottom:0; }
 .card-evento .card-body .card-text { color: var(--bs-secondary); }
 
+
 a.card-full { text-decoration: none; }
 .card-full .card-image-wrapper { position: relative; aspect-ratio: calc(16/9); overflow: hidden; box-shadow: 0 2px 20px 0 rgba(0,0,0,.1) }
 .card-full .card-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center center; hoverflow: hidden; }
@@ -472,8 +489,12 @@ a.card-luogo { background-color: transparent; text-decoration: none; }
 .card-luogo .card-body { padding: .7em 0; }
 .card-luogo .card-body .card-title.h5,
 .card-luogo .card-body h5.card-title { color: var(--bs-black); margin-bottom:0; }
-.card-evento .card-body .card-text { color: var(--bs-secondary); }
+.card-luogo .card-body .card-text { color: var(--bs-secondary); }
 
+.card-luogo.card-luogo-small { flex-direction: row; background: var(--bs-white); border: 1px solid rgba(var(--cn-giallo-rgb), .4); }
+.card-luogo.card-luogo-small .card-body .card-title.h5,
+.card-luogo.card-luogo-small .card-body h5.card-title { font-size: 1rem; line-height: 1.25rem; }
+.card-luogo.card-luogo-small .img-responsive-wrapper { width: 144px; }
 
 .card-itinerario { }
 .card-itinerario .img-responsive.rounded,
@@ -483,7 +504,6 @@ a.card-luogo { background-color: transparent; text-decoration: none; }
   content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0) 100%); }
 .card-itinerario .card-body { position: absolute; bottom: 0; width: 100%; color: #FFF; }
 .card-itinerario .card-body .card-title { color: #FFF; }
-
 
 .map-wrapper.map-column { margin: 0; }
 .map-wrapper.rounded-3 { overflow: hidden; }
@@ -594,11 +614,23 @@ select.just-validate-success-field {
 /*
 /* Evento
 */
+.single-evento .it-page-section:not(:first-of-type) { border-top: 1px solid #c5c7c9; padding-top: 2rem; }
 .single-evento #luogo .card .icon { width: 1em; height: 1em; fill:var(--bs-primary); stroke:var(--bs-primary); stroke-width: .1em; margin-top: -0.2em; }
 .single-evento #luogo .card .card-body { padding-top: 1em; padding-left: 0; padding-right: 0; }
 .single-evento #luogo .card .card-body .card-title.h5,
 .single-evento #luogo .card .card-body h5.card-title { margin-bottom: 0; }
 .single-evento #luogo .card::after { margin-top: 0; }
+
+.parent-event { border-top: 1px solid rgba(var(--cn-giallo-rgb),.3)!important }
+.more-events { border-top: 1px solid rgba(var(--cn-giallo-rgb),.3)!important }
+
+
+
+/*
+/* Itinerario
+*/
+.single-itinerario .it-page-section:not(:first-of-type) { border-top: 1px solid #c5c7c9; padding-top: 2rem; }
+
 
 /*
 /* Splide
@@ -606,6 +638,7 @@ select.just-validate-success-field {
 .it-carousel-same-height .it-single-slide-wrapper { height: 100%; }
 .it-carousel-same-height figure { height: 100%; }
 .it-carousel-same-height figure img { height: 100%; width: auto; border-radius: .5rem; }
+
 
 
 .slider_home .splide__pagination {
@@ -618,6 +651,9 @@ select.just-validate-success-field {
     width: 2rem;
     height: .1rem;
 }
+.it-carousel-wrapper .splide__pagination button { background: rgba(var(--cn-giallo-rgb), .5); }
+.it-carousel-wrapper .splide__pagination button.is-active { background: var(--bs-black); }
+
 .slider_home .splide__pagination__page.is-active {
     background: var(--bs-primary);
     height: .15rem;

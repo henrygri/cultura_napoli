@@ -8,7 +8,7 @@ if ($hide_arguments) $argomenti = array();
 
 <?php if (is_array($argomenti) && count($argomenti) ) { ?>
 <div class="d-flex mt-4 mb-4">
-    <span class="chips-title">Argomenti</span>
+    <span class="chips-title visually-hidden">Argomenti</span>
     <ul class="d-flex flex-wrap gap-1">
         <?php foreach ($argomenti as $argomento) { ?>
         <li>

@@ -44,11 +44,14 @@ get_header();
     $costi = dci_get_meta( 'costi' );            
     $allegati = dci_get_meta("allegati", $prefix, $post->ID);
     $punti_contatto = dci_get_meta("punti_contatto", $prefix, $post->ID);
+    $specifica_contatti = dci_get_meta("specifica_contatti", $prefix, $post->ID);
     $organizzatori = dci_get_meta("organizzatore", $prefix, $post->ID);
     $appuntamenti = dci_get_eventi_figli();
     $patrocinato = dci_get_meta("patrocinato", $prefix, $post->ID);
     $sponsor = dci_get_meta("sponsor", $prefix, $post->ID);     
     $more_info = dci_get_wysiwyg_field("ulteriori_informazioni", $prefix, $post->ID);
+    //
+    $progetti = dci_get_meta('progetti_evento', '_dci_evento_');
     ?>
 
     <section class="it-hero-wrapper it-wrapped-container custom-overlapping">
@@ -208,11 +211,36 @@ get_header();
         <section class="col-lg-8 it-page-sections-container border-light">
           <article id="cos-e" class="it-page-section mb-5" data-audio>
               <h2 class="h3 mb-2">Cos'è</h2>
-              <div class="richtext-wrapper mb-5">
+              <div class="richtext-wrapper text-secondary mb-5">
                   <?php echo $descrizione; ?>
-                  <p class="my-4">
-                    Questo evento fa parte del progetto <a href="">Nome del Progetto</a>
-                  </p>
+                  <?php if (is_array($progetti) && count($progetti) > 0) { ?>
+                    <?php
+                    $lista_progetti = [];
+
+                    foreach ($progetti as $progetto_id) {
+                      $progetto = get_post($progetto_id);
+                      if ($progetto && $progetto->post_type === 'progetto') {
+                        $lista_progetti[] = sprintf(
+                          '<a href="%s">%s</a>',
+                          esc_url(get_permalink($progetto)),
+                          esc_html($progetto->post_title)
+                        );
+                      }
+                    }
+
+                    $count = count($lista_progetti);
+                    switch (true) {
+                        case ($count === 1):
+                            $testo = 'Questo evento fa parte del progetto ' . $lista_progetti[0] . '.';
+                            break;
+                        default:
+                            $last = array_pop($lista_progetti);
+                            $testo = 'Questo evento fa parte dei progetti ' . implode(', ', $lista_progetti) . ' e ' . $last . '.';
+                            break;
+                    } ?>
+                    <p class="my-4"><?php echo $testo; ?></p>
+                  <?php  } ?>
+
               </div>
               <?php if(is_array($persone) && count($persone)) {?>
               <div class="pt-3 mb-4">
@@ -231,12 +259,12 @@ get_header();
           <?php if($destinatari) {?>
           <article id="destinatari" class="it-page-section mb-5">
             <h2 class="h3 mb-2">A chi è rivolto</h2>
-            <p><?php echo $destinatari; ?></p>
+            <p class="text-secondary"><?php echo $destinatari; ?></p>
           </article>
           <?php  } ?>
 
           <?php if($luogo_evento) {?>
-          <article id="luogo" class="it-page-section mb-5">
+          <article id="luogo" class="it-page-section">
             <h2 class="h3 mb-2">Luogo</h2>
             <?php
                 $luogo = $luogo_evento;
@@ -286,8 +314,8 @@ get_header();
               $luogo = $luogo_evento->post_title;
               ?>
               <div class="mt-5">
-                  <a target="_blank" href="https://calendar.google.com/calendar/r/eventedit?text=<?php echo urlencode(get_the_title()); ?>&dates=<?php echo $data_inizio; ?>/<?php echo $data_fine; ?>&details=<?php echo urlencode($descrizione_breve); ?>:+<?php echo urlencode(get_permalink()); ?>&location=<?php echo urlencode($luogo); ?>" class="btn btn-outline-primary btn-icon">
-                      <svg class="icon icon-primary" aria-hidden="true">
+                  <a target="_blank" href="https://calendar.google.com/calendar/r/eventedit?text=<?php echo urlencode(get_the_title()); ?>&dates=<?php echo $data_inizio; ?>/<?php echo $data_fine; ?>&details=<?php echo urlencode($descrizione_breve); ?>:+<?php echo urlencode(get_permalink()); ?>&location=<?php echo urlencode($luogo); ?>" class="btn btn-outline btn-icon">
+                      <svg class="icon icon-black" aria-hidden="true">
                       <use xlink:href="#it-plus-circle"></use>
                       </svg>
                       <span>Aggiungi al calendario</span>
@@ -300,19 +328,19 @@ get_header();
           <article id="costi" class="it-page-section mb-5">
               <h2 class="h3 mb-2">Costi</h2>
               <?php foreach ($costi as $costo) { ?>
-              <div class="card no-after border-start mt-3">
-                  <div class="card-body">
-                      <h5>
-                      <span>
-                          <?php echo $costo['titolo_costo']; ?>
-                      </span>
-                      <p class="card-title big-heading">
-                          <?php echo $costo['prezzo_costo']; ?>
-                      </p>
+              <div class="card no-after mt-3">
+                  <div class="card-body p-0">
+                      <h5 class="h6 mb-0">
+                      <?php
+                        echo $costo['titolo_costo'];
+                        $val = str_replace(',', '.', $costo['prezzo_costo']); // converte virgole in punti
+                        $val = floatval(preg_replace('/[^0-9.]/', '', $val)); // rimuove eventuali caratteri non numerici
+                        if ($val > 0) {
+                          echo ': '. $costo['prezzo_costo'];
+                        }
+                        ?>
                       </h5>
-                      <p class="mt-4">
-                          <?php echo $costo['descrizione_costo']; ?>
-                      </p>
+                      <p class="text-secondary mb-0"><?php echo $costo['descrizione_costo']; ?></p>
                   </div>
               </div>
           <?php } ?>
@@ -342,18 +370,27 @@ get_header();
               <h2 class="h3 mb-2">Appuntamenti</h2>
               <div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
                   <?php foreach ($appuntamenti as $appuntamento) {
-                      get_template_part('template-parts/single/appuntamento');
+                    $post = $appuntamento;
+                    setup_postdata($post);
+                    get_template_part("template-parts/evento/card");
+                    wp_reset_postdata();
                   } ?>
               </div>
           </article>
           <?php }?>
 
-          <article id="contatti" class="it-page-section mb-5">
+          <article id="contatti" class="it-page-section mb-3">
           <?php if( is_array($punti_contatto) && count($punti_contatto) ) { ?>
             <h2 class="h3 mb-2">Contatti</h2>
             <?php foreach ($punti_contatto as $pc_id) {
                 get_template_part('template-parts/single/punto-contatto');
             } ?>
+            <?php if( !empty($specifica_contatti) ) { ?>
+            <div class="richtext-wrapper text-secondary mb-5">
+                <?php echo $specifica_contatti; ?>
+            </div>
+          <?php } ?>
+
           <?php } ?>
           <?php if( is_array($organizzatori) && count($organizzatori) ) { ?>
             <h4 class="h3 h5 mt-4">Con il supporto di:</h4>
@@ -362,10 +399,11 @@ get_header();
             } ?>
           <?php } ?>
           </article>
-          
+
+          <?php if ( (is_array($patrocinato) && count($patrocinato)) || (is_array($sponsor) && count($sponsor)) || !empty($more_info) ) { ?>
           <article id="ulteriori-informazioni" class="it-page-section mb-5">
-          <?php 
-              if ( (is_array($patrocinato) && count($patrocinato)) || 
+          <?php
+              if ( (is_array($patrocinato) && count($patrocinato)) ||
               (is_array($sponsor) && count($sponsor)) ) { ?>
             <h3 class="mb-3">Ulteriori informazioni</h3>
           <?php
@@ -401,28 +439,30 @@ get_header();
               </div>
           <?php } ?>
           </article>
-          <?php get_template_part('template-parts/single/page_bottom'); ?>
+          <?php } ?>
+
+          <?php // get_template_part('template-parts/single/page_bottom'); ?>
           </section>
       </div>
     </div>
-    
+
     <?php
     $parent_event_id = dci_get_meta('evento_genitore', '_dci_evento_');
     if ($parent_event_id) {
         $parent_event = get_post($parent_event_id);
         if ($parent_event && $parent_event->post_type == 'evento') : ?>
-        <section class="pt-4 pb-5 bg-100">
+        <section class="pt-4 pb-5 bg-100 parent-event">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="h4 mt-4 mb-4">Questo evento fa parte di</h3>
+                        <h2 class="h4 mt-4 mb-4">Questo evento fa parte di</h2>
                     </div>
                 </div>
                 <div class="row">
-                    <?php 
+                    <?php
                     $post = $parent_event;
                     setup_postdata($post);
-                    get_template_part("template-parts/evento/card");
+                    get_template_part("template-parts/evento/card-rassegna");
                     wp_reset_postdata();
                     ?>
                 </div>
@@ -430,38 +470,6 @@ get_header();
         </section>
         <?php endif;
     } ?>
-
-    <?php
-    $progetti = dci_get_meta('progetti_evento', '_dci_evento_');
-    if (is_array($progetti) && count($progetti) > 0) : ?>
-    <section class="pt-4 pb-5 bg-200">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="h4 mt-4 mb-4">Questo evento fa parte del progetto</h3>
-                </div>
-            </div>
-            <div class="link-list-wrapper">
-                <ul class="link-list">
-                    <?php 
-                    foreach ($progetti as $progetto_id) {
-                        $progetto = get_post($progetto_id);
-                        if ($progetto && $progetto->post_type == 'progetto') {
-                            ?>
-                            <li>
-                                <a class="list-item" href="<?php echo get_permalink($progetto); ?>">
-                                    <span><?php echo $progetto->post_title; ?></span>
-                                </a>
-                            </li>
-                            <?php
-                        }
-                    }
-                    ?>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <?php endif; ?>
 
     <?php
     $current_args = wp_get_post_terms($post->ID, 'argomenti', array('fields' => 'ids'));
@@ -487,7 +495,7 @@ get_header();
         ));
 
         if ($related_events->have_posts()) : ?>
-        <section class="pt-4 pb-5">
+        <section class="pt-4 pb-5 bg-200 more-events">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
