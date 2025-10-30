@@ -1,6 +1,12 @@
+<?php
+global $is_home;
+?>
     <div class="container">
         <div class="row justify-content-center ">
             <div class="col-12">
+                <?php if ( $is_home ) { ?>
+                  <h2>I Luoghi della cultura</h2>
+                <?php } else { ?>
                 <div class="cmp-hero">
                     <section class="it-hero-wrapper bg-transparent align-items-start">
                         <div class="it-hero-text-wrapper pt-0 ps-0 pb-0">
@@ -13,6 +19,7 @@
                         </div>
                     </section>
                 </div>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -59,13 +66,17 @@
           <?php get_template_part('template-parts/luogo/mappa-svg', null, [ 'slug_municipalita' => $slug_municipalita ]); ?>
         </div>
         <div class="col-lg-6 ps-5 py-3 py-lg-5">
-          <h2 class="h3 mb-1"><?php echo esc_html($term_random->name); ?></h2>
+          <?php if ( $is_home ) { ?>
+            <h3 class="h4 mb-1"><?php echo esc_html($term_random->name); ?></h3>
+          <?php } else { ?>
+            <h2 class="h3 mb-1"><?php echo esc_html($term_random->name); ?></h2>
+          <?php } ?>
           <?php if (!empty($quartieri_figli)) : ?>
             <p class="mb-4">
               <?php echo implode(', ', wp_list_pluck($quartieri_figli, 'name')); ?>
             </p>
           <?php endif; ?>
-          <div>
+          <div class="mb-3">
               <?php
               foreach ( $luoghi as $luogo ) {
                   global $luogo_id, $load_card_type, $with_border;
@@ -76,6 +87,11 @@
               }
               ?>
           </div>
+
+          <a class="btn btn-outline" href="">
+            <span>Vedi tutti</span>
+            <svg role="img" class="icon icon-sm align-middle icon-primary ms-2"><use href="<?php echo get_stylesheet_directory_uri(); ?>/assets/svg/it-arrow-right.svg"></use></svg>
+          </a>
         </div>
       </div>
     </div>
