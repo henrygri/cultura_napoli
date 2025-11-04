@@ -9,7 +9,7 @@ if ($img) {
 ?>
 <div class="col-md-6">
   <div class="card-wrapper">
-    <div class="card card-itinerario no-after">
+    <div class="card card-itinerario no-after rounded-3">
 
       <div class="img-responsive-wrapper">
         <div class="img-responsive img-responsive-panoramic rounded-3">
