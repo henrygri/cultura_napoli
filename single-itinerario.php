@@ -58,7 +58,7 @@ get_header();
       <div class="container">
         <div class="row mx-0">
           <div class="col-12 px-0">
-            <div class="it-hero-card it-hero-bottom-overlapping rounded drop-shadow <?php echo ($img? '' : 'mt-0'); ?>">
+            <div class="it-hero-card it-hero-bottom-overlapping rounded-3 drop-shadow mt-0">
               <figure class="figure px-0 img-full w-100">
                   <img src="<?php echo $img_url; ?>" class="figure-img img-fluid rounded" alt="<?php echo $image_alt; ?>" />
                   <?php if ($img->post_excerpt)  {?>
@@ -214,7 +214,7 @@ get_header();
             foreach ($luoghi as $luogo) {
               $luogo_id = $luogo->ID;
               $with_border = true;
-              get_template_part('template-parts/luogo/card-light');
+              get_template_part('template-parts/luogo/card-light-inverse');
             }
             ?>
           </article>
