@@ -510,7 +510,7 @@ a.card-luogo { background-color: transparent; text-decoration: none; }
 .bg-100 .card-evento:hover,
 .bg-200 .card-evento:hover { background: rgba(255,255,255,.4)}
 
-.card-itinerario { }
+a.card-itinerario { background-color: transparent; text-decoration: none; }
 .card-itinerario .img-responsive.rounded,
 .card-itinerario .img-responsive.rounded-2,
 .card-itinerario .img-responsive.rounded-3 { overflow: hidden; }

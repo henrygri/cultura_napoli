@@ -9,7 +9,7 @@ if ($img) {
 ?>
 <div class="col-md-6">
   <div class="card-wrapper">
-    <div class="card card-itinerario no-after rounded-3">
+    <a class="card card-itinerario no-after rounded-3" href="<?php echo get_permalink(); ?>">
 
       <div class="img-responsive-wrapper">
         <div class="img-responsive img-responsive-panoramic rounded-3">
@@ -20,18 +20,16 @@ if ($img) {
       </div>
 
       <div class="card-body">
-        <a class="text-decoration-none" href="<?php echo get_permalink(); ?>">
-          <h3 class="card-title"><?php echo the_title(); ?></h3>
-        </a>
+        <h3 class="card-title"><?php echo the_title(); ?></h3>
 
         <?php if (is_array($argomenti) && count($argomenti) ) { ?>
         <div class="">
             <ul class="d-flex flex-wrap gap-1">
                 <?php foreach ($argomenti as $argomento) { ?>
                 <li>
-                    <a class="chip chip-simple" data-element="service-topic">
+                    <span class="chip chip-simple" data-element="service-topic">
                         <span class="chip-label"><?php echo $argomento->name; ?></span>
-                    </a>
+                    </span>
                 </li>
                 <?php } ?>
             </ul>
@@ -45,7 +43,7 @@ if ($img) {
         */ ?>
       </div>
 
-    </div>
+    </a>
   </div>
 </div>
 <?php } else { ?>
