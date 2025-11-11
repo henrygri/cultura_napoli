@@ -17,48 +17,62 @@ get_header();
     $user_can_view_post = dci_members_can_user_view_post(get_current_user_id(), $post->ID);
 
     $prefix= '_dci_luogo_';
-	$nome_alternativo = dci_get_meta("nome_alternativo", $prefix, $post->ID);
+  	$nome_alternativo = dci_get_meta("nome_alternativo", $prefix, $post->ID);
+    //cover
+    $img_url = dci_get_meta('immagine');
+    $img = get_post( attachment_url_to_postid($img_url) );
+    $image_alt = get_post_meta( $img->ID, '_wp_attachment_image_alt', true);
     $descrizione_breve = dci_get_meta("descrizione_breve", $prefix, $post->ID);
-	$descrizione_estesa = dci_get_meta("descrizione_estesa", $prefix, $post->ID);
-	$luoghi_collegati = dci_get_meta("luoghi_collegati", $prefix, $post->ID);
-	$servizi = dci_get_meta("servizi", $prefix, $post->ID);
-	$modalita_accesso = dci_get_meta("modalita_accesso", $prefix, $post->ID);
-	$indirizzo = dci_get_meta("indirizzo", $prefix, $post->ID);
+  	$descrizione_estesa = dci_get_meta("descrizione_estesa", $prefix, $post->ID);
+  	$luoghi_collegati = dci_get_meta("luoghi_collegati", $prefix, $post->ID);
+  	$servizi = dci_get_meta("servizi", $prefix, $post->ID);
+  	$modalita_accesso = dci_get_meta("modalita_accesso", $prefix, $post->ID);
+  	$indirizzo = dci_get_meta("indirizzo", $prefix, $post->ID);
     $luogo = $post->ID;
-	$orario_pubblico = dci_get_meta("orario_pubblico", $prefix, $post->ID);
-	$punti_contatto = dci_get_meta("punti_contatto", $prefix, $post->ID);
-	$struttura_responsabile = dci_get_meta("struttura_responsabile", $prefix, $post->ID);
-	$ulteriori_informazioni = dci_get_wysiwyg_field("ulteriori_informazioni", $prefix, $post->ID); 
-    
+  	$orario_pubblico = dci_get_meta("orario_pubblico", $prefix, $post->ID);
+  	$punti_contatto = dci_get_meta("punti_contatto", $prefix, $post->ID);
+  	$struttura_responsabile = dci_get_meta("struttura_responsabile", $prefix, $post->ID);
+  	$ulteriori_informazioni = dci_get_wysiwyg_field("ulteriori_informazioni", $prefix, $post->ID);
     ?>
+    <section class="it-hero-wrapper it-wrapped-container custom-overlapping">
+      <div class="container px-4 pt-4 mb-4 rounded-3 bg-white" id="main-container">
+        <div class="row flex-lg-row-reverse">
+          <div class="col-lg-8 ps-lg-5">
 
-    <div class="container px-4 my-4" id="main-container">
-      <div class="row">
-        <div class="col px-lg-4">
+            <div class="it-hero-card it-hero-bottom-overlapping rounded-2 drop-shadow mt-0">
+              <figure class="figure px-0 img-full w-100">
+                  <img src="<?php echo $img_url; ?>" class="figure-img img-fluid rounded" alt="<?php echo $image_alt; ?>" />
+                  <?php if ($img->post_excerpt)  {?>
+                  <figcaption class="figure-caption text-center pt-3">
+                      <?php echo $img->post_excerpt; ?>
+                  </figcaption>
+                  <?php } ?>
+              </figure>
+            </div>
+
+
+
+          </div>
+          <div class="col-lg-4">
             <?php get_template_part("template-parts/common/breadcrumb"); ?>
+            <h1 data-audio><?php the_title(); ?></h1>
+            <?php if ($nome_alternativo) { ?>
+            <h2 class="h4 py-2" data-audio><?php echo $nome_alternativo; ?></h2>
+            <?php } ?>
+            <p data-audio>
+              <?php echo $descrizione_breve; ?>
+            </p>
+            <?php
+                $inline = true;
+                get_template_part('template-parts/single/actions-inverse');
+            ?>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-8 px-lg-4 py-lg-2">
-          <h1 data-audio><?php the_title(); ?></h1>
-          <?php if ($nome_alternativo) { ?>
-          <h2 class="h4 py-2" data-audio><?php echo $nome_alternativo; ?></h2>
-          <?php } ?>
-          <p data-audio>
-            <?php echo $descrizione_breve; ?>
-          </p>
-        </div>
-        <div class="col-lg-3 offset-lg-1">
-          <?php
-              $inline = true;
-              get_template_part('template-parts/single/actions');
-          ?>
-        </div>
-      </div>
-    </div>
+    </section>
 
-    <?php get_template_part('template-parts/single/image-large'); ?>
-  
+    <?php // get_template_part('template-parts/single/image-large'); ?>
+
     <div class="container">
       <div class="row border-top row-column-border row-column-menu-left border-light">
         <aside class="col-lg-4">
