@@ -58,9 +58,9 @@ get_header();
       <div class="container">
         <div class="row mx-0">
           <div class="col-12 px-0">
-            <div class="it-hero-card it-hero-bottom-overlapping rounded drop-shadow <?php echo ($img? '' : 'mt-0'); ?>">
+            <div class="it-hero-card it-hero-bottom-overlapping rounded-3 drop-shadow mt-0">
               <figure class="figure px-0 img-full w-100">
-                  <img src="<?php echo $img_url; ?>" class="figure-img img-fluid rounded" alt="<?php echo $image_alt; ?>" />
+                  <img src="<?php echo $img_url; ?>" class="figure-img img-fluid rounded-3" alt="<?php echo $image_alt; ?>" />
                   <?php if ($img->post_excerpt)  {?>
                   <figcaption class="figure-caption text-center pt-3">
                       <?php echo $img->post_excerpt; ?>

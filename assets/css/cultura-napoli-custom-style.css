@@ -498,11 +498,22 @@ a.card-luogo { background-color: transparent; text-decoration: none; }
 .card-luogo.card-luogo-small .card-body h5.card-title { font-size: 1rem; line-height: 1.25rem; }
 .card-luogo.card-luogo-small .img-responsive-wrapper { width: 144px; }
 
+a.card-progetto { background-color: transparent; text-decoration: none; }
+.card-progetto .img-responsive { overflow: hidden; border-radius: var(--bs-border-radius-lg) var(--bs-border-radius-lg) 0 0; }
+.card-progetto .img-responsive:after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(0deg,rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%); }
+.card-progetto .card-body { padding: 1em 1em; }
+.card-progetto .card-body .card-title.h4,
+.card-progetto .card-body h4.card-title { color: var(--bs-black); margin-bottom:0; }
+.card-progetto .card-body .card-title.h5,
+.card-progetto .card-body h5.card-title { color: var(--bs-black); margin-bottom:0; }
+.card-progetto .card-body .card-text { color: var(--bs-secondary); }
+
+
 .bg-100 .card-luogo.card-luogo-small,
 .bg-200 .card-luogo.card-luogo-small { border: 1px solid rgba(var(--cn-giallo-rgb), .4); }
 
 .card:not(.no-glow):hover { box-shadow: 0 0 1rem rgba(var(--bs-black-rgb), .2); }
-.card:not(.no-pop):hover { transform: translateY(-.25em); }
+.card:not(.no-pop):hover { transform: scale(1.02); }
 
 .bg-100 .card:not(.no-glow):hover,
 .bg-200 .card:not(.no-glow):hover { box-shadow: 0 0 1rem rgba(var(--cn-giallo-rgb), .4); }

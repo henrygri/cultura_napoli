@@ -18,7 +18,7 @@ get_header();
     the_post();
     $user_can_view_post = dci_members_can_user_view_post(get_current_user_id(), $post->ID);
 
-    $prefix= '_dci_evento_';
+    $prefix= '_dci_project_';
     $descrizione_breve = dci_get_meta("descrizione_breve", $prefix, $post->ID);
     //cover
     $img_url = dci_get_meta('immagine');
@@ -37,11 +37,7 @@ get_header();
     $gallery = dci_get_meta("gallery", $prefix, $post->ID);
     $video = dci_get_meta("video", $prefix, $post->ID);
     $trascrizione = dci_get_meta("trascrizione", $prefix, $post->ID);
-    $persone = dci_get_meta("persone", $prefix, $post->ID);
-    // $luogo_evento_id = dci_get_meta("luogo_evento", $prefix, $post->ID);
-    //if ($luogo_evento_id) $luogo_evento = get_post($luogo_evento_id);
-    // $luogo_evento = isset($luogo_evento_id) ? get_post($luogo_evento_id) : '';
-    $costi = dci_get_meta( 'costi' );
+
     $allegati = dci_get_meta("allegati", $prefix, $post->ID);
     $punti_contatto = dci_get_meta("punti_contatto", $prefix, $post->ID);
     $organizzatori = dci_get_meta("organizzatore", $prefix, $post->ID);
@@ -55,9 +51,9 @@ get_header();
       <div class="container">
         <div class="row mx-0">
           <div class="col-12 px-0">
-            <div class="it-hero-card it-hero-bottom-overlapping rounded drop-shadow <?php echo ($img? '' : 'mt-0'); ?>">
+            <div class="it-hero-card it-hero-bottom-overlapping rounded-3 drop-shadow mt-0">
               <figure class="figure px-0 img-full w-100">
-                  <img src="<?php echo $img_url; ?>" class="figure-img img-fluid rounded" alt="<?php echo $image_alt; ?>" />
+                  <img src="<?php echo $img_url; ?>" class="figure-img img-fluid rounded-3" alt="<?php echo $image_alt; ?>" />
                   <?php if ($img->post_excerpt)  {?>
                   <figcaption class="figure-caption text-center pt-3">
                       <?php echo $img->post_excerpt; ?>
@@ -79,17 +75,18 @@ get_header();
       <div class="row">
         <div class="col-lg-8 px-lg-4 py-lg-2">
           <h1 class="h2" data-audio><?php the_title(); ?></h1>
-          <?php if ($start_timestamp && $end_timestamp) { ?>
-          <h2 class="h4 py-2" data-audio>dal <?php echo $start_date; ?> al <?php echo $end_date; ?></h2>
-          <?php } ?>
           <p data-audio>
             <?php echo $descrizione_breve; ?>
           </p>
+          <?php
+              $inline = true;
+              get_template_part('template-parts/single/actions-inverse');
+          ?>
         </div>
         <div class="col-lg-3 offset-lg-1">
           <?php
-              $inline = true;
-              get_template_part('template-parts/single/actions');
+              // $inline = true;
+              // get_template_part('template-parts/single/actions-inverse');
           ?>
         </div>
       </div>

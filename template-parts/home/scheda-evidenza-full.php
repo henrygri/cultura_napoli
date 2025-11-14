@@ -29,7 +29,7 @@ $page_macro = get_page_by_path($page_macro_slug);
   title="Vai alla pagina <?php echo $post->post_title ?>"
   >
       <div class="card-image-wrapper">
-        <div class="card-image rounded" style="background-image:url(<?php echo $img; ?>);"></div>
+        <div class="card-image rounded-3" style="background-image:url(<?php echo $img; ?>);"></div>
       </div>
       <div class="card-body p-3">
         <div class="row">

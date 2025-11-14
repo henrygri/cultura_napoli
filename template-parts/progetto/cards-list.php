@@ -1,16 +1,13 @@
 <?php
     global $post;
-        //
-        // $description = dci_get_meta('descrizione_breve');
-        // $arrdata = dci_get_data_pubblicazione_arr("data_pubblicazione", '_dci_notizia_', $post->ID);
-        // $monthName = date_i18n('M', mktime(0, 0, 0, $arrdata[1], 10));
-        // $tipo = get_the_terms($post->term_id, 'tipi_notizia')[0];
-        $img = dci_get_meta('immagine');
-        if ($img) {
+
+    $descrizione_breve = dci_get_meta("descrizione_breve", '_dci_project_', $post->ID);
+    $img = dci_get_meta("immagine", '_dci_project_', $post->ID);
+    if ($img) {
 ?>
-<div class="col-md-6 col-xl-4">
-  <div class="card-wrapper border border-light rounded shadow-sm">
-    <div class="card no-after rounded">
+<div class="col-md-6">
+  <div class="card-wrapper">
+    <a class="card card-progetto no-after rounded-3 border border-light" href="<?php echo get_permalink(); ?>">
 
       <div class="img-responsive-wrapper">
         <div class="img-responsive img-responsive-panoramic">
@@ -21,15 +18,13 @@
       </div>
 
       <div class="card-body">
-        <a class="text-decoration-none" href="<?php echo get_permalink(); ?>">
-          <h3 class="card-title"><?php echo the_title(); ?></h3>
-        </a>
+        <h3 class="h4 card-title"><?php echo the_title(); ?></h3>
         <p class="card-text text-secondary">
-          <?php echo $description; ?>
+          <?php echo $descrizione_breve; ?>
         </p>
       </div>
 
-    </div>
+    </a>
   </div>
 </div>
 <?php } else { ?>
