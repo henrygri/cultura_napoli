@@ -15,19 +15,19 @@ function dci_register_post_type_notizia() {
         'featured_image' => __( 'Immagine di riferimento', 'design_comuni_italia' ),
     );
     $args   = array(
-        'label'         => __( 'Notizia', 'design_comuni_italia' ),
-        'labels'        => $labels,
-        'supports'      => array( 'title', 'editor', 'author', 'thumbnail'),
-        'hierarchical'  => false,
-        'public'        => true,
-        'menu_position' => 5,
-        'menu_icon'     => 'dashicons-media-interactive',
-        'has_archive'   => false,
+        'label'             => __( 'Notizia', 'design_comuni_italia' ),
+        'labels'            => $labels,
+        'supports'          => array( 'title', 'editor', 'author', 'thumbnail'),
+        'hierarchical'      => false,
+        'public'            => true,
+        'menu_position'     => 35,
+        'menu_icon'         => 'dashicons-media-interactive',
+        'has_archive'       => false,
         //'rewrite' => array('slug' => 'novita/%tipi_notizia%','with_front' => false),
-        'rewrite' => array('slug' => 'novita','with_front' => false),
-        'capability_type' => array('notizia', 'notizie'),
-        'map_meta_cap'    => true,
-        'description'    => __( "Tipologia che struttura le informazioni relative a agli aggiornamenti d un comune", 'design_comuni_italia' ),
+        'rewrite'           => array('slug' => 'novita','with_front' => false),
+        'capability_type'   => 'post',
+        'map_meta_cap'      => true,
+        'description'       => __( "Tipologia che struttura le informazioni relative a agli aggiornamenti d un comune", 'design_comuni_italia' ),
     );
     register_post_type('notizia', $args );
 

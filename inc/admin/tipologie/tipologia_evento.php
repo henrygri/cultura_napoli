@@ -25,13 +25,13 @@ function dci_register_post_type_evento() {
         'supports'              => array( 'title', 'editor' ),
         'hierarchical'          => false,
         'public'                => true,
-        'menu_position' => 5,
+        'menu_position'         => 32,
         'menu_icon'             => 'dashicons-tickets-alt',
         'has_archive'           => false,
-        'rewrite' => array('slug' => 'eventi', 'with_front' => false),
-        'capability_type' => array('evento', 'eventi'),
-        'map_meta_cap'    => true,
-        'description'    => __( "Tipologia che struttura le informazioni relative a un evento di interesse pubblico pubblicato sul sito di un comune", 'design_comuni_italia' ),
+        'rewrite'               => array('slug' => 'eventi', 'with_front' => false),
+        'capability_type'       => array('evento', 'eventi'),
+        'map_meta_cap'          => 'post',
+        'description'           => __( "Tipologia che struttura le informazioni relative a un evento di interesse pubblico pubblicato sul sito di un comune", 'design_comuni_italia' ),
     );
     register_post_type( 'evento', $args );
 

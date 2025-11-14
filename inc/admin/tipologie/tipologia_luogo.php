@@ -15,17 +15,17 @@ function dci_register_post_type_luogo() {
 		'view_item'      => _x( 'Visualizza il Luogo', 'Post Type Singular Name', 'design_comuni_italia' ),
 	);
 	$args   = array(
-		'label'         => __( 'Luogo', 'design_comuni_italia' ),
-		'labels'        => $labels,
-		'supports'      => array( 'title', 'editor', 'thumbnail' ),
-		'hierarchical'  => true,
-		'public'        => true,
-        'menu_position' => 5,
-        'rewrite' => array('slug' => 'luoghi', 'with_front' => false),
-		'menu_icon'     => 'dashicons-location-alt',
-        'has_archive'           => false,    //archive page
-        'capability_type' => array('luogo', 'luoghi'),
-        'map_meta_cap'    => true,
+		'label'             => __( 'Luogo', 'design_comuni_italia' ),
+		'labels'            => $labels,
+		'supports'          => array( 'title', 'editor', 'thumbnail' ),
+		'hierarchical'      => true,
+		'public'            => true,
+        'menu_position'     => 31,
+        'rewrite'           => array('slug' => 'luoghi', 'with_front' => false),
+		'menu_icon'         => 'dashicons-location',
+        'has_archive'       => false,    //archive page
+        'capability_type'   => 'post',
+        'map_meta_cap'      => true,
 	);
 	register_post_type( 'luogo', $args );
 

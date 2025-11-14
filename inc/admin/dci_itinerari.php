@@ -23,8 +23,8 @@ function dci_register_post_type_itinerario() {
         'supports'              => array( 'title', 'thumbnail' ),
         'hierarchical'          => false,
         'public'                => true,
-        'menu_position'         => 6,
-        'menu_icon'             => 'dashicons-location-alt', // 🧭 più coerente con itinerari
+        'menu_position'         => 33,
+        'menu_icon'             => 'dashicons-location-alt',
         'has_archive'           => true,
         'rewrite'               => array( 'slug' => 'itinerari', 'with_front' => false ),
         'map_meta_cap'          => true,

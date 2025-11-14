@@ -25,10 +25,10 @@ function dci_register_post_type_punto_contatto() {
         'supports'              => array( 'title', 'editor', 'thumbnail' ),
         'hierarchical'          => false,
         'public'                => true,
-        'menu_position'         => 5,
+        'menu_position'         => 36,
         'menu_icon'             => 'dashicons-phone',
         'has_archive'           => true,
-        'capability_type' => array('punto_contatto', 'punti_contatto'),
+        'capability_type'       => 'post',
         'map_meta_cap'    => true,
         'description'    => __( "Questa Tipologia descrive la struttura di un punto di contatto, che può essere fisico, virtuale o digitale", 'design_comuni_italia' ),
 

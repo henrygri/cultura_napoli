@@ -24,7 +24,7 @@ function dci_register_post_type_project() {
         'supports'              => array('title', 'editor', 'thumbnail'),
         'hierarchical'          => false,
         'public'                => true,
-        'menu_position'         => 6,
+        'menu_position'         => 34,
         'menu_icon'             => 'dashicons-grid-view',
         'has_archive'           => true,
         'map_meta_cap'          => true,
