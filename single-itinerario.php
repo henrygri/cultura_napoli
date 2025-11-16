@@ -34,6 +34,7 @@ get_header();
     $allegati = dci_get_meta("allegati", $prefix, $post->ID);
     //contatti - da sistemare
     $punti_contatto = dci_get_meta("punti_contatto", $prefix, $post->ID);
+    $specifica_contatto = dci_get_meta("specifica_contatti", $prefix, $post->ID);
     //luoghi
     // Recupera l'elenco degli ID dei luoghi
     $luoghi_ids = dci_get_meta("luoghi", $prefix, $post->ID);
@@ -240,12 +241,16 @@ get_header();
 
 
           <article id="contatti" class="it-page-section mb-3">
-          <?php if( is_array($punti_contatto) && count($punti_contatto) ) { ?>
-            <h2 class="h3 mb-2">Contatti</h2>
-            <?php foreach ($punti_contatto as $pc_id) {
-                get_template_part('template-parts/single/punto-contatto');
-            } ?>
-          <?php } ?>
+            <?php 
+            if( is_array($punti_contatto) && count($punti_contatto) ) { ?>
+                <h2 class="h3 mb-2">Contatti</h2>
+                <?php foreach ($punti_contatto as $pc_id) {
+                    get_template_part('template-parts/single/punto-contatto');
+                } 
+            } 
+            if($specifica_contatto) :
+                get_template_part('template-parts/single/specifica-contatto');
+            endif; ?>
           </article>
 
           <?php // get_template_part('template-parts/single/page_bottom'); ?>

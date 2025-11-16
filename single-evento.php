@@ -44,7 +44,7 @@ get_header();
     $costi = dci_get_meta( 'costi' );            
     $allegati = dci_get_meta("allegati", $prefix, $post->ID);
     $punti_contatto = dci_get_meta("punti_contatto", $prefix, $post->ID);
-    $specifica_contatti = dci_get_meta("specifica_contatti", $prefix, $post->ID);
+    $specifica_contatto = dci_get_meta("specifica_contatti", $prefix, $post->ID);
     $organizzatori = dci_get_meta("organizzatore", $prefix, $post->ID);
     $appuntamenti = dci_get_eventi_figli();
     $patrocinato = dci_get_meta("patrocinato", $prefix, $post->ID);
@@ -384,14 +384,11 @@ get_header();
             <h2 class="h3 mb-2">Contatti</h2>
             <?php foreach ($punti_contatto as $pc_id) {
                 get_template_part('template-parts/single/punto-contatto');
-            } ?>
-            <?php if( !empty($specifica_contatti) ) { ?>
-            <div class="richtext-wrapper text-secondary mb-5">
-                <?php echo $specifica_contatti; ?>
-            </div>
-          <?php } ?>
-
-          <?php } ?>
+            }
+          } 
+          if($specifica_contatto) :
+            get_template_part('template-parts/single/specifica-contatto');
+          endif; ?>
           <?php if( is_array($organizzatori) && count($organizzatori) ) { ?>
             <h4 class="h3 h5 mt-4">Con il supporto di:</h4>
             <?php foreach ($organizzatori as $uo_id) {
