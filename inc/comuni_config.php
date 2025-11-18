@@ -84,6 +84,7 @@ function dci_get_tassonomie_names(){
         'tipi_notizia',
         'tipi_luogo',
         'quartieri',
+        'target',
         'argomenti',
         'tipi_unita_organizzativa',
         'licenze',

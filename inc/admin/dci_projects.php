@@ -43,6 +43,23 @@ add_action( 'cmb2_init', 'dci_add_project_metaboxes' );
 function dci_add_project_metaboxes() {
     $prefix = '_dci_project_';
 
+    $cmb_target = new_cmb2_box(array(
+        'id' => $prefix . 'box_target',
+        'title' => __('Target', 'design_comuni_italia'),
+        'object_types' => array('progetto'),
+        'context' => 'side',
+        'priority' => 'high',
+    ));
+
+    $cmb_target->add_field( array(
+        'id'        => $prefix . 'target',
+        'name'      => __( 'Target', 'design_comuni_italia' ),
+        'desc'      => __( 'Seleziona i target di riferimento', 'design_comuni_italia' ),
+        'type'           => 'taxonomy_multicheck_hierarchical',
+        'taxonomy'       => 'target',
+        'remove_default' => 'true'
+    ) );
+
      $cmb_apertura = new_cmb2_box( array(
         'id'           => $prefix . 'box_apertura',
         'title'        => __( 'Apertura', 'design_comuni_italia' ),

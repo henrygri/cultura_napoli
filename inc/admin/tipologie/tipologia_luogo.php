@@ -83,7 +83,7 @@ function dci_add_luogo_metaboxes() {
         'remove_default' => 'true'
     ) );*/
 
-     $cmb_quartieri = new_cmb2_box(array(
+    $cmb_quartieri = new_cmb2_box(array(
         'id' => $prefix . 'box_quartieri',
         'title' => __('Quartieri', 'design_comuni_italia'),
         'object_types' => array('luogo'),
@@ -97,6 +97,23 @@ function dci_add_luogo_metaboxes() {
         'desc'      => __( 'Seleziona i quartieri di riferimento', 'design_comuni_italia' ),
         'type'           => 'taxonomy_multicheck_hierarchical',
         'taxonomy'       => 'quartieri',
+        'remove_default' => 'true'
+    ) );
+
+    $cmb_target = new_cmb2_box(array(
+        'id' => $prefix . 'box_target',
+        'title' => __('Target', 'design_comuni_italia'),
+        'object_types' => array('luogo'),
+        'context' => 'side',
+        'priority' => 'high',
+    ));
+
+    $cmb_target->add_field( array(
+        'id'        => $prefix . 'target',
+        'name'      => __( 'Target', 'design_comuni_italia' ),
+        'desc'      => __( 'Seleziona i target di riferimento', 'design_comuni_italia' ),
+        'type'           => 'taxonomy_multicheck_hierarchical',
+        'taxonomy'       => 'target',
         'remove_default' => 'true'
     ) );
 

@@ -9,7 +9,8 @@
             "group_id": "eventi",
             "group_name" : "Eventi",
             "taxonomy" : [
-                "argomenti"
+                "argomenti",
+                "target"
             ]
         },
         "luogo" : {
@@ -21,7 +22,8 @@
             "group_id": "luoghi",
             "group_name" : "Luoghi",
             "taxonomy" : [
-                "quartieri"
+                "quartieri",
+                "target"
             ]
         },
         "notizia" :  {
@@ -136,7 +138,8 @@
             "singular_name" : "itinerario",
             "plural_name" : "Itinerari",
             "taxonomy" : [
-                "argomenti"
+                "argomenti",
+                "target"
             ]
         },
         "appuntamento" : {

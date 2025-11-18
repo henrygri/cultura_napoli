@@ -290,6 +290,38 @@ function createCapabilities() {
 }
 
 /**
+ * Ensure taxonomy capabilities exist for administrators when a taxonomy
+ * is added after theme activation. This handles the case where the theme
+ * was already active and a new taxonomy (eg. `target`) was introduced.
+ *
+ * Runs on `admin_init` and is idempotent.
+ */
+function dci_ensure_taxonomy_capabilities() {
+    // run only on admin pages
+    if ( ! is_admin() ) {
+        return;
+    }
+
+    $admins = get_role( 'administrator' );
+    if ( ! $admins ) {
+        return;
+    }
+
+    $custom_tax = dci_get_tassonomie_names();
+    $caps_terms = array("manage_","edit_","delete_","assign_");
+
+    foreach ( $custom_tax as $ctax ) {
+        foreach ( $caps_terms as $cap ) {
+            $cap_name = $cap . $ctax;
+            if ( ! $admins->has_cap( $cap_name ) ) {
+                $admins->add_cap( $cap_name );
+            }
+        }
+    }
+}
+add_action( 'admin_init', 'dci_ensure_taxonomy_capabilities' );
+
+/**
  * creazione menu
  */
 function createMenu()

@@ -110,6 +110,24 @@ function dci_add_itinerario_metaboxes() {
         'remove_default' => 'true',
     ) );
 
+
+    $cmb_target = new_cmb2_box(array(
+        'id' => $prefix . 'box_target',
+        'title' => __('Target', 'design_comuni_italia'),
+        'object_types' => array('itinerario'),
+        'context' => 'side',
+        'priority' => 'high',
+    ));
+
+    $cmb_target->add_field( array(
+        'id'        => $prefix . 'target',
+        'name'      => __( 'Target', 'design_comuni_italia' ),
+        'desc'      => __( 'Seleziona i target di riferimento', 'design_comuni_italia' ),
+        'type'           => 'taxonomy_multicheck_hierarchical',
+        'taxonomy'       => 'target',
+        'remove_default' => 'true'
+    ) );
+
     // COS'E'
     $cmb_descrizione = new_cmb2_box( array(
         'id'           => $prefix . 'box_descrizione',
