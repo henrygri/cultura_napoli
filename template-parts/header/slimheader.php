@@ -34,13 +34,14 @@
                 </div>
               </div>
             </div>
-            <?php
+            <?php get_template_part("template-parts/header/header-press"); ?>
+            <?php /*
                 if(!is_user_logged_in()) {
                     get_template_part("template-parts/header/header-anon");
                 }else{
                     get_template_part("template-parts/header/header-logged");
                 }
-              ?>
+              */ ?>
           </div>
         </div>
       </div>
