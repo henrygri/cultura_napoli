@@ -7,7 +7,7 @@
     $luoghi = array($luogo);
     get_template_part("template-parts/luogo/map"); 
 ?>
-<div class="card">
+<div class="card no-after no-pop no-glow">
   <div class="card-body">
     <h3 class="card-title h5">
       <svg class="icon">

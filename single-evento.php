@@ -11,6 +11,19 @@ global $show_calendar, $gallery, $video, $trascrizione, $luogo, $pc_id, $uo_id, 
 
 get_header();
 ?>
+<?php
+/**
+ * Evento template file
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package Design_Comuni_Italia
+ */
+
+global $show_calendar, $gallery, $video, $trascrizione, $luogo, $pc_id, $uo_id, $appuntamento, $inline;
+
+get_header();
+?>
 
 <main>
   <?php
@@ -328,7 +341,7 @@ get_header();
           <article id="costi" class="it-page-section mb-5">
               <h2 class="h3 mb-2">Costi</h2>
               <?php foreach ($costi as $costo) { ?>
-              <div class="card no-after mt-3">
+              <div class="card no-after mt-3 no-pop no-glow">
                   <div class="card-body p-0">
                       <h5 class="h6 mb-0">
                       <?php
