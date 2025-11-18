@@ -286,7 +286,7 @@ function dci_add_eventi_metaboxes() {
         ),
     ) );
 
-    $cmb_descrizione->add_field( array(
+    /*$cmb_descrizione->add_field( array(
         'id' => $prefix . 'a_chi_e_rivolto',
         'name'        => __( 'A chi è rivolto', 'design_comuni_italia' ),
         'desc' => __( 'Descrizione testuale dei principali destinatari dell\'Evento' , 'design_comuni_italia' ),
@@ -296,7 +296,7 @@ function dci_add_eventi_metaboxes() {
             'textarea_rows' => 10,
             'teeny' => false,
         ),
-    ) );
+    ) );*/
 
     /*$cmb_descrizione->add_field( array(
             'id' => $prefix . 'persone',

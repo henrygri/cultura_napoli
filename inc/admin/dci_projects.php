@@ -136,7 +136,7 @@ function dci_add_project_metaboxes() {
         ),
     ) );
 
-    $cmb_descrizione->add_field( array(
+    /*$cmb_descrizione->add_field( array(
         'id' => $prefix . 'a_chi_e_rivolto',
         'name'        => __( 'A chi è rivolto', 'design_comuni_italia' ),
         'desc' => __( 'Descrizione testuale dei principali destinatari del progetto' , 'design_comuni_italia' ),
@@ -146,7 +146,7 @@ function dci_add_project_metaboxes() {
             'textarea_rows' => 10,
             'teeny' => false,
         ),
-    ) );
+    ) );*/
 
     $cmb_gallerie_multimediali = new_cmb2_box( array(
         'id'           => $prefix . 'box_gallerie_multimediali',
