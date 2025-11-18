@@ -313,6 +313,12 @@ function dci_add_luogo_metaboxes() {
         ),
     ) );
 
+    $cmb_accesso->add_field( array(
+        'id' => $prefix . 'consigliato_per_accesso',
+        'name'        => __( 'Consigliato per accessibilità', 'design_comuni_italia' ),
+        'type' => 'checkbox',
+    ) );
+
     //DOVE
     $cmb_dove = new_cmb2_box( array(
         'id'           => $prefix . 'box_dove',
