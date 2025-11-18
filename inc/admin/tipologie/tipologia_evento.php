@@ -147,7 +147,7 @@ function dci_add_eventi_metaboxes() {
     ));
 
     //evento repater
-    $cmb_date = new_cmb2_box( array(
+    /*$cmb_date = new_cmb2_box( array(
         'id'           => $prefix . 'box_date',
         'title'        => __( 'Date evento', 'design_comuni_italia' ),
         'object_types' => array( 'evento' ),
@@ -178,7 +178,7 @@ function dci_add_eventi_metaboxes() {
         'id' =>'data_orario_fine',
         'type'       => 'text_datetime_timestamp',
         'date_format' => 'd-m-Y',
-    ) );
+    ) ); */
 
     $cmb_evento_genitore = new_cmb2_box( array(
         'id'           => $prefix . 'box_evento_genitore',
