@@ -232,15 +232,12 @@ get_header();
           <?php } ?>
 
           <article id="contatti" class="it-page-section mb-5">
-          <?php if( is_array($punti_contatto) && count($punti_contatto) ) { ?>
-            <h2 class="mb-3">Contatti</h2>
+          <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
+            <h2 class="h3 mb-2">Contatti</h2>
             <?php foreach ($punti_contatto as $pc_id) {
-                get_template_part('template-parts/single/punto-contatto');
-            } ?>
-          <?php }
-          if($specifica_contatto) :
-                get_template_part('template-parts/single/specifica-contatto');
-          endif; ?>
+                get_template_part('template-parts/single/card-contatto');
+            }
+          } ?>
           <?php if( is_array($organizzatori) && count($organizzatori) ) { ?>
             <h4 class="h5 mt-4">Con il supporto di:</h4>
             <?php foreach ($organizzatori as $uo_id) {
