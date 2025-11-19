@@ -144,7 +144,7 @@ get_header();
                                                     </a>
                                                     </li>
                                                 <?php } ?>
-                                                <?php if( is_array($punti_contatto) && count($punti_contatto) ) { ?>
+                                                <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
                                                 <li class="nav-item">
                                                 <a class="nav-link" href="#contatti">
                                                 <span>Contatti</span>
@@ -232,18 +232,22 @@ get_header();
           <?php } ?>
 
           <article id="contatti" class="it-page-section mb-5">
-          <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
-            <h2 class="h3 mb-2">Contatti</h2>
-            <?php foreach ($punti_contatto as $pc_id) {
-                get_template_part('template-parts/single/card-contatto');
-            }
-          } ?>
-          <?php if( is_array($organizzatori) && count($organizzatori) ) { ?>
-            <h4 class="h5 mt-4">Con il supporto di:</h4>
-            <?php foreach ($organizzatori as $uo_id) {
-                get_template_part("template-parts/unita-organizzativa/card-full");
-            } ?>
-          <?php } ?>
+            <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
+              <h2 class="h3 mb-2">Contatti</h2>
+              <div class="card card-teaser mt-3 rounded no-glow no-pop">
+                  <div class="card-body">
+                    <?php foreach ($punti_contatto as $pc_id) {
+                        get_template_part('template-parts/single/punto-contatto-card-content');
+                    } ?>
+                    <?php if( is_array($punti_contatto) && count($punti_contatto) && $specifica_contatto ) {
+                      echo '<hr';
+                    } ?>
+                    <?php if ( $specifica_contatto ) { ?>
+                      <?php echo wpautop( wp_kses_post( $specifica_contatto ) ); ?>
+                    <?php } ?>
+                  </div>
+              </div>
+            <?php } ?>
           </article>
 			
           <?php if($struttura_responsabile) {?>

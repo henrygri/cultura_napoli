@@ -11,19 +11,6 @@ global $show_calendar, $gallery, $video, $trascrizione, $luogo, $pc_id, $uo_id, 
 
 get_header();
 ?>
-<?php
-/**
- * Evento template file
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package Design_Comuni_Italia
- */
-
-global $show_calendar, $gallery, $video, $trascrizione, $luogo, $pc_id, $uo_id, $appuntamento, $inline;
-
-get_header();
-?>
 
 <main>
   <?php
@@ -41,9 +28,11 @@ get_header();
     $start_timestamp = dci_get_meta("data_orario_inizio", $prefix, $post->ID);
     $start_date = date_i18n('d F Y', date($start_timestamp));
     $start_date_arr = explode('-', date_i18n('d-M-Y-H-i', date($start_timestamp)));
+    $start_arrdata = explode('-', date_i18n("j-F-Y", $start_timestamp));
     $end_timestamp = dci_get_meta("data_orario_fine", $prefix, $post->ID);
     $end_date = date_i18n('d F Y', date($end_timestamp));
     $end_date_arr = explode('-', date_i18n('d-M-Y-H-i', date($end_timestamp)));
+    $end_arrdata = explode('-', date_i18n("j-F-Y", $end_timestamp));
     $descrizione = dci_get_wysiwyg_field("descrizione_completa", $prefix, $post->ID);
     $destinatari = dci_get_wysiwyg_field("a_chi_e_rivolto", $prefix, $post->ID);
     //media
@@ -95,8 +84,17 @@ get_header();
       <div class="row">
         <div class="col-lg-8 px-lg-4 py-lg-2">
           <h1 class="h2" data-audio><?php the_title(); ?></h1>
-          <?php if ($start_timestamp && $end_timestamp) { ?>
-          <h2 class="h4 py-2" data-audio>dal <?php echo $start_date; ?> al <?php echo $end_date; ?></h2>
+          <?php if ($start_timestamp) { ?>
+            <h2>
+              <?php
+                  if ($end_timestamp and $end_arrdata[0] != $start_arrdata[0]) {
+                      echo 'Dal '.$start_arrdata[0].' '.$start_arrdata[1].' al '.$end_arrdata[0].' '.$end_arrdata[1];
+                  } else {
+                      echo $start_arrdata[0].' '.$start_arrdata[1];
+                  }
+              ?>
+            </h2>
+            <?php /* <h2 class="h4 py-2" data-audio>dal <?php echo $start_date; ?> al <?php echo $end_date; ?></h2> */ ?>
           <?php } ?>
           <p data-audio>
             <?php echo $descrizione_breve; ?>
@@ -187,7 +185,7 @@ get_header();
                                                     </a>
                                                     </li>
                                                 <?php } ?>
-                                                <?php if( is_array($punti_contatto) && count($punti_contatto) ) { ?>
+                                                <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
                                                 <li class="nav-item">
                                                 <a class="nav-link" href="#contatti">
                                                 <span>Contatti</span>
@@ -276,7 +274,7 @@ get_header();
           </article>
           <?php  } ?>
 
-          <?php if($luogo_evento) {?>
+          <?php if ($luogo_evento_id) {?>
           <article id="luogo" class="it-page-section">
             <h2 class="h3 mb-2">Luogo</h2>
             <?php
@@ -286,7 +284,7 @@ get_header();
           </article>
           <?php } ?>
 
-          <?php if ($start_timestamp && $end_timestamp) { ?>
+          <?php /* if ($start_timestamp && $end_timestamp) { ?>
           <article id="date-e-orari" class="it-page-section mb-5">
               <h2 class="h3 mb-2">Date e orari</h2>
               <div class="point-list-wrapper my-4">
@@ -335,7 +333,7 @@ get_header();
                   </a>
               </div>
           </article>
-          <?php } ?>
+          <?php } */ ?>
 
           <?php if( is_array($costi) && count($costi) ) { ?>
           <article id="costi" class="it-page-section mb-5">
@@ -393,15 +391,23 @@ get_header();
           <?php }?>
 
           <article id="contatti" class="it-page-section mb-3">
-          <?php if( is_array($punti_contatto) && count($punti_contatto) ) { ?>
+          <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
             <h2 class="h3 mb-2">Contatti</h2>
-            <?php foreach ($punti_contatto as $pc_id) {
-                get_template_part('template-parts/single/punto-contatto');
-            }
-          } 
-          if($specifica_contatto) :
-            get_template_part('template-parts/single/specifica-contatto');
-          endif; ?>
+            <div class="card card-teaser mt-3 rounded no-glow no-pop">
+                <div class="card-body">
+                  <?php foreach ($punti_contatto as $pc_id) {
+                      get_template_part('template-parts/single/punto-contatto-card-content');
+                  } ?>
+                  <?php if( is_array($punti_contatto) && count($punti_contatto) && $specifica_contatto ) {
+                    echo '<hr';
+                  } ?>
+                  <?php if ( $specifica_contatto ) { ?>
+                    <?php echo wpautop( wp_kses_post( $specifica_contatto ) ); ?>
+                  <?php } ?>
+                </div>
+            </div>
+          <?php } ?>
+          
           <?php if( is_array($organizzatori) && count($organizzatori) ) { ?>
             <h4 class="h3 h5 mt-4">Con il supporto di:</h4>
             <?php foreach ($organizzatori as $uo_id) {
