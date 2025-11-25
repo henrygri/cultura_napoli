@@ -5,6 +5,7 @@
 ?>
 <?php 
     $luoghi = array($luogo);
+    $posizione_gps = dci_get_meta("posizione_gps", $prefix, $luogo->ID);
     get_template_part("template-parts/luogo/map"); 
 ?>
 <div class="card no-after no-pop no-glow">
@@ -17,6 +18,12 @@
     </h3>
     <div class="card-text text-secondary">
       <p><?php echo $indirizzo; ?><br><?php echo dci_get_quartieri($luogo->ID); ?></p>
+      <a class="btn btn-outline-secondary" target="_blank" href="https://www.google.com/maps/dir/?api=1&amp;destination=<?php echo $posizione_gps["lat"]; ?>,<?php echo $posizione_gps["lng"]; ?>">
+        Ottieni indicazioni
+        <svg class="icon ms-2">
+          <use xlink:href="#it-arrow-right" aria-hidden="true"></use>
+        </svg>
+      </a>
     </div>
   </div>
 </div>
