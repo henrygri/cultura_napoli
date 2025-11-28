@@ -185,6 +185,9 @@ body {
   background-color: var(--bs-primary);
   border-color:var(--bs-primary);
 }
+.btn-primary:hover {
+  background-color: var(--bs-primary-hover);
+}
 .btn-outline {
   color: var(--bs-black);
   box-shadow: inset 0 0 0 2px var(--bs-black);

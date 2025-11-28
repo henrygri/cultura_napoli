@@ -208,7 +208,7 @@ function dci_add_eventi_metaboxes() {
 
      $cmb_progetti->add_field( array(
         'id' =>  $prefix . 'progetti_evento',
-        'name'    => __( 'Progetti dell\'evento', 'design_comuni_italia' ),
+        // 'name'    => __( 'Progetti dell\'evento', 'design_comuni_italia' ),
         'desc' => __( 'Seleziona i progetti dell\'evento.<br>Se il progetto non esiste, <a href="post-new.php?post_type=progetto" target="_blank">crea il progetto</a> prima di iniziare a inserire i dati dell\'evento.' , 'design_comuni_italia' ),
         'type'    => 'pw_multiselect',
         'options' =>  dci_get_posts_options('progetto'),
@@ -309,6 +309,34 @@ function dci_add_eventi_metaboxes() {
             ),
         )
     );*/
+
+    //ACCESSIBILITÀ
+    $cmb_accesso = new_cmb2_box( array(
+        'id'           => $prefix . 'box_accesso',
+        'title'        => __( 'Accessibilità', 'design_comuni_italia' ),
+        'object_types' => array( 'evento' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+    ) );
+
+    $cmb_accesso->add_field( array(
+        'id' => $prefix . 'modalita_accesso',
+        'name'        => __( 'Informazioni sull’accessibilità', 'design_comuni_italia' ),
+        'desc'  => __( 'Indicare sia eventuali barriere architettoniche / sensoriali che e i servizi disponibili: ascensori, percorsi accessibili, materiali tattili, supporti per non udenti/non vedenti, ecc.' , 'design_comuni_italia' ),
+        'type'       => 'wysiwyg',
+        'options' => array(
+            'media_buttons' => false, // show insert/upload button(s)
+            'textarea_rows' => 10, // rows="..."
+            'teeny' => true, // output the minimal editor config used in Press This
+        ),
+    ) );
+
+    $cmb_accesso->add_field( array(
+        'id' => $prefix . 'accessibile',
+        'name'        => __( 'Consigliato per accessibilità', 'design_comuni_italia' ),
+        'type' => 'checkbox',
+    ) );
+
 
     $cmb_gallerie_multimediali = new_cmb2_box( array(
         'id'           => $prefix . 'box_gallerie_multimediali',

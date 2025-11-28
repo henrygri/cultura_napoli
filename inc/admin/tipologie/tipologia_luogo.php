@@ -287,7 +287,7 @@ function dci_add_luogo_metaboxes() {
         'options' => array(
             'media_buttons' => false, // show insert/upload button(s)
             'textarea_rows' => 10, // rows="..."
-            'teeny' => false, // output the minimal editor config used in Press This
+            'teeny' => true, // output the minimal editor config used in Press This
         ),
     ) );
 
@@ -303,18 +303,18 @@ function dci_add_luogo_metaboxes() {
 
     $cmb_accesso->add_field( array(
         'id' => $prefix . 'modalita_accesso',
-        'name'        => __( 'Modalità di accesso', 'design_comuni_italia' ),
-        'desc' => __( 'Servizi disponibili sulle modalità di accesso al luogo con particolare attenzione agli accessi per disabili.' , 'design_comuni_italia' ),
+        'name'        => __( 'Informazioni sull’accessibilità', 'design_comuni_italia' ),
+        'desc'  => __( 'Indicare sia eventuali barriere architettoniche / sensoriali che e i servizi disponibili: ascensori, percorsi accessibili, materiali tattili, supporti per non udenti/non vedenti, ecc.' , 'design_comuni_italia' ),
         'type'       => 'wysiwyg',
         'options' => array(
             'media_buttons' => false, // show insert/upload button(s)
             'textarea_rows' => 10, // rows="..."
-            'teeny' => false, // output the minimal editor config used in Press This
+            'teeny' => true, // output the minimal editor config used in Press This
         ),
     ) );
 
     $cmb_accesso->add_field( array(
-        'id' => $prefix . 'consigliato_per_accesso',
+        'id' => $prefix . 'accessibile',
         'name'        => __( 'Consigliato per accessibilità', 'design_comuni_italia' ),
         'type' => 'checkbox',
     ) );
@@ -414,7 +414,7 @@ function dci_add_luogo_metaboxes() {
         'options' => array(
             'media_buttons' => false, // show insert/upload button(s)
             'textarea_rows' => 10, // rows="..."
-            'teeny' => false, // output the minimal editor config used in Press This
+            'teeny' => true, // output the minimal editor config used in Press This
         ),
     ) );
 
@@ -446,7 +446,7 @@ function dci_add_luogo_metaboxes() {
         'options' => array(
             'media_buttons' => false,
             'textarea_rows' => 10,
-            'teeny' => false,
+            'teeny' => true,
         ),
     ) );
 
