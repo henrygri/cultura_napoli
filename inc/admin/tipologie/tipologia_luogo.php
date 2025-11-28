@@ -295,7 +295,7 @@ function dci_add_luogo_metaboxes() {
     //MODALITA' DI ACCESSO
     $cmb_accesso = new_cmb2_box( array(
         'id'           => $prefix . 'box_accesso',
-        'title'        => __( 'Modalità di accesso', 'design_comuni_italia' ),
+        'title'        => __( 'Accessibilità', 'design_comuni_italia' ),
         'object_types' => array( 'luogo' ),
         'context'      => 'normal',
         'priority'     => 'high',
