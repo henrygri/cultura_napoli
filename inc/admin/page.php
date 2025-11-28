@@ -55,24 +55,66 @@ function dci_add_page_metaboxes() {
         // Get the name of the Page Template file.
         $template_file = get_post_meta( $curr_page_id, '_wp_page_template', true );
         $template_name = basename($template_file, ".php");
+        $editable_templates = array('area-stampa');
 
         //se la pagina utilizza un template del Sito dei Comuni
         if (in_array($template_name, dci_get_pagine_template_names())) {
 
-            remove_post_type_support( 'page', 'editor' );
+            if (!in_array($template_name, $editable_templates, true)) {
+                remove_post_type_support( 'page', 'editor' );
 
-            remove_post_type_support( 'page', 'title' );
+                remove_post_type_support( 'page', 'title' );
 
-            $args['attributes'] = array(
-                'required' => 'required',
-                'maxlength' => 255,
-                'readonly' => true
-            );
+                $args['attributes'] = array(
+                    'required' => 'required',
+                    'maxlength' => 255,
+                    'readonly' => true
+                );
+            }
         }
 
     }
 
     $cmb_descrizione->add_field($args);
+
+    /**
+     * Documenti Area Stampa
+     */
+    $cmb_area_stampa_docs = new_cmb2_box( array(
+        'id'           => $prefix . 'box_area_stampa_documenti',
+        'title'        => __( 'Documenti', 'design_comuni_italia' ),
+        'object_types' => array( 'page' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+        'show_on'      => array(
+            'key'   => 'page-template',
+            'value' => 'page-templates/area-stampa.php',
+        ),
+    ) );
+
+    $group_field_doc_id = $cmb_area_stampa_docs->add_field( array(
+        'id'      => $prefix . 'area_stampa_docs',
+        'type'    => 'group',
+        'options' => array(
+            'group_title'   => __( 'Documento {#}', 'design_comuni_italia' ),
+            'add_button'    => __( 'Aggiungi un documento', 'design_comuni_italia' ),
+            'remove_button' => __( 'Rimuovi il documento', 'design_comuni_italia' ),
+            'sortable'      => true,
+        ),
+    ) );
+
+    $cmb_area_stampa_docs->add_group_field( $group_field_doc_id, array(
+        'id'   => 'docs_allegato',
+        'name' => __( 'Allegato', 'design_comuni_italia' ),
+        'desc' => __( 'Carica il file da rendere disponibile all\'area stampa.', 'design_comuni_italia' ),
+        'type' => 'file',
+    ) );
+
+    $cmb_area_stampa_docs->add_group_field( $group_field_doc_id, array(
+        'id'   => 'label_allegato',
+        'name' => __( 'Etichetta allegato', 'design_comuni_italia' ),
+        'type' => 'text',
+    ) );
 
 }
 

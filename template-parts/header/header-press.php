@@ -3,6 +3,7 @@ $current_user = wp_get_current_user();
 # use get_user_meta to all data
 
 $last_notification = get_user_meta($current_user->ID,"_dci_last_notification", true);
+$press_area_url = dci_get_template_page_url('page-templates/area-stampa.php') ?: '#';
 
 // $link_notification = get_permalink($last_notification);
 
@@ -21,7 +22,7 @@ $last_notification = get_user_meta($current_user->ID,"_dci_last_notification", t
 ?>
 
 <div class="it-user-wrapper nav-item">
-    <a class="btn btn-primary btn-icon btn-full" href="#">
+    <a class="btn btn-primary btn-icon btn-full" href="<?php echo esc_url($press_area_url); ?>" aria-label="<?php esc_attr_e('Vai all\'area stampa', 'design_comuni_italia'); ?>">
         <svg class="icon icon-white d-none d-lg-block">
           <use xlink:href="#it-inbox"></use>
         </svg>

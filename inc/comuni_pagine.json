@@ -64,6 +64,13 @@
       "template_name": "novita",
       "children": {}
     },
+    "Area stampa": {
+      "title": "Area stampa",
+      "slug": "area-stampa",
+      "description": "Materiali e riferimenti utili per giornalisti e operatori dei media.",
+      "template_name": "area-stampa",
+      "children": {}
+    },
     "Servizi": {
       "title": "Servizi",
       "slug": "servizi",
