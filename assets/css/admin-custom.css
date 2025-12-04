@@ -1,0 +1,22 @@
+/* sistemo layout input + tasto upload per farlo stare tutto su una riga */
+.cmb-row.cmb-type-file .cmb-td { display: flex; flex-wrap: wrap; }
+.cmb-row.cmb-type-file .cmb-td .cmb2-upload-file { width: auto !important; flex-grow: 1; }
+.cmb-row.cmb-type-file .cmb-td .cmb2-upload-button { margin-left: .5em; }
+.cmb-row.cmb-type-file .cmb-td .cmb2-metabox-description { width: 100%; }
+.cmb-row.cmb-type-file .cmb-td .cmb2-media-status { width: 100%; }
+
+
+/* sistemo un po' il layout del repeater con le tappe dell'inerario. */
+/* nella definizione dei campi ho inserito uno sgamo per accorpare due campi in un unico div, così faccio due colonne */
+
+#_dci_itinerario_tappe_repeat .cmb-type-file { float: left; width: calc(50% - 2em); padding-right: 2em; border-bottom: none; margin-bottom: 0; }
+#_dci_itinerario_tappe_repeat .testi_tappa { float: left; width: 50%; border-bottom: none; }
+#_dci_itinerario_tappe_repeat .cmb-type-text { border-bottom: none; padding-bottom: 0; }
+#_dci_itinerario_tappe_repeat .cmb-type-textarea { padding-top: 0; }
+
+#_dci_itinerario_tappe_repeat .cmb-remove-field-row { clear: both; width: calc(100% - 2rem); padding: .7rem 1rem; background-color: #f2f2f2; }
+#_dci_itinerario_tappe_repeat .cmb-row.cmb-repeatable-grouping .inside .cmb-th { width: 100%; }
+#_dci_itinerario_tappe_repeat .cmb-row.cmb-repeatable-grouping .inside .cmb-th+.cmb-td,
+#_dci_itinerario_tappe_repeat .cmb-row.cmb-repeatable-grouping .inside .cmb-th+.cmb-td { width: 100%; }
+#_dci_itinerario_tappe_repeat .cmb-row.cmb-repeatable-grouping .inside .cmb-row .regular-text:not(.cmb2-upload-file) { width: 100% !important; }
+#_dci_itinerario_tappe_repeat .cmb-row.cmb-repeatable-grouping .inside .cmb-row .cmb2_textarea { width: 100% !important; }

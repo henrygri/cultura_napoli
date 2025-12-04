@@ -228,25 +228,80 @@ function dci_add_itinerario_metaboxes() {
         'type' => 'text',
     ) );
 
-    // LUOGHI
+    // NUOVI LUOGHI
     $cmb_luoghi = new_cmb2_box( array(
-        'id'           => $prefix . 'box_luoghi',
-        'title'        => __( 'Luoghi', 'design_comuni_italia' ),
-        'object_types' => array( 'itinerario' ),
-        'context'      => 'normal',
-        'priority'     => 'high',
+       'id'           => $prefix . 'box_luoghi',
+       'title'        => __( 'Luoghi', 'design_comuni_italia' ),
+       'object_types' => array( 'itinerario' ),
+       'context'      => 'normal',
+       'priority'     => 'high',
     ) );
 
-    $cmb_luoghi->add_field( array(
-        'id'      => $prefix . 'luoghi',
-        'name'    => __( 'Luoghi', 'design_comuni_italia' ),
-        'desc'    => __( 'Seleziona gli luoghi percorsi durante l\' itinerario.', 'design_comuni_italia' ),
-        'type'    => 'pw_multiselect',
-        'options' => dci_get_posts_options( 'luogo' ),
-        'attributes' => array(
-            'placeholder' => __( ' Seleziona luoghi', 'design_comuni_italia' ),
-        ),
+    // repeater Luoghi
+    $group_field_luogo_id = $cmb_luoghi->add_field( array(
+       'id'          => $prefix . 'tappe',
+       'type'        => 'group',
+       'options'     => array(
+       'group_title'    => __( 'Luogo {#}', 'design_comuni_italia' ), 
+       'add_button'     => __( 'Aggiungi un luogo', 'design_comuni_italia' ),
+       'remove_button'  => __( 'Rimuovi il luogo', 'design_comuni_italia' ),
+       'sortable'       => true,
+       ),
     ) );
+
+    $cmb_luoghi->add_group_field( $group_field_luogo_id, array(
+       'id'         => 'immagine_luogo',
+       'name'       => __( 'Immagine luogo', 'design_comuni_italia' ),
+       'type'       => 'file',
+       'query_args' => array( 'type' => 'image' ),
+    ) );
+
+    $cmb_luoghi->add_group_field( $group_field_luogo_id, array(
+       'id'         => 'titolo_luogo',
+       'name'       => __( 'Titolo luogo', 'design_comuni_italia' ),
+       'type'       => 'text',
+       'before_row' => 'cmb_before_field_cb',
+    ) );
+    $cmb_luoghi->add_group_field( $group_field_luogo_id, array(
+       'id'         => 'testo_luogo',
+       'name'       => __( 'Testo luogo', 'design_comuni_italia' ),
+       'type'       => 'textarea',
+       'after_row' => 'cmb_after_field_cb',
+    ) );
+
+    function cmb_before_field_cb( $field_args, $field  ) {
+     if ( $field && $field->args && $field->args['name'] === 'Titolo luogo' ) {
+       // print_r($field->args['name']);
+       echo '<div class="testi_tappa">';
+     }
+    }
+    function cmb_after_field_cb( $field_args, $field  ) {
+     if ( $field && $field->args && $field->args['name'] === 'Testo luogo' ) {
+       // print_r($field->args['name']);
+       echo '</div>';
+     }
+    }
+
+
+    // VECCHI LUOGHI
+    // $cmb_luoghi = new_cmb2_box( array(
+    //     'id'           => $prefix . 'box_luoghi',
+    //     'title'        => __( 'Luoghi', 'design_comuni_italia' ),
+    //     'object_types' => array( 'itinerario' ),
+    //     'context'      => 'normal',
+    //     'priority'     => 'high',
+    // ) );
+    //
+    // $cmb_luoghi->add_field( array(
+    //     'id'      => $prefix . 'luoghi',
+    //     'name'    => __( 'Luoghi', 'design_comuni_italia' ),
+    //     'desc'    => __( 'Seleziona gli luoghi percorsi durante l\' itinerario.', 'design_comuni_italia' ),
+    //     'type'    => 'pw_multiselect',
+    //     'options' => dci_get_posts_options( 'luogo' ),
+    //     'attributes' => array(
+    //         'placeholder' => __( ' Seleziona luoghi', 'design_comuni_italia' ),
+    //     ),
+    // ) );
 
 
     // CONTATTI
