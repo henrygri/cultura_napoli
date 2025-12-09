@@ -252,6 +252,7 @@ function dci_add_itinerario_metaboxes() {
     $cmb_luoghi->add_group_field( $group_field_luogo_id, array(
        'id'         => 'immagine_luogo',
        'name'       => __( 'Immagine luogo', 'design_comuni_italia' ),
+       'desc'       => 'Caricare preferibilmente immagini .jpg salvate per web, in formato 16:9',
        'type'       => 'file',
        'query_args' => array( 'type' => 'image' ),
     ) );

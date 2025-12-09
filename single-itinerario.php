@@ -32,27 +32,28 @@ get_header();
     $trascrizione = dci_get_meta("trascrizione", $prefix, $post->ID);
     //allegati - da sistemare
     $allegati = dci_get_meta("allegati", $prefix, $post->ID);
+    //tappe
+    $tappe = dci_get_meta("tappe", $prefix, $post->ID);
     //contatti - da sistemare
     $punti_contatto = dci_get_meta("punti_contatto", $prefix, $post->ID);
     $specifica_contatto = dci_get_meta("specifica_contatti", $prefix, $post->ID);
-    //luoghi
+    // Vecchi luoghi
     // Recupera l'elenco degli ID dei luoghi
-    $luoghi_ids = dci_get_meta("luoghi", $prefix, $post->ID);
-
-    if (!empty($luoghi_ids)) {
-        // Assicuriamoci che sia un array
-        if (!is_array($luoghi_ids)) {
-            $luoghi_ids = array($luoghi_ids);
-        }
-
-        // Recupera i post "luogo" in base agli ID
-        $luoghi = get_posts(array(
-            'post_type'      => 'luogo',
-            'post__in'       => $luoghi_ids,
-            'orderby'        => 'post__in', // mantiene l’ordine scelto in admin
-            'posts_per_page' => -1
-        ));
-    }
+    // $luoghi_ids = dci_get_meta("luoghi", $prefix, $post->ID);
+    // if (!empty($luoghi_ids)) {
+    //     // Assicuriamoci che sia un array
+    //     if (!is_array($luoghi_ids)) {
+    //         $luoghi_ids = array($luoghi_ids);
+    //     }
+    //
+    //     // Recupera i post "luogo" in base agli ID
+    //     $luoghi = get_posts(array(
+    //         'post_type'      => 'luogo',
+    //         'post__in'       => $luoghi_ids,
+    //         'orderby'        => 'post__in', // mantiene l’ordine scelto in admin
+    //         'posts_per_page' => -1
+    //     ));
+    // }
     ?>
 
     <section class="it-hero-wrapper it-wrapped-container custom-overlapping">
@@ -147,7 +148,7 @@ get_header();
                                                     </a>
                                                     </li>
                                                 <?php } ?>
-                                                <?php if( $luoghi) { ?>
+                                                <?php if( $tappe) { ?>
                                                     <li class="nav-item">
                                                     <a class="nav-link" href="#luoghi">
                                                     <span>Luoghi</span>
@@ -208,7 +209,7 @@ get_header();
           </article>
           <?php  } ?>
 
-          <?php if($luoghi) {?>
+          <?php /* if($luoghi) {?>
           <article id="luoghi" class="it-page-section mb-5">
             <h2 class="h3 mb-3">Luoghi</h2>
             <?php
@@ -219,7 +220,7 @@ get_header();
             }
             ?>
           </article>
-          <?php } ?>
+          <?php } */ ?>
 
           <?php if( $allegati ) {
               $doc = get_post( attachment_url_to_postid($allegati) );
@@ -235,6 +236,35 @@ get_header();
                       <a class="text-decoration-none" href="<?php echo $allegati; ?>" title="Scarica la locandina <?php echo $doc->post_title; ?>" aria-label="Scarica la locandina <?php echo $doc->post_title; ?>"><?php echo $doc->post_title; ?></a>
                   </h3>
                   </div>
+              </div>
+          </article>
+          <?php } ?>
+
+          
+          <?php if( $tappe ) { ?>
+          <article id="luoghi" class="it-page-section mb-5">
+              <h2 class="h3 mb-2">Luoghi</h2>
+              <div class="row">
+                <?php foreach ($tappe as $tappa) { ?>
+                  <div class="col-12 tappa-wrapper py-2">
+                    <div class="card card-tappa no-pop no-glow flex-md-row">
+                      <div class="img-responsive-wrapper col-md-4">
+                        <div class="img-responsive img-responsive-panoramic rounded">
+                          <figure class="img-wrapper">
+                            <img src="<?php echo $tappa['immagine_luogo']?>" class="w-100 rounded img-fluid" />
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="card-body col-md-8 py-2 px-0 mx-md-3">
+                        <h3 class="h5 card-title"><?php echo $tappa['titolo_luogo']?></h3>
+                        <p class="card-text">
+                          <span class="card-address"><?php echo $tappa['indirizzo_luogo']?></span>
+                          <?php echo $tappa['testo_luogo']?>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                <?php }?>
               </div>
           </article>
           <?php } ?>
