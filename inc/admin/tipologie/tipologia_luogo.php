@@ -157,9 +157,9 @@ function dci_add_luogo_metaboxes() {
             'type' => 'file',
             // 'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
             'query_args' => array( 'type' => 'image' ), // Only images attachment
-            'attributes'    => array(
-                'required'    => 'required'
-            ),
+            // 'attributes'    => array(
+            //     'required'    => 'required'
+            // ),
         )
     );
 
@@ -170,7 +170,7 @@ function dci_add_luogo_metaboxes() {
         'type'       => 'textarea',
         'attributes'    => array(
             'maxlength'  => '255',
-            'required'    => 'required'
+            // 'required'    => 'required'
         ),
     ) );
 
