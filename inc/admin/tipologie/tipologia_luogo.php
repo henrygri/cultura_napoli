@@ -143,10 +143,17 @@ function dci_add_luogo_metaboxes() {
     ) );
 
     $cmb_apertura->add_field( array(
-        'id' => $prefix . 'nome_alternativo',
-        'name'      => __( 'Nome alternativo', 'design_comuni_italia' ),
-        'desc' => __( 'Nome alternativo o secondario del luogo. Ad es. "Anfiteatro Flavio".', 'design_comuni_italia' ),
-        'type' => 'text',
+        'id'    => $prefix . 'in_elenco',
+        'name'  => __( 'Mostra in elenco', 'design_comuni_italia' ),
+        'desc'  => __( 'Per i luoghi gestiti dall\'ente, quelli del sistema bibliotecario, ...' , 'design_comuni_italia' ),
+        'type'  => 'checkbox',
+    ) );
+
+    $cmb_apertura->add_field( array(
+        'id'    => $prefix . 'nome_alternativo',
+        'name'  => __( 'Nome alternativo', 'design_comuni_italia' ),
+        'desc'  => __( 'Nome alternativo o secondario del luogo. Ad es. "Anfiteatro Flavio".', 'design_comuni_italia' ),
+        'type'  => 'text',
     ) );
 
 

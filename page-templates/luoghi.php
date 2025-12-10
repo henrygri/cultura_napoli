@@ -29,6 +29,32 @@ get_header();
 			// get_template_part("template-parts/hero/hero");
 		?>
 
+		<div class="container" id="main-container">
+		    <div class="row justify-content-center">
+		        <div class="col-12">
+		            <?php get_template_part("template-parts/common/breadcrumb"); ?>
+		        </div>
+		    </div>
+		</div>
+		<div class="container">
+		    <div class="row justify-content-center <?php echo $with_shadow? 'row-shadow' : ''?>">
+		        <div class="col-12">
+		            <div class="cmp-hero">
+		                <section class="it-hero-wrapper bg-white align-items-start">
+		                    <div class="it-hero-text-wrapper pt-0 ps-0 pb-4 pb-lg-60">
+		                        <h1 class="text-black hero-title">
+		                            <?php the_title(); ?>
+		                        </h1>
+		                        <div class="hero-text">
+		                            <p><?php echo $description; ?></p>
+		                        </div>
+		                    </div>
+		                </section>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
 		<?php /* if( $img ) { ?>
 			<section class="hero-img mb-20 mb-lg-50">
 				<section class="it-hero-wrapper it-hero-small-size cmp-hero-img-small">
@@ -47,6 +73,7 @@ get_header();
 		<?php } */ ?>
 
 		<?php // get_template_part("template-parts/luogo/evidenza"); ?>
+		<?php /*
 		<section class="bg-200">
 		  <div class="container" id="main-container">
 		    <div class="row justify-content-center">
@@ -57,6 +84,7 @@ get_header();
 			</div>
 			<?php get_template_part("template-parts/luogo/mappa-quartieri"); ?>
 		</section>
+		*/ ?>
 		<?php get_template_part("template-parts/luogo/tutti-luoghi"); ?>
 
 		<?php

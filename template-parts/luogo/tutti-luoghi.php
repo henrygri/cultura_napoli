@@ -1,14 +1,21 @@
 <?php
 global $the_query, $load_posts, $load_card_type;
 
-    $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 3;
-    $load_posts = 3;
+    $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 24;
+    $load_posts = 12;
     $query = isset($_GET['search']) ? dci_removeslashes($_GET['search']) : null;
     $args = array(
         's' => $query,
         'posts_per_page' => $max_posts,
         'post_type'      => 'luogo',
 		'post_status'    => 'publish',
+        'meta_query'     => array(
+          array(
+            'key'     => '_dci_luogo_in_elenco',
+            'value'   => 'on',
+            'compare' => '='
+          )
+        ),
         'orderby'        => 'post_title',
         'order'          => 'ASC'
     );
@@ -23,6 +30,7 @@ global $the_query, $load_posts, $load_card_type;
     <form role="search" id="search-form" method="get" class="search-form">
         <button type="submit" class="d-none"></button>
         <div class="container">
+            <?php /*
             <h2 class="title-xxlarge mb-4">
                 Esplora tutti i luoghi
             </h2>
@@ -52,7 +60,7 @@ global $the_query, $load_posts, $load_card_type;
                     </div>
                 </div>
             </div>
-
+            */ ?>
             <div class="row g-4" id="load-more">
                 <?php
                 foreach ( $posts as $post ) {

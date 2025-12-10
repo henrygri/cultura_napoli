@@ -171,23 +171,26 @@ get_header();
         </aside>
 
         <section class="col-lg-8 it-page-sections-container border-light">
+          
+          <?php if( $descrizione_estesa) { ?>
           <article id="cos-e" class="it-page-section mb-5" data-audio>
-              <h2 class="mb-3">Descrizione</h2>
+              <h2 class="h3 mb-3">Descrizione</h2>
               <div class="richtext-wrapper font-serif">
                   <?php echo $descrizione_estesa; ?>
               </div>
           </article>
-			
+          <?php } ?>
+
           <?php if(is_array($luoghi_collegati) && count($luoghi_collegati)) {?>
           <article id="luoghi-collegati" class="it-page-section mb-5">
-              <h2 class="mb-3">Luoghi collegati</h2>
-				<div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
-				<?php foreach ($luoghi_collegati as $luogo_id) {
-						$with_border=false;
-						get_template_part("template-parts/luogo/card-light");
-					}?>
-			    </div>
-		  </article>
+            <h2 class="h3 mb-3">Luoghi collegati</h2>
+            <div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
+              <?php foreach ($luoghi_collegati as $luogo_id) {
+                $with_border=false;
+                get_template_part("template-parts/luogo/card-light");
+              }?>
+            </div>
+    		  </article>
           <?php } ?>
           
 
@@ -195,8 +198,8 @@ get_header();
           <article id="servizi" class="it-page-section mb-5">
             <h2 class="mb-3">Servizi</h2>
             <div class="richtext-wrapper font-serif">
-				<?php echo $servizi; ?>
-			</div>
+              <?php echo $servizi; ?>
+            </div>
           </article>
           <?php  } ?>
 
@@ -204,8 +207,8 @@ get_header();
           <article id="modalita-accesso" class="it-page-section mb-5">
             <h2 class="mb-3">Modalità di accesso</h2>
             <div class="richtext-wrapper font-serif">
-				<?php echo $modalita_accesso; ?>
-			</div>
+              <?php echo $modalita_accesso; ?>
+            </div>
           </article>
           <?php } ?>
 
