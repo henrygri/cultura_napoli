@@ -13,7 +13,7 @@ if ( ! empty( $luogo_evento_id ) ) {
     $luogo_evento = get_the_title( $luogo_evento_id );
 }
 ?>
-<div class="col-12 col-sm-6 col-lg-4 mb-3">
+<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
 	<article class="pb-4">
 	<a class="card card-img card-evento rounded-3 no-after no-glow" href="<?php echo get_permalink($post->ID); ?>">
 		<div class="img-responsive-wrapper">

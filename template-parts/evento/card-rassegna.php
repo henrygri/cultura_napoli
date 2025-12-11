@@ -15,7 +15,7 @@ if ( ! empty( $luogo_evento_id ) ) {
 ?>
 <div class="col-12">
 	<article class="card-wrapper card-space">
-	<a class="card card-img card-evento flex-md-row" href="<?php echo get_permalink($post->ID); ?>">
+	<a class="card card-img card-evento no-glow flex-md-row" href="<?php echo get_permalink($post->ID); ?>">
     <div class="col-12 col-md-6 img-responsive-wrapper">
 			<div class="img-responsive img-responsive-panoramic rounded-3">
 				<figure class="img-wrapper">

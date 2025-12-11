@@ -1,8 +1,8 @@
 <?php
 global $the_query, $load_posts, $load_card_type;
 
-    $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 6;
-    $load_posts = 3;
+    $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 12;
+    $load_posts = 12;
     $query = isset($_GET['search']) ? dci_removeslashes($_GET['search']) : null;
     $args = array(
         's' => $query,
@@ -25,7 +25,7 @@ global $the_query, $load_posts, $load_card_type;
         // Ordina per data di inizio crescente
         'meta_key' => '_dci_evento_data_orario_inizio',
         'orderby'  => 'meta_value_num',
-        'order'    => 'ASC'
+        'order'    => 'DESC'
     );
     $the_query = new WP_Query( $args );
 
