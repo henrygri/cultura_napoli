@@ -23,7 +23,7 @@ $page_macro_slug = dci_get_group($post->post_type);
 $page_macro = get_page_by_path($page_macro_slug);
 ?>
 <a
-  class="card card-full card-flex no-after no-glow no-pop rounded-3 mb-0"
+  class="card card-full card-flex no-after no-glow no-pop no-hover rounded-3 mb-0"
   href="<?php echo get_permalink($post->ID); ?>"
   aria-label="Vai alla pagina <?php echo $post->post_title ?>"
   title="Vai alla pagina <?php echo $post->post_title ?>"

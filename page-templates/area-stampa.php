@@ -66,7 +66,7 @@ get_header();
 											$meta_info  = array_filter( array( $file_extension, $file_size, $upload_date ? "File caricato il $upload_date" : '' ) );
 											$aria_label = sprintf( __( 'Scarica %s', 'design_comuni_italia' ), $file_label );
 											?>
-											<a class="card card-teaser shadow-sm p-4 mt-3 rounded border border-light flex-nowrap" download target="_blank" href="<?php echo esc_url( $file_url ); ?>" aria-label="<?php echo esc_attr( $aria_label ); ?>">
+											<a class="card card-teaser shadow-sm p-4 mt-3 rounded border border-light flex-nowrap no-hover" download target="_blank" href="<?php echo esc_url( $file_url ); ?>" aria-label="<?php echo esc_attr( $aria_label ); ?>">
 												<svg class="icon" aria-hidden="true">
 													<use xlink:href="#it-clip"></use>
 												</svg>

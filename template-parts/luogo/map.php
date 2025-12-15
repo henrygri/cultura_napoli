@@ -37,10 +37,15 @@ if($c) { ?>
             <?php } ?>
 
             // add the OpenStreetMap tiles
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '',
-                maxZoom: 18,
+            // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            //     attribution: '',
+            //     maxZoom: 18,
+            // }).addTo(mymap);
+            L.tileLayer('https://tile.jawg.io/jawg-streets/{z}/{x}/{y}{r}.png?access-token=o09dATms4UifqSU0gP0zSG4jtMzSLnK5HfjyTXi9MAcRnHTJaO0XupM61gBEtNnf', {
+              attribution:'',
+              maxZoom:16,
             }).addTo(mymap);
+            // mymap.attributionControl.addAttribution('<a href="https://www.jawg.io?utm_medium=map&utm_source=attribution" target="_blank">&copy; Jawg</a> - <a href="https://www.openstreetmap.org?utm_medium=map-attribution&utm_source=jawg" target="_blank">&copy; OpenStreetMap</a>&nbsp;contributors')
 
             var arrayOfMarkers = [<?php foreach ($arr_luoghi as $marker){ ?> [ <?php echo $marker["gps"]["lat"]; ?>, <?php echo $marker["gps"]["lng"]; ?>], <?php } ?>];
             var bounds = new L.LatLngBounds(arrayOfMarkers);

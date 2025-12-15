@@ -44,10 +44,12 @@ $current_group = dci_get_current_group();
                     <div class="it-brand-text d-flex align-items-center">
                       <?php get_template_part("template-parts/common/logo"); ?>
                       <div>
+                        <?php /*
                         <div class="it-brand-title"><?php echo dci_get_option("nome_comune"); ?></div>
                         <div class="it-brand-tagline d-none d-md-block">
                           <?php echo dci_get_option("motto_comune"); ?>
                         </div>
+                        */ ?>
                       </div>
                     </div>
                 </a>
@@ -120,9 +122,11 @@ $current_group = dci_get_current_group();
                 <div class="menu-wrapper">
                 <a href="<?php echo home_url(); ?>" aria-label="Vai alla homepage" class="logo-hamburger">
                     <?php get_template_part("template-parts/common/logo-mobile"); ?>
-                  <div class="it-brand-text">
-                    <div class="it-brand-title"><?php echo dci_get_option("nome_comune"); ?></div>
-                  </div>
+                    <?php /*
+                    <div class="it-brand-text">
+                      <div class="it-brand-title"><?php echo dci_get_option("nome_comune"); ?></div>
+                    </div>
+                    */ ?>
                 </a>
                 <nav aria-label="Principale">
                   <?php

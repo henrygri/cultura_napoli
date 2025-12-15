@@ -339,7 +339,7 @@ get_header();
           <article id="costi" class="it-page-section mb-5">
               <h2 class="h3 mb-2">Costi</h2>
               <?php foreach ($costi as $costo) { ?>
-              <div class="card no-after mt-3 no-pop no-glow">
+              <div class="card no-after mt-3 no-pop no-glow no-hover">
                   <div class="card-body p-0">
                       <h5 class="h6 mb-0">
                       <?php
@@ -393,7 +393,7 @@ get_header();
           <article id="contatti" class="it-page-section mb-3">
           <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
             <h2 class="h3 mb-2">Contatti</h2>
-            <div class="card card-teaser mt-3 rounded no-glow no-pop">
+            <div class="card card-teaser mt-3 rounded no-glow no-pop no-hover">
                 <div class="card-body">
                   <?php foreach ($punti_contatto as $pc_id) {
                       get_template_part('template-parts/single/punto-contatto-card-content');

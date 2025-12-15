@@ -20,9 +20,11 @@
                     <div class="it-brand-wrapper">
                         <a href="<?php echo home_url() ?>">
                             <?php get_template_part("template-parts/common/logo");?>
+                            <?php /*
                             <div class="it-brand-text">
                                 <h2 class="no_toc"><?php echo dci_get_option("nome_comune");?></h2>
                             </div>
+                            */ ?>
                         </a>
                     </div>
                 </div>
@@ -198,6 +200,104 @@
 </footer>
 
 <?php wp_footer(); ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js"></script>
+<script>
+// document.addEventListener('DOMContentLoaded', function() {
+//     const colorThief = new ColorThief();
+//
+//     document.querySelectorAll('.card:not(.card-full) img').forEach(img => {
+//         if (img.complete) {
+//             setColor(img);
+//         } else {
+//             img.addEventListener('load', () => setColor(img));
+//         }
+//     });
+//
+//     function setColor(img) {
+//         const rgb = colorThief.getColor(img);
+//         const card = img.closest('.card:not(.card-full)');
+//         card.style.setProperty('--card-bg', `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 0.3)`);
+//     }
+// });
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const colorThief = new ColorThief();
 
+    document.querySelectorAll('.card:not(.no-hover) img').forEach(img => {
+        if (img.complete) {
+            setColor(img);
+        } else {
+            img.addEventListener('load', () => setColor(img));
+        }
+    });
+
+    function setColor(img) {
+        const rgb = colorThief.getColor(img); // [r,g,b]
+        const hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
+
+        // Normalizza la lightness tra 40% e 60%
+        hsl.l = Math.max(40, Math.min(70, hsl.l));
+
+        // Normalizza la lightness tra 40% e 60%
+        hsl.s = Math.max(0, Math.min(30, hsl.s));
+
+        // Converti di nuovo in rgb
+        const rgbNormalized = hslToRgb(hsl.h, hsl.s, hsl.l);
+
+        const card = img.closest('.card:not(.card-full)');
+        card.style.setProperty('--card-bg', `rgba(${rgbNormalized.r}, ${rgbNormalized.g}, ${rgbNormalized.b}, 0.3)`);
+        // console.log('Colore normalizzato:', rgbNormalized, 'HSL:', hsl);
+    }
+
+    // Funzioni di conversione
+    function rgbToHsl(r, g, b) {
+        r /= 255; g /= 255; b /= 255;
+        const max = Math.max(r,g,b), min = Math.min(r,g,b);
+        let h, s, l = (max + min) / 2;
+
+        if(max === min){
+            h = s = 0; // achromatic
+        } else {
+            const d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            switch(max){
+                case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                case g: h = (b - r) / d + 2; break;
+                case b: h = (r - g) / d + 4; break;
+            }
+            h /= 6;
+        }
+
+        return { h: h*360, s: s*100, l: l*100 };
+    }
+
+    function hslToRgb(h, s, l) {
+        h /= 360; s /= 100; l /= 100;
+        let r, g, b;
+
+        if(s === 0){
+            r = g = b = l; // achromatic
+        } else {
+            const hue2rgb = (p, q, t) => {
+                if(t < 0) t += 1;
+                if(t > 1) t -= 1;
+                if(t < 1/6) return p + (q - p) * 6 * t;
+                if(t < 1/2) return q;
+                if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                return p;
+            }
+
+            const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            const p = 2 * l - q;
+            r = hue2rgb(p, q, h + 1/3);
+            g = hue2rgb(p, q, h);
+            b = hue2rgb(p, q, h - 1/3);
+        }
+
+        return { r: Math.round(r*255), g: Math.round(g*255), b: Math.round(b*255) };
+    }
+});
+</script>
 </body>
 </html>
