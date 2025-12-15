@@ -85,7 +85,7 @@ get_header();
         <div class="col-lg-8 px-lg-4 py-lg-2">
           <h1 class="h2" data-audio><?php the_title(); ?></h1>
           <?php if ($start_timestamp) { ?>
-            <h2>
+            <h2 class="h4">
               <?php
                   if ($end_timestamp and $end_arrdata[0] != $start_arrdata[0]) {
                       echo 'Dal '.$start_arrdata[0].' '.$start_arrdata[1].' al '.$end_arrdata[0].' '.$end_arrdata[1];

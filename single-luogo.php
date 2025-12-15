@@ -175,7 +175,7 @@ get_header();
           <?php if( $descrizione_estesa) { ?>
           <article id="cos-e" class="it-page-section mb-5" data-audio>
               <h2 class="h3 mb-3">Descrizione</h2>
-              <div class="richtext-wrapper font-serif">
+              <div class="richtext-wrapper">
                   <?php echo $descrizione_estesa; ?>
               </div>
           </article>
@@ -197,7 +197,7 @@ get_header();
           <?php if($servizi) {?>
           <article id="servizi" class="it-page-section mb-5">
             <h2 class="mb-3">Servizi</h2>
-            <div class="richtext-wrapper font-serif">
+            <div class="richtext-wrapper">
               <?php echo $servizi; ?>
             </div>
           </article>
@@ -206,7 +206,7 @@ get_header();
           <?php if($modalita_accesso) {?>
           <article id="modalita-accesso" class="it-page-section mb-5">
             <h2 class="mb-3">Modalità di accesso</h2>
-            <div class="richtext-wrapper font-serif">
+            <div class="richtext-wrapper">
               <?php echo $modalita_accesso; ?>
             </div>
           </article>
@@ -219,7 +219,7 @@ get_header();
 				$luoghi = array($luogo);
 				get_template_part("template-parts/luogo/map"); 
 			?>
-            <div class="richtext-wrapper font-serif mt-3">
+            <div class="richtext-wrapper mt-3">
 				<?php echo $indirizzo; ?>
 			</div>
           </article>
@@ -228,13 +228,13 @@ get_header();
           <?php if($orario_pubblico) {?>
           <article id="orario-pubblico" class="it-page-section mb-5">
             <h2 class="mb-3">Orario per il pubblico</h2>
-            <div class="richtext-wrapper font-serif">
+            <div class="richtext-wrapper">
 				<?php echo $orario_pubblico; ?>
 			</div>
           </article>
           <?php } ?>
 
-          <article id="contatti" class="it-page-section mb-5">
+          <article id="contatti" class="it-page-section mb-3">
             <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
               <h2 class="h3 mb-2">Contatti</h2>
               <div class="card card-teaser mt-3 rounded no-glow no-pop">
@@ -274,7 +274,7 @@ get_header();
           </article>
  		  <?php } ?>
 			  
-          <?php get_template_part('template-parts/single/page_bottom'); ?>
+          <?php // get_template_part('template-parts/single/page_bottom'); ?>
           </section>
       </div>
     </div>
@@ -284,19 +284,21 @@ get_header();
     $related_events = dci_get_eventi_by_luogo();
     if($related_events && count($related_events) > 0) {
     ?>
-    <div class="container">
-      <div class="row mt-5">
-        <div class="col-12">
-          <h2 class="mb-4">Eventi in questo luogo</h2>
-          <div class="row gap-4">
-            <?php 
-            foreach($related_events as $event) {
-              $post = $event;
-              setup_postdata($post);
-              get_template_part("template-parts/evento/card");
-            }
-            wp_reset_postdata();
-            ?>
+    <section class="pt-4 pb-5 bg-200 more-events">
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-12">
+            <h2 class="mb-4">Eventi in questo luogo</h2>
+            <div class="row gap-4">
+              <?php
+              foreach($related_events as $event) {
+                $post = $event;
+                setup_postdata($post);
+                get_template_part("template-parts/evento/card");
+              }
+              wp_reset_postdata();
+              ?>
+            </div>
           </div>
         </div>
       </div>

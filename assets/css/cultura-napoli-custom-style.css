@@ -154,6 +154,9 @@ body {
   font-weight: 300;
 }
 
+b, strong {
+  font-weight: 600;
+}
 
 /*
  * COLORS
@@ -476,8 +479,9 @@ a.card-evento { background-color: transparent; text-decoration: none; height: au
 .card-evento .img-responsive.rounded-2,
 .card-evento .img-responsive.rounded-3 { overflow: hidden; }
 .card-evento .card-body { padding: .7em .7em; }
+.card-evento .card-body .card-title { color: var(--bs-black); }
 .card-evento .card-body .card-title.h5,
-.card-evento .card-body h5.card-title { color: var(--bs-black); line-height: 1.1em; margin-bottom:.5em; }
+.card-evento .card-body h5.card-title { line-height: 1.1em; margin-bottom:.5em; }
 .card-evento .card-body .card-text { color: var(--bs-secondary); line-height: 1.3em; }
 
 a.card-full { text-decoration: none; }
@@ -655,6 +659,13 @@ select.just-validate-success-field {
 
 .parent-event { border-top: 1px solid rgba(var(--cn-giallo-rgb),.3)!important }
 .more-events { border-top: 1px solid rgba(var(--cn-giallo-rgb),.3)!important }
+
+
+
+/*
+/* Luogo
+*/
+.single-luogo .it-page-section:not(:first-of-type) { border-top: 1px solid #c5c7c9; padding-top: 2rem; }
 
 
 

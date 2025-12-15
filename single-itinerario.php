@@ -227,7 +227,7 @@ get_header();
           ?>
           <article id="allegati" class="it-page-section mb-5">
               <h2 class="h3 mb-2">Allegati</h2>
-              <div class="card card-teaser shadow mt-3 rounded">
+              <div class="card card-teaser shadow mt-3 rounded no-hover">
                   <div class="card-body">
                   <h3 class="card-title h5 m-0">
                     <svg class="icon" aria-hidden="true">
@@ -247,7 +247,7 @@ get_header();
               <div class="row">
                 <?php foreach ($tappe as $tappa) { ?>
                   <div class="col-12 tappa-wrapper py-2">
-                    <div class="card card-tappa no-pop no-glow flex-md-row">
+                    <div class="card card-tappa no-pop no-glow no-hover flex-md-row">
                       <div class="img-responsive-wrapper col-md-4">
                         <div class="img-responsive img-responsive-panoramic rounded">
                           <figure class="img-wrapper">
@@ -273,7 +273,7 @@ get_header();
           <article id="contatti" class="it-page-section mb-5">
             <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
               <h2 class="h3 mb-2">Contatti</h2>
-              <div class="card card-teaser mt-3 rounded no-glow no-pop">
+              <div class="card card-teaser mt-3 rounded no-glow no-pop no-hover">
                   <div class="card-body">
                     <?php foreach ($punti_contatto as $pc_id) {
                         get_template_part('template-parts/single/punto-contatto-card-content');
