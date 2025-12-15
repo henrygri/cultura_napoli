@@ -181,7 +181,7 @@ b, strong {
  }
 
 .btn:hover {
-  color: var(--bs-primary-hover);
+  color: inherit;
 }
 
 .btn-primary {

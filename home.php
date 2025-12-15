@@ -45,11 +45,54 @@ get_header();
         <?php get_template_part("template-parts/common/bolli-argomenti"); ?>
 
 
+        <?php
+        $home_itinerari_args = array(
+            's' => $query,
+            'posts_per_page' => 12,
+            'post_type'      => 'itinerario',
+        		'post_status'    => 'publish',
+            'orderby'        => 'rand'
+        );
+        $home_itinerari_query = new WP_Query( $home_itinerari_args );
+
+        $posts = $home_itinerari_query->posts;
+
+        ?>
         <section class="py-5 bg-200">
-    			<?php
+    			<?php /*
             global $is_home;
             $is_home = true;
-            get_template_part("template-parts/luogo/mappa-quartieri"); ?>
+            get_template_part("template-parts/luogo/mappa-quartieri");
+          */ ?>
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-8">
+                <h2>Itinerari</h2>
+              </div>
+              <div class="d-none d-md-block col-md-4 text-end">
+                <a class="btn btn-xs btn-outline-dark btn-round" href="<?php echo get_post_type_archive_link('itinerario'); ?>">
+                  Scopri tutti gli itinerari
+                  <svg class="icon ms-2">
+                    <use xlink:href="#it-arrow-right" aria-hidden="true"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="row pt-3 pb-4">
+              <?php if ( have_posts() ) : ?>
+                  <?php
+                  /* Start the Loop */
+                  while ( have_posts() ) :
+                    the_post();
+                    get_template_part( 'template-parts/itinerario/cards-list', get_post_type() );
+                  endwhile;
+                  ?>
+              <?php
+              endif;
+              wp_reset_query();
+              ?>
+            </div>
+          </div>
     		</section>
 
         <?php /*
@@ -76,7 +119,64 @@ get_header();
         <?php get_template_part("template-parts/home/ricerca"); ?>
         */?>
 
-        <?php get_template_part("template-parts/evento/prossimi-eventi"); ?>
+        <?php
+        $array_of_pages = get_posts([
+            'title' => 'Gli spazi della cultura',
+            'post_type' => 'any',
+        ]);
+        $id = $array_of_pages[0];//Be sure you have an array with single post or page
+        $id = $id->ID;
+        $link = get_permalink($id);
+
+
+        $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 24;
+        $query = isset($_GET['search']) ? dci_removeslashes($_GET['search']) : null;
+        $args = array(
+            's' => $query,
+            'posts_per_page' => $max_posts,
+            'post_type'      => 'luogo',
+        		'post_status'    => 'publish',
+            'meta_query'     => array(
+              array(
+                'key'     => '_dci_luogo_in_elenco',
+                'value'   => 'on',
+                'compare' => '='
+              )
+            ),
+            'orderby'        => 'post_title',
+            'order'          => 'ASC'
+        );
+        $the_query = new WP_Query( $args );
+
+        $posts = $the_query->posts;
+
+        ?>
+        <section class="py-5" id="home-spazi-cultura" ?>
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-8">
+                <h2>Gli spazi della cultura</h2>
+              </div>
+              <div class="d-none d-md-block col-md-4 text-end">
+                <a class="btn btn-xs btn-outline-dark btn-round" href="<?php echo esc_url(  $link  ); ?>">
+                  Esplora tutti i luoghi
+                  <svg class="icon ms-2">
+                    <use xlink:href="#it-arrow-right" aria-hidden="true"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="row pt-3 pb-4">
+              <?php
+              foreach ( $posts as $post ) {
+                  $load_card_type = 'luogo';
+                  get_template_part('template-parts/luogo/card');
+              }
+              wp_reset_query();
+              ?>
+            </div>
+          </div>
+        </section>
 
     </main>
 <?php
