@@ -7,7 +7,7 @@
 ?>
 <div class="col-md-6">
   <div class="card-wrapper">
-    <a class="card card-progetto no-after rounded-3 border border-light" href="<?php echo get_permalink(); ?>">
+    <a class="card card-progetto no-after rounded-3 border border-light no-glow" href="<?php echo get_permalink(); ?>">
 
       <div class="img-responsive-wrapper">
         <div class="img-responsive img-responsive-panoramic">
