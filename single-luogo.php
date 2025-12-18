@@ -176,7 +176,7 @@ get_header();
           <article id="cos-e" class="it-page-section mb-5" data-audio>
               <h2 class="h3 mb-3">Descrizione</h2>
               <div class="richtext-wrapper">
-                  <?php echo $descrizione_estesa; ?>
+                  <?php echo apply_filters('the_content', $descrizione_estesa); ?>
               </div>
           </article>
           <?php } ?>
@@ -198,7 +198,7 @@ get_header();
           <article id="servizi" class="it-page-section mb-5">
             <h2 class="mb-3">Servizi</h2>
             <div class="richtext-wrapper">
-              <?php echo $servizi; ?>
+              <?php echo apply_filters('the_content', $servizi); ?>
             </div>
           </article>
           <?php  } ?>
@@ -207,7 +207,7 @@ get_header();
           <article id="modalita-accesso" class="it-page-section mb-5">
             <h2 class="mb-3">Modalità di accesso</h2>
             <div class="richtext-wrapper">
-              <?php echo $modalita_accesso; ?>
+              <?php echo apply_filters('the_content', $modalita_accesso); ?>
             </div>
           </article>
           <?php } ?>
@@ -215,13 +215,13 @@ get_header();
           <?php if($indirizzo) {?>
           <article id="indirizzo" class="it-page-section mb-5">
             <h2 class="mb-3">Indirizzo</h2>
-			<?php 
-				$luoghi = array($luogo);
-				get_template_part("template-parts/luogo/map"); 
-			?>
-            <div class="richtext-wrapper mt-3">
-				<?php echo $indirizzo; ?>
-			</div>
+              <?php 
+                $luoghi = array($luogo);
+                get_template_part("template-parts/luogo/map"); 
+              ?>
+              <div class="richtext-wrapper mt-3">
+              <?php echo $indirizzo; ?>
+            </div>
           </article>
           <?php } ?>	
 
@@ -229,8 +229,8 @@ get_header();
           <article id="orario-pubblico" class="it-page-section mb-5">
             <h2 class="mb-3">Orario per il pubblico</h2>
             <div class="richtext-wrapper">
-				<?php echo $orario_pubblico; ?>
-			</div>
+              <?php echo apply_filters('the_content', $orario_pubblico); ?>
+            </div>
           </article>
           <?php } ?>
 

@@ -94,7 +94,7 @@ get_header();
                   }
               ?>
             </h2>
-            <?php /* <h2 class="h4 py-2" data-audio>dal <?php echo $start_date; ?> al <?php echo $end_date; ?></h2> */ ?>
+          <?php /* <h2 class="h4 py-2" data-audio>dal <?php echo $start_date; ?> al <?php echo $end_date; ?></h2> */ ?>
           <?php } ?>
           <p data-audio>
             <?php echo $descrizione_breve; ?>
@@ -164,13 +164,13 @@ get_header();
                                                     </a>
                                                     </li>
                                                 <?php } ?>
-                                                <?php if ($start_timestamp && $end_timestamp) { ?>
+                                                <?php /* if ($start_timestamp && $end_timestamp) { ?>
                                                     <li class="nav-item">
                                                     <a class="nav-link" href="#date-e-orari">
                                                     <span>Date e orari</span>
                                                     </a>
                                                     </li>
-                                                <?php } ?>
+                                                <?php } */ ?>
                                                 <?php if( is_array($costi) && count($costi) ) { ?>
                                                     <li class="nav-item">
                                                     <a class="nav-link" href="#costi">
@@ -223,7 +223,7 @@ get_header();
           <article id="cos-e" class="it-page-section mb-5" data-audio>
               <h2 class="h3 mb-2">Cos'è</h2>
               <div class="richtext-wrapper text-secondary mb-5">
-                  <?php echo $descrizione; ?>
+                  <?php echo apply_filters('the_content', $descrizione); ?>
                   <?php if (is_array($progetti) && count($progetti) > 0) { ?>
                     <?php
                     $lista_progetti = [];

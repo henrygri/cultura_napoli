@@ -11,7 +11,7 @@
 
     <main>
       <?php
-        $with_shadow = true;
+        $with_shadow = false;
         get_template_part("template-parts/hero/hero-archive");
       ?>
 
