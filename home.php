@@ -78,20 +78,23 @@ get_header();
                 </a>
               </div>
             </div>
-            <div class="row pt-3 pb-4">
-              <?php if ( have_posts() ) : ?>
-                  <?php
-                  /* Start the Loop */
-                  while ( have_posts() ) :
-                    the_post();
-                    get_template_part( 'template-parts/itinerario/cards-list', get_post_type() );
-                  endwhile;
-                  ?>
-              <?php
-              endif;
-              wp_reset_query();
-              ?>
+            <?php if ( $home_itinerari_query->have_posts() ) : ?>
+            <div class="pt-3 pb-4">
+              <div class="splide slider_itinerari">
+                <div class="splide__track">
+                  <div class="splide__list">
+                    <?php
+                    while ( $home_itinerari_query->have_posts() ) :
+                      $home_itinerari_query->the_post(); ?>
+                      <div class="splide__slide">
+                        <?php get_template_part( 'template-parts/itinerario/cards-list', get_post_type() ); ?>
+                      </div>
+                    <?php endwhile; ?>
+                  </div>
+                </div>
+              </div>
             </div>
+            <?php endif; wp_reset_postdata(); ?>
           </div>
     		</section>
 
