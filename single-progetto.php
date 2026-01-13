@@ -21,9 +21,10 @@ get_header();
     $prefix= '_dci_project_';
     $descrizione_breve = dci_get_meta("descrizione_breve", $prefix, $post->ID);
     //cover
-    $img_url = dci_get_meta('immagine');
-    $img = get_post( attachment_url_to_postid($img_url) );
-    $image_alt = get_post_meta( $img->ID, '_wp_attachment_image_alt', true);
+    $img_url = dci_get_meta('immagine', $prefix, $post->ID);
+    $img_id = $img_url ? attachment_url_to_postid($img_url) : 0;
+    $img = $img_id ? get_post($img_id) : null;
+    $image_alt = $img_id ? get_post_meta( $img_id, '_wp_attachment_image_alt', true) : '';
     //dates
     // $start_timestamp = dci_get_meta("data_orario_inizio", $prefix, $post->ID);
     // $start_date = date_i18n('d F Y', date($start_timestamp));
@@ -54,8 +55,10 @@ get_header();
           <div class="col-12 px-0">
             <div class="it-hero-card it-hero-bottom-overlapping rounded-3 drop-shadow mt-0">
               <figure class="figure px-0 img-full w-100">
+                  <?php if ($img_url) { ?>
                   <img src="<?php echo $img_url; ?>" class="figure-img img-fluid rounded-3" alt="<?php echo $image_alt; ?>" />
-                  <?php if ($img->post_excerpt)  {?>
+                  <?php } ?>
+                  <?php if ($img && $img->post_excerpt)  {?>
                   <figcaption class="figure-caption text-center pt-3">
                       <?php echo $img->post_excerpt; ?>
                   </figcaption>
