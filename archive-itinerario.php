@@ -54,7 +54,9 @@
                         /* Start the Loop */
                         while ( have_posts() ) :
                             the_post();
+                            echo '<div class="col-md-6 mb-4">';
                             get_template_part( 'template-parts/itinerario/cards-list', get_post_type() );
+                            echo '</div>';
 
                         endwhile;
                         ?>
