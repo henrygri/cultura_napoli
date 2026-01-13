@@ -104,15 +104,42 @@ function dci_add_page_metaboxes() {
     ) );
 
     $cmb_area_stampa_docs->add_group_field( $group_field_doc_id, array(
+        'id'      => 'docs_tipo',
+        'name'    => __( 'Tipo', 'design_comuni_italia' ),
+        'desc'    => __( 'Scegli se allegare un file o inserire un link esterno', 'design_comuni_italia' ),
+        'type'    => 'radio_inline',
+        'default_cb' => function() { return 'file'; },
+        'options' => array(
+            'file' => __( 'File', 'design_comuni_italia' ),
+            'link' => __( 'Link', 'design_comuni_italia' ),
+        ),
+    ) );
+
+    $cmb_area_stampa_docs->add_group_field( $group_field_doc_id, array(
         'id'   => 'docs_allegato',
         'name' => __( 'Allegato', 'design_comuni_italia' ),
         'desc' => __( 'Carica il file da rendere disponibile all\'area stampa.', 'design_comuni_italia' ),
         'type' => 'file',
+        'attributes' => array(
+            'data-conditional-id'    => 'docs_tipo',
+            'data-conditional-value' => 'file',
+        ),
+    ) );
+
+    $cmb_area_stampa_docs->add_group_field( $group_field_doc_id, array(
+        'id'   => 'docs_link',
+        'name' => __( 'Link', 'design_comuni_italia' ),
+        'desc' => __( 'URL esterno del documento (alternativa all\'upload)', 'design_comuni_italia' ),
+        'type' => 'text_url',
+        'attributes' => array(
+            'data-conditional-id'    => 'docs_tipo',
+            'data-conditional-value' => 'link',
+        ),
     ) );
 
     $cmb_area_stampa_docs->add_group_field( $group_field_doc_id, array(
         'id'   => 'label_allegato',
-        'name' => __( 'Etichetta allegato', 'design_comuni_italia' ),
+        'name' => __( 'Etichetta', 'design_comuni_italia' ),
         'type' => 'text',
     ) );
 
