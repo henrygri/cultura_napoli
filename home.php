@@ -48,7 +48,7 @@ get_header();
         <?php
         $home_itinerari_args = array(
             's' => $query,
-            'posts_per_page' => 12,
+            'posts_per_page' => 6,
             'post_type'      => 'itinerario',
         		'post_status'    => 'publish',
             'orderby'        => 'rand'
@@ -129,7 +129,7 @@ get_header();
         $link = get_permalink($id);
 
 
-        $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 24;
+        $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 12;
         $query = isset($_GET['search']) ? dci_removeslashes($_GET['search']) : null;
         $args = array(
             's' => $query,
