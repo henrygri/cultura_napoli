@@ -716,3 +716,12 @@ select.just-validate-success-field {
     background: var(--bs-primary);
     height: .15rem;
 }
+
+#home-itinerari { overflow-x: hidden; }
+.slider_itinerari .splide__track { overflow: visible; }
+.slider_itinerari .splide__slide { transition: all .200ms ease; }
+.slider_itinerari .splide__slide:not(.is-visible) { opacity: .4; }
+
+.slider_itinerari .splide__pagination { display: block; margin-top: 1em; }
+.slider_itinerari .splide__pagination__page { width: 2em; height: .2em; background-color: rgba(var(--bs-black-rgb),.4); margin: 0 .5em 0 0; }
+.slider_itinerari .splide__pagination__page .is-active { background-color: var(--bs-primary) }
