@@ -30,8 +30,9 @@ get_header();
     $gallery = dci_get_meta("gallery", $prefix, $post->ID);
     $video = dci_get_meta("video", $prefix, $post->ID);
     $trascrizione = dci_get_meta("trascrizione", $prefix, $post->ID);
-    //allegati - da sistemare
-    $allegati = dci_get_meta("allegati", $prefix, $post->ID);
+    $documenti = dci_get_meta( 'docs', $prefix, $post->ID );
+    $documenti = is_array( $documenti ) ? $documenti : array();
+    $has_documents = ! empty( $documenti );
     //tappe
     $tappe = dci_get_meta("tappe", $prefix, $post->ID);
     //contatti - da sistemare
@@ -155,7 +156,7 @@ get_header();
                                                     </a>
                                                     </li>
                                                 <?php } ?>
-                                                <?php if( $allegati ) { ?>
+                                                <?php if( $has_documents ) { ?>
                                                     <li class="nav-item">
                                                     <a class="nav-link" href="#allegati">
                                                     <span>Allegati</span>
@@ -222,25 +223,6 @@ get_header();
           </article>
           <?php } */ ?>
 
-          <?php if( $allegati ) {
-              $doc = get_post( attachment_url_to_postid($allegati) );
-          ?>
-          <article id="allegati" class="it-page-section mb-5">
-              <h2 class="h3 mb-2">Allegati</h2>
-              <div class="card card-teaser shadow mt-3 rounded no-hover">
-                  <div class="card-body">
-                  <h3 class="card-title h5 m-0">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#it-clip"></use>
-                    </svg>
-                      <a class="text-decoration-none" href="<?php echo $allegati; ?>" title="Scarica la locandina <?php echo $doc->post_title; ?>" aria-label="Scarica la locandina <?php echo $doc->post_title; ?>"><?php echo $doc->post_title; ?></a>
-                  </h3>
-                  </div>
-              </div>
-          </article>
-          <?php } ?>
-
-          
           <?php if( $tappe ) { ?>
           <article id="luoghi" class="it-page-section mb-5">
               <h2 class="h3 mb-2">Luoghi</h2>
@@ -266,6 +248,46 @@ get_header();
                   </div>
                 <?php }?>
               </div>
+          </article>
+          <?php } ?>
+
+          <?php if( $has_documents ) { ?>
+          <article id="allegati" class="it-page-section mb-5">
+              <h2 class="h3 mb-2">Allegati</h2>
+              <?php foreach ( $documenti as $documento ) {
+                  $doc_type = ! empty( $documento['docs_tipo'] ) ? $documento['docs_tipo'] : 'file';
+                  $file_url = ( 'link' === $doc_type ) ? ( $documento['docs_link'] ?? '' ) : ( $documento['docs_allegato'] ?? '' );
+
+                  if ( empty( $file_url ) ) {
+                      continue;
+                  }
+
+                  $file_id = ( 'file' === $doc_type ) ? attachment_url_to_postid( $file_url ) : 0;
+                  $label   = ! empty( $documento['label_allegato'] ) ? $documento['label_allegato'] : '';
+
+                  if ( empty( $label ) && $file_id ) {
+                      $label = get_the_title( $file_id );
+                  }
+
+                  if ( empty( $label ) ) {
+                      $path  = wp_parse_url( $file_url, PHP_URL_PATH );
+                      $label = $path ? basename( $path ) : __( 'Documento', 'design_comuni_italia' );
+                  }
+
+                  $action_label = ( 'file' === $doc_type ) ? __( 'Scarica', 'design_comuni_italia' ) : __( 'Apri', 'design_comuni_italia' );
+                  $title_attr   = sprintf( '%s %s', $action_label, $label );
+                  ?>
+                  <div class="card card-teaser shadow mt-3 rounded no-hover">
+                      <div class="card-body">
+                      <h3 class="card-title h5 m-0">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#it-clip"></use>
+                        </svg>
+                          <a class="text-decoration-none" <?php echo ( 'file' === $doc_type ) ? 'download' : ''; ?> href="<?php echo esc_url( $file_url ); ?>" title="<?php echo esc_attr( $title_attr ); ?>" aria-label="<?php echo esc_attr( $title_attr ); ?>"><?php echo esc_html( $label ); ?></a>
+                      </h3>
+                      </div>
+                  </div>
+              <?php } ?>
           </article>
           <?php } ?>
 

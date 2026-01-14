@@ -24,8 +24,9 @@ get_header();
             $date = date_i18n('d F Y', mktime(0, 0, 0, $data_pubblicazione_arr[1], $data_pubblicazione_arr[0], $data_pubblicazione_arr[2]));
             $persone = dci_get_meta("persone", $prefix, $post->ID);
             $descrizione = dci_get_wysiwyg_field("testo_completo", $prefix, $post->ID);
-            $documenti = dci_get_meta("documenti", $prefix, $post->ID);
-            $allegati = dci_get_meta("allegati", $prefix, $post->ID);
+            $documenti = dci_get_meta("docs", $prefix, $post->ID);
+            $documenti = is_array( $documenti ) ? $documenti : array();
+            $has_documenti = ! empty( $documenti );
             $datasets = dci_get_meta("dataset", $prefix, $post->ID);
             $a_cura_di = dci_get_meta("a_cura_di", $prefix, $post->ID);
             ?>
@@ -99,17 +100,10 @@ get_header();
                                                                     <span>Descrizione</span>
                                                                     </a>
                                                                 </li>
-                                                                <?php if( is_array($documenti) && count($documenti) ) { ?>
+                                                                <?php if( $has_documenti ) { ?>
                                                                 <li class="nav-item">
                                                                     <a class="nav-link" href="#documenti">
                                                                     <span>Documenti</span>
-                                                                    </a>
-                                                                </li>
-                                                                <?php } ?>
-                                                                <?php if( is_array($allegati) && count($allegati) ) { ?>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link" href="#allegati">
-                                                                    <span>Allegati</span>
                                                                     </a>
                                                                 </li>
                                                                 <?php } ?>
@@ -143,12 +137,32 @@ get_header();
                             <?php echo $descrizione; ?>
                         </div>
                     </article>
-                    <?php if( is_array($documenti) && count($documenti) ) { ?>
+                    <?php if( $has_documenti ) { ?>
                     <article class="it-page-section anchor-offset mt-5">
                         <h4 id="documenti">Documenti</h4>
                         <div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
-                            <?php foreach ($documenti as $doc_id) {
-                                $documento = get_post($doc_id);
+                            <?php foreach ( $documenti as $documento ) {
+                                $doc_type = ! empty( $documento['docs_tipo'] ) ? $documento['docs_tipo'] : 'file';
+                                $file_url = ( 'link' === $doc_type ) ? ( $documento['docs_link'] ?? '' ) : ( $documento['docs_allegato'] ?? '' );
+
+                                if ( empty( $file_url ) ) {
+                                    continue;
+                                }
+
+                                $file_id = ( 'file' === $doc_type ) ? attachment_url_to_postid( $file_url ) : 0;
+                                $label   = ! empty( $documento['label_allegato'] ) ? $documento['label_allegato'] : '';
+
+                                if ( empty( $label ) && $file_id ) {
+                                    $label = get_the_title( $file_id );
+                                }
+
+                                if ( empty( $label ) ) {
+                                    $path  = wp_parse_url( $file_url, PHP_URL_PATH );
+                                    $label = $path ? basename( $path ) : __( 'Documento', 'design_comuni_italia' );
+                                }
+
+                                $action_label = ( 'file' === $doc_type ) ? __( 'Scarica', 'design_comuni_italia' ) : __( 'Apri', 'design_comuni_italia' );
+                                $title_attr   = sprintf( '%s %s', $action_label, $label );
                             ?>
                             <div class="card card-teaser shadow-sm p-4 mt-3 rounded border border-light flex-nowrap">
                                 <svg class="icon" aria-hidden="true">
@@ -158,34 +172,8 @@ get_header();
                                 </svg>
                                 <div class="card-body">
                                 <h5 class="card-title">
-                                    <a class="text-decoration-none" href="<?php echo get_permalink($doc_id); ?>" aria-label="Visualizza il documento <?php echo $documento->post_title; ?>" title="Visualizza il documento <?php echo $documento->post_title; ?>">
-                                        <?php echo $documento->post_title; ?>
-                                    </a>
-                                </h5>
-                                </div>
-                            </div>
-                            <?php } ?>
-                        </div>
-                    </article>
-                    <?php } ?>
-                    <?php if( is_array($allegati) && count($allegati) ) { ?>
-                    <article class="it-page-section anchor-offset mt-5">
-                        <h4 id="allegati">Allegati</h4>
-                        <div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
-                            <?php foreach ($allegati as $all_url) {
-                                $all_id = attachment_url_to_postid($all_url);
-                                $allegato = get_post($all_id);
-                            ?>
-                            <div class="card card-teaser shadow-sm p-4 mt-3 rounded border border-light flex-nowrap">
-                                <svg class="icon" aria-hidden="true">
-                                <use
-                                    xlink:href="#it-clip"
-                                ></use>
-                                </svg>
-                                <div class="card-body">
-                                <h5 class="card-title">
-                                    <a class="text-decoration-none" href="<?php echo get_the_guid($allegato); ?>" aria-label="Scarica l'allegato <?php echo $allegato->post_title; ?>" title="Scarica l'allegato <?php echo $allegato->post_title; ?>">
-                                        <?php echo $allegato->post_title; ?>
+                                    <a class="text-decoration-none" <?php echo ( 'file' === $doc_type ) ? 'download' : ''; ?> href="<?php echo esc_url( $file_url ); ?>" aria-label="<?php echo esc_attr( $title_attr ); ?>" title="<?php echo esc_attr( $title_attr ); ?>">
+                                        <?php echo esc_html( $label ); ?>
                                     </a>
                                 </h5>
                                 </div>
@@ -258,4 +246,3 @@ get_header();
     </script>
 <?php
 get_footer();
-

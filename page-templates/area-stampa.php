@@ -27,12 +27,14 @@ get_header();
 								<?php if ( ! empty( $documents ) ) { ?>
 									<?php
 										foreach ( $documents as $document ) {
-											$file_url = isset( $document['docs_allegato'] ) ? $document['docs_allegato'] : '';
+											$doc_type = ! empty( $document['docs_tipo'] ) ? $document['docs_tipo'] : 'file';
+											$file_url = ( 'link' === $doc_type ) ? ( $document['docs_link'] ?? '' ) : ( $document['docs_allegato'] ?? '' );
+
 											if ( empty( $file_url ) ) {
 												continue;
 											}
 
-											$file_id    = attachment_url_to_postid( $file_url );
+											$file_id    = ( 'file' === $doc_type ) ? attachment_url_to_postid( $file_url ) : 0;
 											$file_label = ! empty( $document['label_allegato'] ) ? $document['label_allegato'] : '';
 
 											if ( empty( $file_label ) && $file_id ) {
@@ -44,11 +46,7 @@ get_header();
 												$file_label = $path ? basename( $path ) : __( 'Documento', 'design_comuni_italia' );
 											}
 
-											if ( $file_id ) {
-											    $upload_date = get_the_date( 'd/m/Y', $file_id );
-											} else {
-											    $upload_date = '';
-											}
+											$upload_date = $file_id ? get_the_date( 'd/m/Y', $file_id ) : '';
 
 											$file_extension = '';
 											$file_size      = '';
@@ -66,7 +64,7 @@ get_header();
 											$meta_info  = array_filter( array( $file_extension, $file_size, $upload_date ? "File caricato il $upload_date" : '' ) );
 											$aria_label = sprintf( __( 'Scarica %s', 'design_comuni_italia' ), $file_label );
 											?>
-											<a class="card card-teaser shadow-sm p-4 mt-3 rounded border border-light flex-nowrap no-hover" download target="_blank" href="<?php echo esc_url( $file_url ); ?>" aria-label="<?php echo esc_attr( $aria_label ); ?>">
+											<a class="card card-teaser shadow-sm p-4 mt-3 rounded border border-light flex-nowrap no-hover" <?php echo ( 'file' === $doc_type ) ? 'download' : ''; ?> target="_blank" href="<?php echo esc_url( $file_url ); ?>" aria-label="<?php echo esc_attr( $aria_label ); ?>">
 												<svg class="icon" aria-hidden="true">
 													<use xlink:href="#it-clip"></use>
 												</svg>
