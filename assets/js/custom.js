@@ -35,59 +35,22 @@ function initSliderHome() {
 }
 
 function initSliderItinerari() {
-    var sliderItinerari = document.querySelector('.slider_itinerari');
+  var el = document.querySelector('.slider_itinerari');
+  if (!el) return;
 
-    if (!sliderItinerari) {
-        return;
-    }
+  var BI = window.bootstrap;
 
-    var bootstrapItalia = window.bootstrap;
+  if (BI && typeof BI.CarouselBI === 'function') {
+    BI.CarouselBI.getOrCreateInstance(el);
+    return;
+  }
 
-    if (bootstrapItalia && typeof bootstrapItalia.CarouselBI === 'function') {
-        var carouselInstance = bootstrapItalia.CarouselBI.getOrCreateInstance(sliderItinerari);
+  if (window.Splide) {
+    new Splide(el).mount();
+    return;
+  }
 
-        if (!carouselInstance || !carouselInstance._splide) {
-            console.warn('Impossibile ottenere l\'istanza Splide per slider_itinerari.');
-            return;
-        }
-
-        var splideInstance = carouselInstance._splide;
-
-        splideInstance.options = Object.assign({}, splideInstance.options || {}, {
-            type: 'slide',
-            perPage: 2,
-            perMove: 1,
-            gap: 24,
-            arrows: false,
-            pagination: true,
-            breakpoints: {
-                992: { perPage: 1 },
-            }
-        });
-
-        if (typeof splideInstance.refresh === 'function') {
-            splideInstance.refresh();
-        } else {
-            splideInstance.mount();
-        }
-        return;
-    }
-
-    if (window.Splide) {
-        new Splide(sliderItinerari, {
-            type: 'slide',
-            perPage: 2,
-            perMove: 1,
-            gap: 24,
-            arrows: false,
-            pagination: true,
-            breakpoints: {
-                992: { perPage: 1 },
-            }
-        }).mount();
-    } else {
-        console.warn('Splide non disponibile per slider_itinerari.');
-    }
+  console.warn('Né Bootstrap Italia CarouselBI né Splide disponibili.');
 }
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -80,17 +80,17 @@ get_header();
             </div>
             <?php if ( $home_itinerari_query->have_posts() ) : ?>
             <div class="pt-3 pb-4">
-              <div class="splide slider_itinerari">
+              <div class="splide slider_itinerari" data-splide='{"perPage":2,"mediaQuery":"max","breakpoints":{"992":{"perPage":1}}}'>
                 <div class="splide__track">
-                  <div class="splide__list">
+                  <ul class="splide__list">
                     <?php
                     while ( $home_itinerari_query->have_posts() ) :
                       $home_itinerari_query->the_post(); ?>
-                      <div class="splide__slide">
+                      <li class="splide__slide">
                         <?php get_template_part( 'template-parts/itinerario/cards-list', get_post_type() ); ?>
-                      </div>
+                    </li>
                     <?php endwhile; ?>
-                  </div>
+                    </ul>
                 </div>
               </div>
             </div>
