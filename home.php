@@ -80,7 +80,18 @@ get_header();
             </div>
             <?php if ( $home_itinerari_query->have_posts() ) : ?>
             <div class="pt-3 pb-4">
-              <div class="splide slider_itinerari" data-splide='{"perPage":2,"mediaQuery":"max","breakpoints":{"992":{"perPage":1}}}'>
+              <div class="splide slider_itinerari" data-splide='{
+                    "type":"slide",
+                    "perPage":2,
+                    "perMove":1,
+                    "gap":"24px",
+                    "arrows":false,
+                    "pagination":true,
+                    "mediaQuery":"max",
+                    "breakpoints":{
+                      "992":{"perPage":1}
+                    }
+                  }'>
                 <div class="splide__track">
                   <ul class="splide__list">
                     <?php
