@@ -33,7 +33,8 @@ get_header();
     // $end_date = date_i18n('d F Y', date($end_timestamp));
     // $end_date_arr = explode('-', date_i18n('d-M-Y-H-i', date($end_timestamp)));
     $descrizione = dci_get_wysiwyg_field("descrizione_completa", $prefix, $post->ID);
-    $destinatari = dci_get_wysiwyg_field("a_chi_e_rivolto", $prefix, $post->ID);
+    // $destinatari = dci_get_wysiwyg_field("a_chi_e_rivolto", $prefix, $post->ID);
+    $targets = get_the_terms( $post->ID, 'target' );
     //media
     $gallery = dci_get_meta("gallery", $prefix, $post->ID);
     $video = dci_get_meta("video", $prefix, $post->ID);
@@ -135,7 +136,7 @@ get_header();
                                                     <span>Cos'è</span>
                                                     </a>
                                                     </li>
-                                                <?php if( $destinatari) { ?>
+                                                <?php if ( ! empty( $targets ) && ! is_wp_error( $targets ) ) { ?>
                                                     <li class="nav-item">
                                                     <a class="nav-link" href="#destinatari">
                                                     <span>A chi è rivolto</span>
@@ -225,12 +226,22 @@ get_header();
               } ?>
           </article>
 
-          <?php if($destinatari) {?>
+          <?php /* if($destinatari) {?>
           <article id="destinatari" class="it-page-section mb-5">
             <h2 class="h3 mb-2">A chi è rivolto</h2>
             <p><?php echo $destinatari; ?></p>
           </article>
-          <?php  } ?>
+          <?php  } */ ?>
+
+		  <?php
+            if ( ! empty( $targets ) && ! is_wp_error( $targets ) ) {
+              $target_names = wp_list_pluck( $targets, 'name' );
+          ?>
+            <article id="destinatari" class="it-page-section mb-5">
+              <h2 class="h3 mb-2">A chi è rivolto</h2>
+              <p><?php echo esc_html( implode( ', ', $target_names ) ); ?></p>
+            </article>
+          <?php } ?>
 
           <?php if($luogo_evento) {?>
           <article id="luogo" class="it-page-section mb-5">
