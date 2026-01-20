@@ -386,7 +386,7 @@ get_header();
                   $action_label = ( 'file' === $doc_type ) ? __( 'Scarica', 'design_comuni_italia' ) : __( 'Apri', 'design_comuni_italia' );
                   $title_attr   = sprintf( '%s %s', $action_label, $label );
                   ?>
-                  <div class="card card-teaser shadow mt-3 rounded">
+                  <div class="card card-teaser no-hover no-pop mt-3 rounded">
                       <div class="card-body">
                       <h3 class="card-title h5 m-0">
                         <svg class="icon" aria-hidden="true">
