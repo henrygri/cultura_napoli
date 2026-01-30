@@ -224,14 +224,14 @@ b, strong {
 
 .chip { padding: .4em 1.2em .4em .6em; border-radius: .2em; min-width: 0; height: auto; margin-top: 0; }
 .chip.chip-simple { padding-right: .6em; }
-.chip .chip-label { font-size: .8rem; font-weight: 400; color: var(--bs-black); letter-spacing: 0.02em;transform: none; text-transform: uppercase; height: auto; }
+.chip .chip-label { font-size: .8rem; font-weight: 400; color: var(--bs-secondary); letter-spacing: 0.02em;transform: none; text-transform: uppercase; height: auto; }
 
-.chip:not(.chip-disabled) {
-    border: 1px solid rgba(var(--cn-giallo-rgb), .4) outset;
-    background: rgba(var(--cn-giallo-rgb), .4);
-}
+.chip:not(.chip-disabled) { border-color: transparent; background: rgba(var(--bs-secondary-rgb),.1); }
+.chip:not(.chip-disabled):hover {  border-color: transparent; background-color: rgba(var(--bs-secondary-rgb),.2); }
+.chip:not(.chip-disabled):hover .chip-label { color: var(--bs-secondary); }
+
 .chip:is(a):hover:not(.chip-disabled) { background-color: var(--cn-giallo); }
-
+.events-filter-form .btn-check+.btn-sm { border-width: 1px; font-weight: normal; }
 .card-itinerario .chip,
 .card-itinerario .chip:hover,
 .card-itinerario .chip:is(a):hover:not(.chip-disabled) { background: transparent; border: 1px solid var(--bs-white); }
@@ -240,6 +240,40 @@ b, strong {
 .btn-dropdown { font-size: 1rem; font-weight: 400; color: var(--bs-black); }
 .dropdown .btn-dropdown { --bs-btn-hover-color: var(--bs-black); }
 .btn-dropdow .icon { fill: var(--bs-primary); }
+
+.page-intro .chip:not(.chip-disabled) {
+    border: 1px solid rgba(var(--cn-giallo-rgb), .4) outset;
+    background: rgba(var(--cn-giallo-rgb), .4);
+}
+.page-intro .chip .chip-label { color: var(--bs-black); }
+
+/*
+ * FORM ricerca eventi
+ */
+.events-filter-form > .row { position: relative; border-top: 1px solid rgba(var(--bs-secondary-rgb),.3); margin: 0; }
+.events-filter-form > .row > button { padding: 1.3rem; width: 100%; text-align: left; }
+.events-filter-form > .row.accessibility { padding:1.3rem; }
+
+.events-filter-form .date-selector { display: flex; border: 1px solid rgba(var(--bs-secondary-rgb), .4); border-radius: .2em; padding: calc(var(--bs-gutter-x)*.5); }
+.events-filter-form .date-selector input[type=date],
+.events-filter-form .date-selector input[type=datetime-local],
+.events-filter-form .date-selector input[type=time] { display: block; border: none; padding: 0 0 0 .7em; min-height: 1em; }
+.events-filter-form .date-selector label { margin-bottom: 0; }
+
+.events-filter-form .btn-check:checked+.chip { border-color: var(--bs-primary); background-color: var(--bs-primary); }
+.events-filter-form .btn-check:checked+.chip .chip-label{ color: var(--bs-white); }
+
+#accordion-municipalita { border-bottom: none; padding-left: .7rem; }
+#accordion-municipalita .accordion-item { border-top: 1px solid rgba(var(--bs-secondary-rgb),.2); }
+#accordion-municipalita .accordion-button { font-weight: 300; text-transform: uppercase; letter-spacing: 0.02em; color: rgb(26 26 26); padding: .7rem .7rem .7rem 0; }
+#accordion-municipalita .accordion-body { padding: 0 .7em 1em; }
+#accordion-municipalita .form-check [type=checkbox]+label { font-size: 1rem; font-weight: normal; width: 100%; }
+#accordion-municipalita .accordion-collapse {padding-bottom: .7em; }
+
+.events-filter-form .toggles label { margin-bottom: 0; height: auto; }
+.events-filter-form .toggles label input[type=checkbox]+.lever { margin-top: 4px; }
+
+.modal-footer { border-top: 1px solid rgba(var(--bs-secondary-rgb),.4); }
 
 
 /*

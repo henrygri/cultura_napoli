@@ -13,23 +13,24 @@ get_header();
 		<?php
 		while ( have_posts() ) :
 			the_post();
-			
+
 			$img = dci_get_option('immagine', 'eventi');
 			$didascalia = dci_get_option('didascalia', 'eventi');
-		
+
 			$args = array(
 				'posts_per_page' => -1,
 				'post_type' => 'evento',
 				'post_status'    => 'publish'
 			);
 			$schede_eventi = get_posts($args);
-
 		?>
-		<?php 
+		<div class="bg-100">
+		<?php
+			$with_bg = false;
 			$with_shadow = false;
-			get_template_part("template-parts/hero/hero"); 
+			$with_description = false;
+			get_template_part("template-parts/hero/hero");
 		?>
-			
 		<?php if( $img ) { ?>
 			<section class="hero-img mb-20 mb-lg-50">
 				<section class="it-hero-wrapper it-hero-small-size cmp-hero-img-small">
@@ -46,17 +47,16 @@ get_header();
 				</p>
 			</section>
 		<?php } ?>
-		
+
 		<?php get_template_part("template-parts/evento/evidenza"); ?>
+		</div>
+
 		<?php get_template_part("template-parts/evento/tutti-eventi"); ?>
-							
-		<?php 
+
+		<?php
 			endwhile; // End of the loop.
 		?>
 	</main>
 
 <?php
 get_footer();
-
-
-

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 global $the_query, $load_posts, $load_card_type;
 
     $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 12;
@@ -114,7 +114,7 @@ global $the_query, $load_posts, $load_card_type;
 ?>
 
 
-<div class="bg-200 py-5">
+<div class="py-5">
     <form role="search" id="search-form" method="get" class="search-form">
         <button type="submit" class="d-none"></button>
         <div class="container">
@@ -136,28 +136,27 @@ global $the_query, $load_posts, $load_card_type;
                     <input type="hidden" name="quartieri[]" value="<?php echo esc_attr($selected_id); ?>">
                 <?php } ?>
             </div>
-            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
-                <h2 class="title-xxlarge mb-0">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-3">
+                <h2 class="title-xlarge mb-0">
                     Esplora tutti gli eventi
                 </h2>
                 <button
                     type="button"
-                    class="btn btn-outline-primary d-inline-flex align-items-center"
+                    class="btn btn-sm btn-outline btn-round"
                     data-bs-toggle="modal"
                     data-bs-target="#modal-filtri-eventi"
                     aria-controls="modal-filtri-eventi"
                 >
-                    <span class="rounded-icon">
-                        <svg class="icon icon-primary icon-sm" aria-hidden="true">
-                            <use href="#it-funnel"></use>
-                        </svg>
-                    </span>
-                    <span class="ms-2">Filtri</span>
+                    <svg class="icon icon-sm" aria-hidden="true">
+                        <use href="#it-funnel"></use>
+                    </svg>
+                    <span class="ms-2">Filtra eventi</span>
                 </button>
             </div>
             <div>
                 <div class="cmp-input-search">
                     <div class="form-group autocomplete-wrapper mb-0">
+                        <?php /*
                         <div class="input-group">
                             <label for="autocomplete-two" class="visually-hidden">Cerca</label>
                             <input type="search" class="autocomplete form-control" placeholder="Cerca per parola chiave"
@@ -174,8 +173,9 @@ global $the_query, $load_posts, $load_card_type;
                                 </svg>
                             </span>
                         </div>
-                        <p id="autocomplete-label" class="u-grey-light text-paragraph-card mt-2 mb-30 mt-lg-3 mb-lg-40">
-                            <?php echo $the_query->found_posts; ?> eventi trovati in ordine alfabetico
+                        */ ?>
+                        <p id="autocomplete-label" class="u-grey-light text-paragraph-card mt-2 mb-30 mt-lg-3 mb-lg-40 border-top border-dark pt-2">
+                            <?php echo $the_query->found_posts; ?> eventi trovati
                         </p>
                     </div>
                 </div>
@@ -203,7 +203,7 @@ global $the_query, $load_posts, $load_card_type;
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title h5 mb-0" id="modal-filtri-eventi-title">
-                    Filtri eventi
+                    Filtra eventi
                 </h2>
                 <button
                     type="button"
@@ -213,174 +213,217 @@ global $the_query, $load_posts, $load_card_type;
                 ></button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <p class="mb-2">Ricerca per data</p>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <label class="form-label" for="filter-date-from">Dal</label>
-                        <input
-                            type="date"
-                            id="filter-date-from"
-                            class="form-control"
-                            value="<?php echo esc_attr($date_from); ?>"
-                            aria-label="Data inizio intervallo"
-                        />
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <label class="form-label" for="filter-date-to">Al</label>
-                        <input
-                            type="date"
-                            id="filter-date-to"
-                            class="form-control"
-                            value="<?php echo esc_attr($date_to); ?>"
-                            aria-label="Data fine intervallo"
-                        />
-                    </div>
-                    <div class="col-12 mt-4">
-                        <p class="mb-2">Argomenti</p>
-                        <div class="d-flex flex-wrap gap-2">
-                            <?php
-                            if ( is_array( $argomenti_ids ) ) {
-                                foreach ( $argomenti_ids as $arg_id ) {
-                                    $argomento = get_term_by('id', $arg_id, 'argomenti');
-                                    if ( ! $argomento ) {
-                                        continue;
-                                    }
-                                    $is_checked = in_array( $arg_id, $argomenti_selected );
-                                    ?>
-                                    <input
-                                        type="checkbox"
-                                        class="btn-check"
-                                        id="argomento-<?php echo esc_attr($arg_id); ?>"
-                                        value="<?php echo esc_attr($arg_id); ?>"
-                                        <?php echo $is_checked ? 'checked' : ''; ?>
-                                        data-argomento-checkbox
-                                    />
-                                    <label
-                                        class="btn btn-outline-primary btn-sm"
-                                        for="argomento-<?php echo esc_attr($arg_id); ?>"
-                                    >
-                                        <?php echo esc_html( $argomento->name ); ?>
-                                    </label>
-                                    <?php
-                                }
-                            }
-                            ?>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <p class="mb-2">Adatto a</p>
-                        <div class="d-flex flex-wrap gap-2">
-                            <?php
-                            if ( is_array( $target_ids ) ) {
-                                foreach ( $target_ids as $target_id ) {
-                                    $target_term = get_term_by('id', $target_id, 'target');
-                                    if ( ! $target_term ) {
-                                        continue;
-                                    }
-                                    $is_checked_target = in_array( $target_id, $target_selected );
-                                    ?>
-                                    <input
-                                        type="checkbox"
-                                        class="btn-check"
-                                        id="target-<?php echo esc_attr($target_id); ?>"
-                                        value="<?php echo esc_attr($target_id); ?>"
-                                        <?php echo $is_checked_target ? 'checked' : ''; ?>
-                                        data-target-checkbox
-                                    />
-                                    <label
-                                        class="btn btn-outline-primary btn-sm"
-                                        for="target-<?php echo esc_attr($target_id); ?>"
-                                    >
-                                        <?php echo esc_html( $target_term->name ); ?>
-                                    </label>
-                                    <?php
-                                }
-                            }
-                            ?>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <p class="mb-2">Consigliato per accessibilità
-                        <div class="form-check form-switch">
+                <div class="events-filter-form">
+                  <div class="row">
+                    <button type="button" data-bs-toggle="collapse" data-bs-target="#search_date" aria-expanded="false" aria-controls="search_date">
+                      <h3 class="h6 mb-0">Date</h6>
+                    </button>
+                    <div class="collapse" id="search_date">
+                      <div class="row mx-0 pb-4">
+                        <div class="col-12 col-md-6">
+                          <div class="date-selector">
+                            <label class="form-label" for="filter-date-from">Dal</label>
                             <input
-                                class="form-check-input"
+                                type="date"
+                                id="filter-date-from"
+                                class="form-control"
+                                value="<?php echo esc_attr($date_from); ?>"
+                                aria-label="Data inizio intervallo"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <div class="date-selector">
+                            <label class="form-label" for="filter-date-to">Al</label>
+                            <input
+                                type="date"
+                                id="filter-date-to"
+                                class="form-control"
+                                value="<?php echo esc_attr($date_to); ?>"
+                                aria-label="Data fine intervallo"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <button type="button" data-bs-toggle="collapse" data-bs-target="#search_argomenti" aria-expanded="false" aria-controls="search_argomenti">
+                      <h3 class="h6 mb-0">Argomenti</h6>
+                    </button>
+                    <div class="collapse" id="search_argomenti">
+                      <div class="row mx-0 pb-3">
+                          <div class="col-12">
+                              <div class="d-flex flex-wrap">
+                                  <?php
+                                  if ( is_array( $argomenti_ids ) ) {
+                                      foreach ( $argomenti_ids as $arg_id ) {
+                                          $argomento = get_term_by('id', $arg_id, 'argomenti');
+                                          if ( ! $argomento ) {
+                                              continue;
+                                          }
+                                          $is_checked = in_array( $arg_id, $argomenti_selected );
+                                          ?>
+                                          <input
+                                              type="checkbox"
+                                              class="btn-check"
+                                              id="argomento-<?php echo esc_attr($arg_id); ?>"
+                                              value="<?php echo esc_attr($arg_id); ?>"
+                                              <?php echo $is_checked ? 'checked' : ''; ?>
+                                              data-argomento-checkbox
+                                          />
+                                          <label
+                                              class="chip chip-simple"
+                                              for="argomento-<?php echo esc_attr($arg_id); ?>"
+                                          >
+                                              <span class="chip-label"><?php echo esc_html( $argomento->name ); ?></span>
+                                          </label>
+                                          <?php
+                                      }
+                                  }
+                                  ?>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <button type="button" data-bs-toggle="collapse" data-bs-target="#search_target" aria-expanded="false" aria-controls="search_target">
+                      <h3 class="h6 mb-0">Adatto a</h6>
+                    </button>
+                    <div class="collapse" id="search_target">
+                      <div class="row mx-0 pb-3">
+                        <div class="col-12">
+                            <div class="d-flex flex-wrap">
+                                <?php
+                                if ( is_array( $target_ids ) ) {
+                                    foreach ( $target_ids as $target_id ) {
+                                        $target_term = get_term_by('id', $target_id, 'target');
+                                        if ( ! $target_term ) {
+                                            continue;
+                                        }
+                                        $is_checked_target = in_array( $target_id, $target_selected );
+                                        ?>
+                                        <input
+                                            type="checkbox"
+                                            class="btn-check"
+                                            id="target-<?php echo esc_attr($target_id); ?>"
+                                            value="<?php echo esc_attr($target_id); ?>"
+                                            <?php echo $is_checked_target ? 'checked' : ''; ?>
+                                            data-target-checkbox
+                                        />
+                                        <label
+                                            class="chip chip-simple"
+                                            for="target-<?php echo esc_attr($target_id); ?>"
+                                        >
+                                            <span class="chip-label"><?php echo esc_html( $target_term->name ); ?></span>
+                                        </label>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <button type="button" data-bs-toggle="collapse" data-bs-target="#search_quartieri" aria-expanded="false" aria-controls="search_quartieri">
+                      <h3 class="h6 mb-0">Municipalità e quartieri</h6>
+                    </button>
+                    <div class="collapse" id="search_quartieri">
+                      <div class="accordion" id="accordion-municipalita">
+                          <?php
+                          if ( ! empty( $quartieri_parents ) && ! is_wp_error( $quartieri_parents ) ) {
+                              $idx = 0;
+                              foreach ( $quartieri_parents as $parent_term ) {
+                                  $idx++;
+                                  $collapse_id = 'collapse-muni-' . $idx;
+                                  $heading_id = 'heading-muni-' . $idx;
+                                  $children = get_terms(array(
+                                      'taxonomy' => 'quartieri',
+                                      'parent'   => $parent_term->term_id,
+                                      'hide_empty' => false,
+                                  ));
+                                  ?>
+                                  <div class="accordion-item">
+                                      <div class="accordion-header" id="<?php echo esc_attr($heading_id); ?>">
+                                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr($collapse_id); ?>" aria-expanded="false" aria-controls="<?php echo esc_attr($collapse_id); ?>">
+                                              <?php echo esc_html( $parent_term->name ); ?>
+                                          </button>
+                                      </div>
+                                      <div id="<?php echo esc_attr($collapse_id); ?>" class="accordion-collapse collapse" aria-labelledby="<?php echo esc_attr($heading_id); ?>" data-bs-parent="#accordion-municipalita">
+                                          <div class="accordion-body py-2">
+                                              <div class="row g-2">
+                                                  <?php
+                                                  if ( ! empty( $children ) && ! is_wp_error( $children ) ) {
+                                                      foreach ( $children as $child ) {
+                                                          $is_checked_quartiere = in_array( $child->term_id, $quartieri_selected );
+                                                          ?>
+                                                          <div class="col-12">
+                                                              <div class="form-check">
+                                                                  <input
+                                                                      class="form-check-input"
+                                                                      type="checkbox"
+                                                                      id="quartiere-<?php echo esc_attr($child->term_id); ?>"
+                                                                      value="<?php echo esc_attr($child->term_id); ?>"
+                                                                      <?php echo $is_checked_quartiere ? 'checked' : ''; ?>
+                                                                      data-quartiere-checkbox
+                                                                  />
+                                                                  <label class="form-check-label" for="quartiere-<?php echo esc_attr($child->term_id); ?>">
+                                                                      <?php echo esc_html( $child->name ); ?>
+                                                                  </label>
+                                                              </div>
+                                                          </div>
+                                                          <?php
+                                                      }
+                                                  } else {
+                                                      ?>
+                                                      <span class="text-muted small">Nessun quartiere disponibile.</span>
+                                                      <?php
+                                                  }
+                                                  ?>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <?php
+                              }
+                          } else {
+                              ?>
+                              <p class="text-muted small mb-0">Nessuna municipalità disponibile.</p>
+                          <?php
+                          }
+                          ?>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row accessibility">
+                    <div class="col ps-0">
+                      <h3 class="h6 mb-0">Consigliato per accessibilità</h3>
+                    </div>
+                    <div class="col-auto pe-0">
+                        <div class="form-check form-check-inline mb-0">
+                          <div class="toggles">
+                            <label for="filter-accessibile">
+                              <span class="visually-hidden">Mostra solo eventi consigliati per accessibilità</span>
+                              <input
                                 type="checkbox"
                                 role="switch"
                                 id="filter-accessibile"
                                 <?php echo $accessibile ? 'checked' : ''; ?>
-                            >
-                            <label class="form-check-label" for="filter-accessibile">Mostra solo eventi consigliati</label>
+                                >
+                              <span class="lever"></span>
+                            </label>
+                          </div>
                         </div>
                     </div>
-                    <div class="col-12 mt-4">
-                        <p class="mb-2">Municipalità e quartieri</p>
-                        <div class="accordion border-0" id="accordion-municipalita">
-                            <?php
-                            if ( ! empty( $quartieri_parents ) && ! is_wp_error( $quartieri_parents ) ) {
-                                $idx = 0;
-                                foreach ( $quartieri_parents as $parent_term ) {
-                                    $idx++;
-                                    $collapse_id = 'collapse-muni-' . $idx;
-                                    $heading_id = 'heading-muni-' . $idx;
-                                    $children = get_terms(array(
-                                        'taxonomy' => 'quartieri',
-                                        'parent'   => $parent_term->term_id,
-                                        'hide_empty' => false,
-                                    ));
-                                    ?>
-                                    <div class="accordion-item mb-2">
-                                        <div class="accordion-header" id="<?php echo esc_attr($heading_id); ?>">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr($collapse_id); ?>" aria-expanded="false" aria-controls="<?php echo esc_attr($collapse_id); ?>">
-                                                <?php echo esc_html( $parent_term->name ); ?>
-                                            </button>
-                                        </div>
-                                        <div id="<?php echo esc_attr($collapse_id); ?>" class="accordion-collapse collapse" aria-labelledby="<?php echo esc_attr($heading_id); ?>" data-bs-parent="#accordion-municipalita">
-                                            <div class="accordion-body py-2">
-                                                <div class="row g-2">
-                                                    <?php
-                                                    if ( ! empty( $children ) && ! is_wp_error( $children ) ) {
-                                                        foreach ( $children as $child ) {
-                                                            $is_checked_quartiere = in_array( $child->term_id, $quartieri_selected );
-                                                            ?>
-                                                            <div class="col-12 col-md-6">
-                                                                <div class="form-check">
-                                                                    <input
-                                                                        class="form-check-input"
-                                                                        type="checkbox"
-                                                                        id="quartiere-<?php echo esc_attr($child->term_id); ?>"
-                                                                        value="<?php echo esc_attr($child->term_id); ?>"
-                                                                        <?php echo $is_checked_quartiere ? 'checked' : ''; ?>
-                                                                        data-quartiere-checkbox
-                                                                    />
-                                                                    <label class="form-check-label" for="quartiere-<?php echo esc_attr($child->term_id); ?>">
-                                                                        <?php echo esc_html( $child->name ); ?>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <?php
-                                                        }
-                                                    } else {
-                                                        ?>
-                                                        <span class="text-muted small">Nessun quartiere disponibile.</span>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php
-                                }
-                            } else {
-                                ?>
-                                <p class="text-muted small mb-0">Nessuna municipalità disponibile.</p>
-                            <?php
-                            }
-                            ?>
-                        </div>
-                    </div>
+                  </div>
+
                 </div>
             </div>
             <div class="modal-footer">
@@ -403,6 +446,19 @@ global $the_query, $load_posts, $load_card_type;
         </div>
     </div>
 </div>
+<style>
+.modal-body { padding: 0 !important; }
+@media (min-width: 768px) {
+  .modal.it-dialog-scrollable .modal-dialog { margin: 0 0 0 auto; }
+}
+@media (min-width: 992px) {
+  .modal-lg, .modal-xl { --bs-modal-width: 600px; }
+}
+.modal.it-dialog-scrollable .modal-dialog .modal-content { height: calc(100vh); }
+@media (min-width: 768px) {
+  .modal.it-dialog-scrollable .modal-dialog .modal-content { height: calc(100vh); }
+}
+</style>
 <script>
     (function() {
         const applyBtn = document.getElementById('apply-date-filters');
@@ -469,6 +525,3 @@ global $the_query, $load_posts, $load_card_type;
     })();
 </script>
 <?php wp_reset_query(); ?>
-
-
-
