@@ -59,11 +59,57 @@ get_header();
 
 			<section class="py-5">
 				<div class="container">
-					<div class="row g-5">
+					<div class="row py-5">
 						<div class="col-12 col-lg-8">
 							<h2>Aree Tematiche</h2>
 						</div>
 					</div>
+					<!-- questo da ripetere -->
+					<div class="row area-tematica py-5">
+						<div class="col-12 col-lg-6">
+							<div class="card-body pb-4 pb-lg-0 pe-lg-5">
+								<h3>Musica</h3>
+								<p>
+									La musica è l’anima di Napoli e uno dei suoi linguaggi universali.<br>
+									Attraverso l’Ufficio Musica, che svolge un ruolo di regia istituzionale nel progetto “Napoli Città della Musica”, il Comune valorizza i giovani talenti, investe sul rilancio culturale, sociale ed economico delle sue eccellenze, sostiene operatori e professionisti del settore, promuove collaborazioni che rafforzano il ruolo di Napoli come capitale della musica nel mondo.
+								</p>
+								<a class="btn btn-dark">Guarda gli eventi correlati</a>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6">
+							<div class="img-responsive-wrapper">
+								<div class="img-responsive img-responsive-panoramic rounded-3">
+									<figure class="img-wrapper">
+										<?php dci_get_img($img); ?>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- fino a qui -->
+
+					<div class="row area-tematica py-5">
+						<div class="col-12 col-lg-6">
+							<div class="card-body pb-4 pb-lg-0 pe-lg-5">
+								<h3>Libri e Lettura</h3>
+								<p>
+									La letteratura è l’anima di Napoli e uno dei suoi linguaggi universali.<br>
+									Attraverso l’Ufficio letteratura, che svolge un ruolo di regia istituzionale nel progetto “Napoli Città della letteratura, il Comune valorizza i giovani talenti, investe sul rilancio culturale, sociale ed economico delle sue eccellenze, promuove collaborazioni che rafforzano il ruolo di Napoli come capitale della letteratura nel mondo.
+								</p>
+								<a class="btn btn-dark">Guarda gli eventi correlati</a>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6">
+							<div class="img-responsive-wrapper">
+								<div class="img-responsive img-responsive-panoramic rounded-3">
+									<figure class="img-wrapper">
+										<?php dci_get_img($img); ?>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</section>
 			<?php get_template_part("template-parts/common/bolli-argomenti"); ?>
@@ -74,6 +120,30 @@ get_header();
 						<div class="col-12">
 							<h2>Bandi e Gare</h2>
 						</div>
+					</div>
+					<div class="row py-4">
+						<div class="col-md-6"><!-- togliamo colonne quando facciamo carousel -->
+							<a class="card card-bando no-after rounded-3" target="_blank" href="">
+								<div class="card-body">
+									<h3 class="card-title">Manifestazione d’interesse finalizzata a reperire adesioni per la tutela e valorizzazione della Scuola Musicale Napoletana del ‘700</h3>
+								</div>
+								<div class="card-footer">
+									<span>Pubblicazione:</span> 10/01/2026<br>
+									<span>Scadenza:</span> 10/01/2026
+								</div>
+							</a>
+						</div><!-- togliamo colonne quando facciamo carousel -->
+						<div class="col-md-6"><!-- togliamo colonne quando facciamo carousel -->
+							<a class="card card-bando no-after rounded-3" target="_blank" href="">
+								<div class="card-body">
+									<h3 class="card-title">Avviso Pubblico per manifestazione d’interesse per la costituzione di un calendario condiviso di iniziative culturali auto-sostenute e auto-organizzate da includere nella programmazione del “Maggio dei Monumenti” 2026</h3>
+								</div>
+								<div class="card-footer">
+									<span>Pubblicazione:</span> 10/01/2026<br>
+									<span>Scadenza:</span> 10/01/2026
+								</div>
+							</a>
+						</div><!-- togliamo colonne quando facciamo carousel -->
 					</div>
 				</div>
 			</section>
