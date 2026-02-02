@@ -215,6 +215,59 @@ function dci_add_page_metaboxes() {
         'sanitize_cb'      => 'absint',
     ) );
 
+    /**
+     * Bandi e gare (template Chi siamo)
+     */
+    $cmb_chi_siamo_bandi = new_cmb2_box( array(
+        'id'           => $prefix . 'box_chi_siamo_bandi',
+        'title'        => __( 'Bandi e gare', 'design_comuni_italia' ),
+        'object_types' => array( 'page' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+        'show_on'      => array(
+            'key'   => 'page-template',
+            'value' => 'page-templates/chi-siamo.php',
+        ),
+    ) );
+
+    $group_field_bandi_id = $cmb_chi_siamo_bandi->add_field( array(
+        'id'      => $prefix . 'bandi',
+        'type'    => 'group',
+        'options' => array(
+            'group_title'   => __( 'Bando {#}', 'design_comuni_italia' ),
+            'add_button'    => __( 'Aggiungi bando', 'design_comuni_italia' ),
+            'remove_button' => __( 'Rimuovi bando', 'design_comuni_italia' ),
+            'sortable'      => true,
+        ),
+    ) );
+
+    $cmb_chi_siamo_bandi->add_group_field( $group_field_bandi_id, array(
+        'id'         => 'titolo',
+        'name'       => __( 'Titolo bando', 'design_comuni_italia' ),
+        'type'       => 'text',
+        'attributes' => array( 'required' => 'required' ),
+    ) );
+
+    $cmb_chi_siamo_bandi->add_group_field( $group_field_bandi_id, array(
+        'id'   => 'data_pubblicazione',
+        'name' => __( 'Data pubblicazione', 'design_comuni_italia' ),
+        'type' => 'text_date',
+        'date_format' => 'd/m/Y',
+    ) );
+
+    $cmb_chi_siamo_bandi->add_group_field( $group_field_bandi_id, array(
+        'id'   => 'data_chiusura',
+        'name' => __( 'Data chiusura', 'design_comuni_italia' ),
+        'type' => 'text_date',
+        'date_format' => 'd/m/Y',
+    ) );
+
+    $cmb_chi_siamo_bandi->add_group_field( $group_field_bandi_id, array(
+        'id'   => 'link',
+        'name' => __( 'Link pagina esterna', 'design_comuni_italia' ),
+        'type' => 'text_url',
+    ) );
+
 }
 
 /**

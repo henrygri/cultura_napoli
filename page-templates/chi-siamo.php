@@ -155,34 +155,80 @@ get_header();
 
 			<section class="py-5 bg-100">
 				<div class="container">
-					<div class="row">
-						<div class="col-12">
-							<h2>Bandi e Gare</h2>
+					<div class="row align-items-center">
+						<div class="col-sm-8">
+							<h2 class="mb-0">Bandi e Gare</h2>
+						</div>
+						<div class="col-sm-4 text-lg-end mt-3 mt-lg-0">
+							<div class="slider_bandi_arrows_placeholder"></div>
 						</div>
 					</div>
 					<div class="row py-4">
-						<div class="col-md-6"><!-- togliamo colonne quando facciamo carousel -->
-							<a class="card card-bando no-after rounded-3" target="_blank" href="">
-								<div class="card-body">
-									<h3 class="card-title">Manifestazione d'interesse finalizzata a reperire adesioni per la tutela e valorizzazione della Scuola Musicale Napoletana del '700</h3>
+						<?php
+						$bandi = dci_get_meta( 'bandi', '_dci_page_', $post->ID );
+						if ( is_array( $bandi ) && ! empty( $bandi ) ) :
+							?>
+							<div class="splide slider_bandi" data-splide='{
+								"type":"slide",
+								"perPage":2,
+								"perMove":1,
+								"gap":"24px",
+								"arrows":true,
+								"pagination":true,
+								"mediaQuery":"max",
+								"breakpoints":{
+									"992":{"perPage":1}
+								}
+							}'>
+								<div class="splide__arrows">
+									<button class="splide__arrow splide__arrow--prev" type="button" aria-label="<?php esc_attr_e( 'Slide precedente', 'design_comuni_italia' ); ?>">
+										<svg class="icon" aria-hidden="true"><use xlink:href="#it-arrow-left"></use></svg>
+									</button>
+									<button class="splide__arrow splide__arrow--next" type="button" aria-label="<?php esc_attr_e( 'Slide successiva', 'design_comuni_italia' ); ?>">
+										<svg class="icon" aria-hidden="true"><use xlink:href="#it-arrow-right"></use></svg>
+									</button>
 								</div>
-								<div class="card-footer">
-									<span>Pubblicazione:</span> 10/01/2026<br>
-									<span>Scadenza:</span> 10/01/2026
+								<div class="splide__track">
+									<ul class="splide__list">
+										<?php foreach ( $bandi as $bando ) :
+											$titolo  = isset( $bando['titolo'] ) ? $bando['titolo'] : '';
+											$pubb    = isset( $bando['data_pubblicazione'] ) ? $bando['data_pubblicazione'] : '';
+											$chius   = isset( $bando['data_chiusura'] ) ? $bando['data_chiusura'] : '';
+											$link    = isset( $bando['link'] ) ? $bando['link'] : '';
+											?>
+											<li class="splide__slide">
+												<a class="card card-bando no-after rounded-3 h-100" <?php echo $link ? 'target="_blank"' : ''; ?> href="<?php echo esc_url( $link ? $link : '#' ); ?>">
+													<div class="card-body">
+														<h3 class="card-title"><?php echo esc_html( $titolo ); ?></h3>
+													</div>
+													<div class="card-footer d-flex align-items-center justify-content-between">
+														<div>
+															<?php if ( $pubb ) : ?>
+																<span><?php esc_html_e( 'Pubblicazione:', 'design_comuni_italia' ); ?></span>
+																<?php echo esc_html( $pubb ); ?><br>
+															<?php endif; ?>
+															<?php if ( $chius ) : ?>
+																<span><?php esc_html_e( 'Scadenza:', 'design_comuni_italia' ); ?></span>
+																<?php echo esc_html( $chius ); ?>
+															<?php endif; ?>
+														</div>
+														<span class="bando-icon ms-3">
+															<svg class="icon" aria-hidden="true">
+																<use xlink:href="#it-arrow-right"></use>
+															</svg>
+														</span>
+													</div>
+												</a>
+											</li>
+										<?php endforeach; ?>
+									</ul>
 								</div>
-							</a>
-						</div><!-- togliamo colonne quando facciamo carousel -->
-						<div class="col-md-6"><!-- togliamo colonne quando facciamo carousel -->
-							<a class="card card-bando no-after rounded-3" target="_blank" href="">
-								<div class="card-body">
-									<h3 class="card-title">Avviso Pubblico per manifestazione d'interesse per la costituzione di un calendario condiviso di iniziative culturali auto-sostenute e auto-organizzate da includere nella programmazione del \"Maggio dei Monumenti\" 2026</h3>
-								</div>
-								<div class="card-footer">
-									<span>Pubblicazione:</span> 10/01/2026<br>
-									<span>Scadenza:</span> 10/01/2026
-								</div>
-							</a>
-						</div><!-- togliamo colonne quando facciamo carousel -->
+							</div>
+						<?php else : ?>
+							<div class="col-12">
+								<p class="text-muted mb-0"><?php esc_html_e( 'Non ci sono bandi pubblicati.', 'design_comuni_italia' ); ?></p>
+							</div>
+						<?php endif; ?>
 					</div>
 				</div>
 			</section>
