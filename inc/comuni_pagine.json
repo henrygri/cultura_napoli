@@ -71,6 +71,20 @@
       "template_name": "area-stampa",
       "children": {}
     },
+    "Chi siamo": {
+      "title": "Chi siamo",
+      "slug": "chi-siamo",
+      "description": "Napoli è Cultura. Il Comune di Napoli valorizza il patrimonio storico, artistico e culturale della città in un'ottica inclusiva e policentrica.",
+      "template_name": "chi-siamo",
+      "children": {}
+    },
+    "Newsletter": {
+      "title": "Newsletter",
+      "slug": "newsletter",
+      "description": "Iscriviti alla newsletter del Comune di Napoli per ricevere le ultime notizie e informazioni.",
+      "template_name": "newsletter",
+      "children": {}
+    },
     "Servizi": {
       "title": "Servizi",
       "slug": "servizi",
