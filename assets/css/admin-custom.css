@@ -4,14 +4,18 @@
 .cmb-row.cmb-type-file .cmb-td .cmb2-upload-button { margin-left: .5em; }
 .cmb-row.cmb-type-file .cmb-td .cmb2-metabox-description { width: 100%; }
 .cmb-row.cmb-type-file .cmb-td .cmb2-media-status { width: 100%; }
+.cmb-row.cmb-type-file-list input[type="button"] { float: left; }
 
+/* miglioro comprensione dei tasti per sportare su e giù i blocchi ripetibili */
+a.button-secondary.cmb-shift-rows.move-up.alignleft:after { content: "Porta su"; font-weight: 600; margin: 0 .3em 0 .5em; transform: translateY(-.1em);}
+a.button-secondary.cmb-shift-rows.move-down.alignleft:before { content: "Porta giù"; font-weight: 600; margin: 0 .3em 0 .5em; transform: translateY(-.1em);}
 
 /* sistemo un po' il layout del repeater con le tappe dell'inerario. */
 /* nella definizione dei campi ho inserito uno sgamo per accorpare due campi in un unico div, così faccio due colonne */
 
 #_dci_itinerario_tappe_repeat .cmb-type-file { float: left; width: calc(50% - 2em); padding-right: 2em; border-bottom: none; margin-bottom: 0; }
-#_dci_itinerario_tappe_repeat .testi_tappa { float: left; width: 50%; border-bottom: none; }
-#_dci_itinerario_tappe_repeat .cmb-type-text { border-bottom: none; padding-bottom: 0; }
+#_dci_itinerario_tappe_repeat .testi_tappa { float: left; width: 50%; border-bottom: none; padding-top: 1.8em; }
+#_dci_itinerario_tappe_repeat .cmb-type-text { border-bottom: none; padding-top: 0; padding-bottom: 0; }
 #_dci_itinerario_tappe_repeat .cmb-type-textarea { padding-top: 0; }
 
 #_dci_itinerario_tappe_repeat .cmb-remove-field-row { clear: both; width: calc(100% - 2rem); padding: .7rem 1rem; background-color: #f2f2f2; }
