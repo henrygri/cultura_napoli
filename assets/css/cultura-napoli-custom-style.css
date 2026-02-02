@@ -283,6 +283,7 @@ b, strong {
 .icona-argomento figure { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 3em; height: 3em; background-color: rgba(var(--cn-giallo-rgb),.1); margin-right: 1em; }
 .icona-argomento figure img { max-width: 90%; height: auto; margin-bottom: 0; }
 .icona-argomento .label { display: flex; flex-direction: column; justify-content: center; line-height: 1em; }
+.area-tematica .icona-argomento figure { width: 4em; height: 4em; } /* icona a dx del titolo nella sezione Aree Tematiche */
 
 @media(min-width: 992px) {
   .icona-argomento { flex-direction: column; text-align: center; align-items: center; padding: .5rem 0;  }

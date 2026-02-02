@@ -31,13 +31,15 @@ get_header();
 			</div>
 
 			<?php
-			$array_of_pages = get_posts([
-					'title' => 'Gli spazi della cultura',
+			$array_of_pages = get_posts(
+				array(
+					'title'     => 'Gli spazi della cultura',
 					'post_type' => 'any',
-			]);
-			$id = $array_of_pages[0];//Be sure you have an array with single post or page
-			$id = $id->ID;
-			$link = get_permalink($id);
+				)
+			);
+			$id   = $array_of_pages[0]; //Be sure you have an array with single post or page
+			$id   = $id->ID;
+			$link = get_permalink( $id );
 			?>
 			<section class="py-5 bg-200">
 				<div class="container">
@@ -46,7 +48,7 @@ get_header();
 							<h2>Gli spazi della cultura</h2>
 						</div>
 						<div class="d-none d-md-block col-md-4 text-end">
-							<a class="btn btn-xs btn-outline-dark btn-round" href="<?php echo esc_url(  $link  ); ?>">
+							<a class="btn btn-xs btn-outline-dark btn-round" href="<?php echo esc_url( $link ); ?>">
 								Esplora tutti i luoghi
 								<svg class="icon ms-2">
 									<use xlink:href="#it-arrow-right" aria-hidden="true"></use>
@@ -64,55 +66,92 @@ get_header();
 							<h2>Aree Tematiche</h2>
 						</div>
 					</div>
-					<!-- questo da ripetere -->
-					<div class="row area-tematica py-5">
-						<div class="col-12 col-lg-6">
-							<div class="card-body pb-4 pb-lg-0 pe-lg-5">
-								<h3>Musica</h3>
-								<p>
-									La musica è l’anima di Napoli e uno dei suoi linguaggi universali.<br>
-									Attraverso l’Ufficio Musica, che svolge un ruolo di regia istituzionale nel progetto “Napoli Città della Musica”, il Comune valorizza i giovani talenti, investe sul rilancio culturale, sociale ed economico delle sue eccellenze, sostiene operatori e professionisti del settore, promuove collaborazioni che rafforzano il ruolo di Napoli come capitale della musica nel mondo.
-								</p>
-								<a class="btn btn-dark">Guarda gli eventi correlati</a>
-							</div>
-						</div>
-						<div class="col-12 col-lg-6">
-							<div class="img-responsive-wrapper">
-								<div class="img-responsive img-responsive-panoramic rounded-3">
-									<figure class="img-wrapper">
-										<?php dci_get_img($img); ?>
-									</figure>
+					<?php
+					$aree_tematiche = dci_get_meta( 'aree_tematiche', '_dci_page_', $post->ID );
+					if ( is_array( $aree_tematiche ) && ! empty( $aree_tematiche ) ) :
+						foreach ( $aree_tematiche as $area ) :
+							$titolo   = isset( $area['titolo'] ) ? $area['titolo'] : '';
+							$testo    = isset( $area['testo'] ) ? $area['testo'] : '';
+							$immagine = isset( $area['immagine'] ) ? $area['immagine'] : '';
+
+							$argomento_raw = isset( $area['argomento'] ) ? $area['argomento'] : '';
+							if ( is_array( $argomento_raw ) ) {
+								$first_val = reset( $argomento_raw );
+								$argomento = absint( $first_val );
+							} else {
+								$argomento = absint( $argomento_raw );
+							}
+
+							$term_obj = $argomento ? get_term( $argomento, 'argomenti' ) : null;
+							// Fallback: support slug saved as value.
+							if ( ! $argomento && is_string( $argomento_raw ) && '' !== $argomento_raw ) {
+								$maybe_term = get_term_by( 'slug', $argomento_raw, 'argomenti' );
+								if ( $maybe_term && ! is_wp_error( $maybe_term ) ) {
+									$term_obj  = $maybe_term;
+									$argomento = $maybe_term->term_id;
+								}
+							}
+
+							$term_link = ( $argomento && $term_obj && ! is_wp_error( $term_obj ) ) ? get_term_link( $term_obj ) : '';
+							$show_btn  = $argomento && $term_obj && ! is_wp_error( $term_obj );
+							$btn_href  = ( $term_link && ! is_wp_error( $term_link ) ) ? $term_link : '#';
+
+							$img_url = '';
+							if ( is_array( $immagine ) && isset( $immagine['url'] ) ) {
+								$img_url = $immagine['url'];
+							} elseif ( is_string( $immagine ) ) {
+								$img_url = $immagine;
+							}
+							?>
+							<div class="row area-tematica py-5">
+								<div class="col-12 col-lg-6">
+									<div class="card-body pb-4 pb-lg-0 pe-lg-5 d-flex flex-column h-100">
+										<?php
+										$term_img = ( $show_btn ) ? dci_get_term_meta( 'immagine', 'dci_term_', $term_obj->term_id ) : '';
+										if ( $term_img ) :
+											?>
+											<div class="d-flex align-items-center justify-content-between gap-3 mb-4">
+												<?php if ( $titolo ) : ?>
+													<h3 class="mb-0 h2"><?php echo esc_html( $titolo ); ?></h3>
+												<?php endif; ?>
+												<div class="mb-0 icona-argomento clash-display-medium ms-3">
+													<figure class="rounded-circle mb-0">
+														<img src="<?php echo esc_url( $term_img ); ?>" alt="<?php echo esc_attr( $term_obj->name ); ?>" class="img-fluid">
+													</figure>
+												</div>
+											</div>
+										<?php elseif ( $titolo ) : ?>
+											<h3 class="h2"><?php echo esc_html( $titolo ); ?></h3>
+										<?php endif; ?>
+
+										<?php if ( $testo ) : ?>
+											<p class="mb-4"><?php echo wp_kses_post( nl2br( $testo ) ); ?></p>
+										<?php endif; ?>
+
+										<?php if ( $show_btn ) : ?>
+											<div class="mt-auto">
+												<a class="btn btn-primary w-100" href="<?php echo esc_url( $btn_href ); ?>">
+													<?php esc_html_e( 'Scopri gli appuntamenti', 'design_comuni_italia' ); ?>
+												</a>
+											</div>
+										<?php endif; ?>
+									</div>
+								</div>
+								<div class="col-12 col-lg-6">
+									<?php if ( $img_url ) : ?>
+										<figure  class="rounded-3">
+											<img src="<?php echo $img_url; ?>" alt="<?php echo esc_attr( $titolo ); ?>" class="w-100 rounded-3"/>
+										</figure>
+									<?php endif; ?>
 								</div>
 							</div>
-						</div>
-					</div>
-					<!-- fino a qui -->
-
-					<div class="row area-tematica py-5">
-						<div class="col-12 col-lg-6">
-							<div class="card-body pb-4 pb-lg-0 pe-lg-5">
-								<h3>Libri e Lettura</h3>
-								<p>
-									La letteratura è l’anima di Napoli e uno dei suoi linguaggi universali.<br>
-									Attraverso l’Ufficio letteratura, che svolge un ruolo di regia istituzionale nel progetto “Napoli Città della letteratura, il Comune valorizza i giovani talenti, investe sul rilancio culturale, sociale ed economico delle sue eccellenze, promuove collaborazioni che rafforzano il ruolo di Napoli come capitale della letteratura nel mondo.
-								</p>
-								<a class="btn btn-dark">Guarda gli eventi correlati</a>
-							</div>
-						</div>
-						<div class="col-12 col-lg-6">
-							<div class="img-responsive-wrapper">
-								<div class="img-responsive img-responsive-panoramic rounded-3">
-									<figure class="img-wrapper">
-										<?php dci_get_img($img); ?>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-
+						<?php
+						endforeach;
+					endif;
+					?>
 				</div>
 			</section>
-			<?php get_template_part("template-parts/common/bolli-argomenti"); ?>
+			<?php get_template_part( 'template-parts/common/bolli-argomenti' ); ?>
 
 			<section class="py-5 bg-100">
 				<div class="container">
@@ -125,7 +164,7 @@ get_header();
 						<div class="col-md-6"><!-- togliamo colonne quando facciamo carousel -->
 							<a class="card card-bando no-after rounded-3" target="_blank" href="">
 								<div class="card-body">
-									<h3 class="card-title">Manifestazione d’interesse finalizzata a reperire adesioni per la tutela e valorizzazione della Scuola Musicale Napoletana del ‘700</h3>
+									<h3 class="card-title">Manifestazione d'interesse finalizzata a reperire adesioni per la tutela e valorizzazione della Scuola Musicale Napoletana del '700</h3>
 								</div>
 								<div class="card-footer">
 									<span>Pubblicazione:</span> 10/01/2026<br>
@@ -136,7 +175,7 @@ get_header();
 						<div class="col-md-6"><!-- togliamo colonne quando facciamo carousel -->
 							<a class="card card-bando no-after rounded-3" target="_blank" href="">
 								<div class="card-body">
-									<h3 class="card-title">Avviso Pubblico per manifestazione d’interesse per la costituzione di un calendario condiviso di iniziative culturali auto-sostenute e auto-organizzate da includere nella programmazione del “Maggio dei Monumenti” 2026</h3>
+									<h3 class="card-title">Avviso Pubblico per manifestazione d'interesse per la costituzione di un calendario condiviso di iniziative culturali auto-sostenute e auto-organizzate da includere nella programmazione del \"Maggio dei Monumenti\" 2026</h3>
 								</div>
 								<div class="card-footer">
 									<span>Pubblicazione:</span> 10/01/2026<br>

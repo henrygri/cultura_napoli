@@ -143,6 +143,86 @@ function dci_add_page_metaboxes() {
         'type' => 'text',
     ) );
 
+    /**
+     * Aree tematiche (template Chi siamo)
+     */
+    $cmb_chi_siamo_aree = new_cmb2_box( array(
+        'id'           => $prefix . 'box_chi_siamo_aree',
+        'title'        => __( 'Aree tematiche', 'design_comuni_italia' ),
+        'object_types' => array( 'page' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+        'show_on'      => array(
+            'key'   => 'page-template',
+            'value' => 'page-templates/chi-siamo.php',
+        ),
+    ) );
+
+    $group_field_area_id = $cmb_chi_siamo_aree->add_field( array(
+        'id'      => $prefix . 'aree_tematiche',
+        'type'    => 'group',
+        'options' => array(
+            'group_title'   => __( 'Area tematica {#}', 'design_comuni_italia' ),
+            'add_button'    => __( 'Aggiungi area tematica', 'design_comuni_italia' ),
+            'remove_button' => __( 'Rimuovi area tematica', 'design_comuni_italia' ),
+            'sortable'      => true,
+        ),
+    ) );
+
+    $cmb_chi_siamo_aree->add_group_field( $group_field_area_id, array(
+        'id'         => 'titolo',
+        'name'       => __( 'Titolo', 'design_comuni_italia' ),
+        'type'       => 'text',
+        'attributes' => array(
+            'required' => 'required',
+        ),
+    ) );
+
+    $cmb_chi_siamo_aree->add_group_field( $group_field_area_id, array(
+        'id'      => 'testo',
+        'name'    => __( 'Testo', 'design_comuni_italia' ),
+        'type'    => 'wysiwyg',
+        'options' => array(
+            'textarea_rows' => 6,
+            'teeny'         => true,
+        ),
+    ) );
+
+    $cmb_chi_siamo_aree->add_group_field( $group_field_area_id, array(
+        'id'           => 'immagine',
+        'name'         => __( 'Immagine', 'design_comuni_italia' ),
+        'type'         => 'file',
+        'options'      => array(
+            'url' => false,
+        ),
+        'preview_size' => 'medium',
+        'query_args'   => array(
+            'type' => array(
+                'image/jpeg',
+                'image/png',
+                'image/gif',
+            ),
+        ),
+    ) );
+
+    $cmb_chi_siamo_aree->add_group_field( $group_field_area_id, array(
+        'id'               => 'argomento',
+        'name'             => __( 'Argomento collegato', 'design_comuni_italia' ),
+        'desc'             => __( 'Seleziona un termine della tassonomia Argomenti per il pulsante di approfondimento.', 'design_comuni_italia' ),
+        'type'             => 'select',
+        'options_cb'       => 'dci_get_argomenti_terms_options',
+        'show_option_none' => true,
+        'sanitize_cb'      => 'absint',
+    ) );
+
+}
+
+/**
+ * Opzioni dinamiche per il select Argomenti (template Chi siamo)
+ * @return array
+ */
+function dci_get_argomenti_terms_options() {
+    return dci_get_terms_options( 'argomenti' );
 }
 
 /**
