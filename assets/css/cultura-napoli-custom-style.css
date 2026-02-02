@@ -553,6 +553,11 @@ a.card-progetto { background-color: transparent; text-decoration: none; }
 .card-progetto .card-body h5.card-title { color: var(--bs-black); line-height: 1.1em; margin-bottom:.5em; }
 .card-progetto .card-body .card-text { color: var(--bs-secondary); line-height: 1.2em; }
 
+a.card.card-bando { text-decoration: none; border:1px solid var(--cn-giallo); background: rgba(var(--bs-white-rgb), .7); height: 100%; overflow: hidden;}
+.card-bando .card-body { background: var(--bs-white); z-index: 2;  }
+.card-bando .card-body .card-title { color: rgb(158 131 81); font-size: 1.5em; line-height: 1.1em; margin-bottom:.5em; }
+.card-bando .card-footer { border-color: rgba(var(--cn-giallo-rgb),.4); padding:.8rem 24px; z-index: 2; color: var(--bs-secondary); }
+.card-bando .card-footer span { text-transform: uppercase; font-size: .9em; font-weight: 500; }
 
 .bg-100 .card-luogo.card-luogo-small,
 .bg-200 .card-luogo.card-luogo-small { border: 1px solid rgba(var(--cn-giallo-rgb), .4); }
