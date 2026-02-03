@@ -5,6 +5,7 @@
         <div class="it-header-slim-wrapper-content">
           <a class="d-lg-block navbar-brand" target="_blank" href="<?php echo dci_get_option("url_sito_regione"); ?>" target="_blank" aria-label="Vai al portale <?php echo dci_get_option("nome_regione"); ?> - link esterno - apertura nuova scheda" title="Vai al portale <?php echo dci_get_option("nome_regione"); ?>"><?php echo dci_get_option("nome_regione"); ?></a>
           <div class="it-header-slim-right-zone" role="navigation">
+            <?php /*
             <div class="nav-item dropdown">
               <button type="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="languages" aria-haspopup="true">
                 <span class="visually-hidden">Lingua attiva:</span>
@@ -34,6 +35,7 @@
                 </div>
               </div>
             </div>
+            */ ?>
             <?php get_template_part("template-parts/header/header-press"); ?>
             <?php /*
                 if(!is_user_logged_in()) {

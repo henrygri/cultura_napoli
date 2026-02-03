@@ -108,16 +108,13 @@ function dci_add_focus_metaboxes() {
 
     $cmb_descrizione->add_field( array(
         'id' => $prefix . 'descrizione_completa',
-        'name'        => __( 'Descrizione completa *', 'design_comuni_italia' ),
+        'name'        => __( 'Descrizione completa', 'design_comuni_italia' ),
         'desc' => __( 'Introduzione e descrizione esaustiva del focus' , 'design_comuni_italia' ),
         'type' => 'wysiwyg',
         'options' => array(
             'media_buttons' => false,
             'textarea_rows' => 10,
             'teeny' => false,
-        ),
-        'attributes'    => array(
-            'required'    => 'required'
         ),
     ) );
 
@@ -150,12 +147,12 @@ function dci_add_focus_metaboxes() {
         'type'        => 'select',
         'options'     => array(
             '-' => '',
-            'textarea' => __( 'Testo', 'design_comuni_italia' ),
+            'wysiwyg' => __( 'Testo', 'design_comuni_italia' ),
             'image' => __( 'Immagine', 'design_comuni_italia' ),
             'gallery' => __( 'Gallery', 'design_comuni_italia' ),
             'youtube_video' => __( 'Video Youtube', 'design_comuni_italia' ),
             'spotify_podcast' => __( 'Spotify Podcast', 'design_comuni_italia' ),
-            // 'audio' => __( 'Audio', 'design_comuni_italia' ),
+            'audio' => __( 'Audio', 'design_comuni_italia' ),
             'file' => __( 'File', 'design_comuni_italia' ),
         ),
     ) );
@@ -163,10 +160,10 @@ function dci_add_focus_metaboxes() {
     $cms_moduli->add_group_field( $group_field_doc_id, array(
         'id' => 'modulo_testo',
         'name' => __( 'Aggiugi testo', 'design_comuni_italia' ),
-        'type' => 'textarea',
+        'type' => 'wysiwyg',
         'attributes' => array(
             'data-conditional-id'    => 'modulo_tipo',
-            'data-conditional-value' => 'textarea',
+            'data-conditional-value' => 'wysiwyg',
         ),
     ) );
 
@@ -176,7 +173,7 @@ function dci_add_focus_metaboxes() {
         'type' => 'file',
         'attributes' => array(
             'data-conditional-id'    => 'modulo_tipo',
-            'data-conditional-value' => array('image', 'file'),
+            'data-conditional-value' => array('image', 'file', 'audio'),
         ),
     ) );
 
@@ -186,7 +183,7 @@ function dci_add_focus_metaboxes() {
         'type' => 'text',
         'attributes' => array(
             'data-conditional-id'    => 'modulo_tipo',
-            'data-conditional-value' => 'file',
+            'data-conditional-value' => array('audio', 'file'),
         ),
     ) );
 
