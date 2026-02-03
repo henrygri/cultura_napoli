@@ -153,7 +153,7 @@ get_header();
 			</section>
 			<?php get_template_part( 'template-parts/common/bolli-argomenti' ); ?>
 
-			<section class="py-5 bg-100">
+			<section class="py-5 bg-100" id="bandi-e-gare">
 				<div class="container">
 					<div class="row align-items-center">
 						<div class="col-sm-8">

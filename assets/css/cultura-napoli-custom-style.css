@@ -781,6 +781,8 @@ select.just-validate-success-field {
 
 .area-tematica { border-bottom: 1px solid var(--bs-secondary); }
 
+#bandi-e-gare { overflow: hidden; }
+
 .bando-icon {
   display: inline-flex;
   align-items: center;
