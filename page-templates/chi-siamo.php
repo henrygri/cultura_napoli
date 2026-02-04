@@ -31,17 +31,19 @@ get_header();
 			</div>
 
 			<?php
-			$array_of_pages = get_posts(
-				array(
-					'title'     => 'Gli spazi della cultura',
-					'post_type' => 'any',
-				)
-			);
-			$id   = $array_of_pages[0]; //Be sure you have an array with single post or page
-			$id   = $id->ID;
-			$link = get_permalink( $id );
+			$luoghi = dci_get_meta( 'luoghi', '_dci_page_', $post->ID );
+			if ( is_array( $luoghi ) && ! empty( $luoghi ) ) {
+				$array_of_pages = get_posts(
+					array(
+						'title'     => 'Gli spazi della cultura',
+						'post_type' => 'any',
+					)
+				);
+				$id   = $array_of_pages[0]; //Be sure you have an array with single post or page
+				$id   = $id->ID;
+				$link = get_permalink( $id );
 			?>
-			<section class="py-5 bg-200">
+			<section class="py-5 bg-200" id="chi-siamo-luoghi">
 				<div class="container">
 					<div class="row">
 						<div class="col-12 col-md-8">
@@ -56,8 +58,44 @@ get_header();
 							</a>
 						</div>
 					</div>
+					<div class="row pt-3">
+						<div class="splide slider_luoghi" data-splide='{
+							"type":"slide",
+							"perPage":3,
+							"perMove":1,
+							"gap":"24px",
+							"arrows":true,
+							"pagination":true,
+							"mediaQuery":"max",
+							"breakpoints":{
+								"992":{"perPage":2.5}
+							},
+							"breakpoints":{
+								"768":{"perPage":2}
+							},
+							"breakpoints":{
+								"676":{"perPage":1.5}
+							}
+						}'>
+							<div class="splide__track">
+								<ul class="splide__list">
+										<?php
+											foreach ( $luoghi as $luogo ) :
+												$post = get_post( $luogo ); // il tuo ID
+												setup_postdata( $post );
+												echo '<li class="splide__slide">';
+										 		get_template_part( 'template-parts/itinerario/cards-list' );
+												echo '</li>';
+												wp_reset_postdata();
+											endforeach;
+										 ?>
+								</ul>
+						 	</div>
+						</div>
+					</div>
 				</div>
 			</section>
+			<?php } ?>
 
 			<section class="py-5">
 				<div class="container">

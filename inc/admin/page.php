@@ -143,6 +143,32 @@ function dci_add_page_metaboxes() {
         'type' => 'text',
     ) );
 
+
+    /**
+     * Spazi della cultura / luoghi (template Chi siamo)
+     */
+    $cmb_chi_siamo_luoghi = new_cmb2_box( array(
+        'id'           => $prefix . 'box_chi_siamo_luoghi',
+        'title'        => __( 'Spazi della cultura', 'design_comuni_italia' ),
+        'object_types' => array( 'page' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+        'show_on'      => array(
+            'key'   => 'page-template',
+            'value' => 'page-templates/chi-siamo.php',
+        ),
+    ) );
+    $luoghi = $cmb_chi_siamo_luoghi->add_field( array(
+      'id'            => $prefix . 'luoghi',
+      'name'          => __( 'Seleziona i luoghi', 'design_comuni_italia' ),
+      'desc'          => __( 'Scegli un luogo esistente o <a target="_blank" href="post-new.php?post_type=luogo">Inserisci un nuovo luogo</a>.' , 'design_comuni_italia' ),
+      'type'          => 'pw_multiselect',
+      'options'       => dci_get_posts_options('luogo'),
+      'attributes'    => array(
+        'placeholder' =>  __( ' Selezionai luoghi', 'design_comuni_italia' ),
+      ),
+    ) );
+
     /**
      * Aree tematiche (template Chi siamo)
      */

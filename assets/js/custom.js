@@ -53,6 +53,28 @@ function initSliderItinerari() {
   console.warn('Ne Bootstrap Italia CarouselBI ne Splide disponibili.');
 }
 
+function initSliderLuoghi() {
+  var el = document.querySelector('.slider_luoghi');
+  if (!el) return;
+
+  var BI = window.bootstrap;
+
+  if (BI && typeof BI.CarouselBI === 'function') {
+    var instance = BI.CarouselBI.getOrCreateInstance(el);
+    attachBandiArrows(instance && instance._splide, el);
+    return;
+  }
+
+  if (window.Splide) {
+    var splide = new Splide(el);
+    splide.mount();
+    attachBandiArrows(splide, el);
+    return;
+  }
+
+  console.warn('Ne Bootstrap Italia CarouselBI ne Splide disponibili (slider_bandi).');
+}
+
 function initSliderBandi() {
   var el = document.querySelector('.slider_bandi');
   if (!el) return;
@@ -91,5 +113,6 @@ function attachBandiArrows(splideInstance, el) {
 document.addEventListener('DOMContentLoaded', function () {
     initSliderHome();
     initSliderItinerari();
+    initSliderLuoghi();
     initSliderBandi();
 });
