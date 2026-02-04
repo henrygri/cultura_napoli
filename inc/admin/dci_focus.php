@@ -134,10 +134,11 @@ function dci_add_focus_metaboxes() {
         'type'        => 'group',
         'options'     => array(
         'group_title'    => __( 'Modulo {#}', 'design_comuni_italia' ), // {#} gets replaced by row number
-        'add_button'     => __( 'Aggiungi un moduko', 'design_comuni_italia' ),
+        'add_button'     => __( 'Aggiungi un modulo', 'design_comuni_italia' ),
         'remove_button'  => __( 'Rimuovi il modulo', 'design_comuni_italia' ),
         'sortable'       => true,
         ),
+        'default' => array(),
     ) );
 
     $cms_moduli->add_group_field( $group_field_doc_id, array(
@@ -146,7 +147,7 @@ function dci_add_focus_metaboxes() {
         'desc'        => __( 'Scegli che tipo di modulo aggiungere', 'design_comuni_italia' ),
         'type'        => 'select',
         'options'     => array(
-            '-' => '',
+            '' => '–',
             'wysiwyg' => __( 'Testo', 'design_comuni_italia' ),
             'image' => __( 'Immagine', 'design_comuni_italia' ),
             'gallery' => __( 'Gallery', 'design_comuni_italia' ),
@@ -210,13 +211,15 @@ function dci_add_focus_metaboxes() {
     ) );
 
     $cms_moduli->add_group_field( $group_field_doc_id, array(
-        'id' => 'modulo_embed',
+        'id' => 'spotify_embed',
         'name' => __( 'Aggiungi il codice di embedd', 'design_comuni_italia' ),
+        'description' => 'Lo trovi cliccando "Condividi > Incorpora episodio" in ogni puntata di un podcast. https://youtu.be/7tuL-sfUU5',
         'type' => 'textarea_code',
         'attributes' => array(
             'data-conditional-id'    => 'modulo_tipo',
             'data-conditional-value' => 'spotify_podcast',
         ),
     ) );
+
 
 }

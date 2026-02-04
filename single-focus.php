@@ -31,6 +31,9 @@ get_header();
     $gallery = dci_get_meta("gallery", $prefix, $post->ID);
     $video = dci_get_meta("video", $prefix, $post->ID);
     $trascrizione = dci_get_meta("trascrizione", $prefix, $post->ID);
+    //modules
+    $moduli = dci_get_meta("modulo", $prefix, $post->ID);
+    $moduli = is_array( $moduli ) ? $moduli : array();
     ?>
 
     <section class="it-hero-wrapper it-wrapped-container custom-overlapping">
@@ -140,26 +143,108 @@ get_header();
         </aside>
 
         <section class="col-lg-8 it-page-sections-container border-light">
-          <article id="cos-e" class="it-page-section mb-5" data-audio>
-              <?php if ($descrizione) { ?>
+
+          <?php if ($descrizione) { ?>
+            <article id="cos-e" class="it-page-section mb-5" data-audio>
               <h2 class="h3 mb-2">Cos'è</h2>
               <div class="richtext-wrapper">
                   <?php echo $descrizione; ?>
               </div>
-              <?php  } ?>
-              <?php if(is_array($persone) && count($persone)) {?>
-              <div class="pt-3 mb-4">
-                <h3 class="h4">Parteciperanno</h3>
-                <?php get_template_part("template-parts/single/persone"); ?>
-              </div>
-              <?php  } ?>
-              <?php if (is_array($gallery) && count($gallery)) {
-                  get_template_part("template-parts/single/gallery");
-              } ?>
-              <?php if ($video) {
-                  get_template_part("template-parts/single/video");
-              } ?>
-          </article>
+            </article>
+          <?php } ?>
+
+          <?php if ( ! empty( $moduli ) ) { ?>
+            <?php foreach ( $moduli as $modulo ) {
+              $tipo = $modulo['modulo_tipo'];
+              switch ($tipo) {
+
+        			    case 'wysiwyg': ?>
+                    <div class="pt-3 mb-5">
+                      <div class="richtext-wrapper">
+                        immagine
+                      </div>
+                    </div>
+                  <?php
+                  break;
+
+                  case 'image':
+                  $image = $modulo['modulo_gallery'];
+                  if (is_array($gallery) && count($gallery)) {
+                      echo '<div class="py-3"></div>';
+                      get_template_part("template-parts/single/gallery");
+                  }
+                  break;
+
+                  case 'gallery':
+                  $gallery = $modulo['modulo_gallery'];
+                  if (is_array($gallery) && count($gallery)) {
+                      echo '<div class="py-3"></div>';
+                      get_template_part("template-parts/single/gallery");
+                  }
+                  break;
+
+                  case 'youtube_video':
+                    $video = $modulo['modulo_youtube'];
+                    $remove_title = true;
+                    get_template_part("template-parts/single/video");
+                  ?>
+                  <?php
+                  break;
+
+                  case 'spotify_podcast': ?>
+                  <div class="modulo_spotify">
+                    <?php echo $modulo['spotify_embed']; ?>
+                  </div>
+                  <?php
+                  break;
+
+                  case 'audio':
+                  $label = $modulo['modulo_label'];
+                  $file = $modulo['modulo_file'];
+                  ?>
+                  <div class="modulo_audio">
+                    <div class="row">
+                      <div class="col-auto">
+                        <p class="mt-2"><strong><?php echo $label; ?></strong></p>
+                      </div>
+                      <div class="col">
+                        <audio controls style="width:100%;">
+                          <source src="<?php echo esc_url($file); ?>" type="audio/mpeg">
+                          Your browser does not support the audio tag.
+                        </audio>
+                      </div>
+                    </div>
+                  </div>
+                  <?php
+    			        break;
+
+                  case 'file':
+                  $label = $modulo['modulo_label'];
+                  $file_url = $modulo['modulo_file'];
+                  ?>
+                  <div class="card card-teaser no-hover no-pop mt-3 rounded">
+                      <div class="card-body">
+                      <h3 class="card-title h5 m-0">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#it-clip"></use>
+                        </svg>
+                        <a class="text-decoration-none" target="_blank" href="<?php echo esc_url( $file_url ); ?>" title="<?php echo $label; ?>" aria-label="apri <?php echo $label; ?> in una nuova tab">
+                          <?php echo esc_html( $label ); ?>
+                        </a>
+                      </h3>
+                      </div>
+                  </div>
+                  <?php
+                  break;
+
+        			    default:
+    			        // fallback generico, se vuoi
+    			        // get_template_part('template-parts/edition-archived');
+    			        break;
+        			}
+            } ?>
+          <?php } ?>
+
 
           <?php if($destinatari) {?>
           <article id="destinatari" class="it-page-section mb-5">
@@ -173,62 +258,6 @@ get_header();
       </div>
     </div>
 
-    <?php
-    $parent_event_id = dci_get_meta('evento_genitore', '_dci_evento_');
-    if ($parent_event_id) {
-        $parent_event = get_post($parent_event_id);
-        if ($parent_event && $parent_event->post_type == 'evento') : ?>
-        <section class="pt-4 pb-5 bg-100">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h3 class="h4 mt-4 mb-4">Questo evento fa parte di</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <?php
-                    $post = $parent_event;
-                    setup_postdata($post);
-                    get_template_part("template-parts/evento/card");
-                    wp_reset_postdata();
-                    ?>
-                </div>
-            </div>
-        </section>
-        <?php endif;
-    } ?>
-
-    <?php
-    $progetti = dci_get_meta('progetti_evento', '_dci_evento_');
-    if (is_array($progetti) && count($progetti) > 0) : ?>
-    <section class="pt-4 pb-5 bg-200">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="h4 mt-4 mb-4">Questo evento fa parte del progetto</h3>
-                </div>
-            </div>
-            <div class="link-list-wrapper">
-                <ul class="link-list">
-                    <?php
-                    foreach ($progetti as $progetto_id) {
-                        $progetto = get_post($progetto_id);
-                        if ($progetto && $progetto->post_type == 'progetto') {
-                            ?>
-                            <li>
-                                <a class="list-item" href="<?php echo get_permalink($progetto); ?>">
-                                    <span><?php echo $progetto->post_title; ?></span>
-                                </a>
-                            </li>
-                            <?php
-                        }
-                    }
-                    ?>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <?php endif; ?>
 
   <?php
   endwhile; // End of the loop.
