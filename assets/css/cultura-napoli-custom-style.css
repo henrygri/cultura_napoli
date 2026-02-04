@@ -561,6 +561,12 @@ a.card.card-bando { text-decoration: none; border:1px solid var(--cn-giallo); ba
 .card-bando .card-footer span { text-transform: uppercase; font-size: .9em; font-weight: 500; color: rgb(158, 131, 81); }
 .card-bando:hover .card-footer { background: rgba(var(--bs-white-rgb),.7); }
 
+a.card.card-focus { text-decoration: none; }
+.card-focus .img-responsive { overflow: hidden; border-radius: var(--bs-border-radius-lg) var(--bs-border-radius-lg) 0 0; z-index: 2; }
+.card-focus .card-body { background: var(--bs-white); border-radius: 0 0 8px 8px; overflow: hidden; }
+.card-focus .card-body .card-title.h4,
+.card-focus .card-body h4.card-title { color: var(--bs-black); font-size: 1.3em; line-height: 1.1em; margin-bottom:0; }
+
 .bg-100 .card-luogo.card-luogo-small,
 .bg-200 .card-luogo.card-luogo-small { border: 1px solid rgba(var(--cn-giallo-rgb), .4); }
 
@@ -798,3 +804,9 @@ select.just-validate-success-field {
   height: 1.2rem;
   fill: rgb(158, 131, 81);
 }
+
+.modulo_audio { margin-bottom: 1em; }
+.modulo_audio:last-of-type { margin-bottom: 3em; }
+
+.modulo_spotify { margin-bottom: 1em; }
+.modulo_spotify:last-of-type { margin-bottom: 3em; }

@@ -328,3 +328,52 @@ add_action( 'admin_enqueue_scripts', function() {
         '1.0'
     );
 });
+
+
+
+// Rimuove i moduli vuoti in un nuovo focus
+add_action( 'admin_footer-post-new.php', 'dci_remove_empty_cmb2_group' );
+add_action( 'admin_footer-post.php', 'dci_remove_empty_cmb2_group' );
+
+function dci_remove_empty_cmb2_group() {
+
+    $screen = get_current_screen();
+    if ( empty( $screen ) || $screen->post_type !== 'focus' ) {
+        return;
+    }
+    ?>
+    <script>
+    jQuery(document).ready(function ($) {
+
+        var metabox = $('#_dci_focus_moduli');
+        if (!metabox.length) {
+            return;
+        }
+
+        metabox.find('.cmb-repeatable-group').each(function () {
+
+            var group = jQuery(this);
+            var rows = group.find('.cmb-repeatable-grouping');
+
+            // CMB2 crea sempre 1 riga vuota
+            if (rows.length === 1) {
+
+                var row = rows.first();
+                var hasValue = false;
+
+								boxTipoModulo = row.find('.cmb2-id--dci-focus-modulo-0-modulo-tipo');
+                boxTipoModulo.find('select').each(function () {
+                    if (jQuery(this).val()) {
+                        hasValue = true;
+                    }
+                });
+
+                if (!hasValue) {
+                    row.remove();
+                }
+            }
+        });
+    });
+    </script>
+    <?php
+}
