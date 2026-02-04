@@ -773,6 +773,11 @@ select.just-validate-success-field {
 .slider_itinerari .splide__pagination__page { width: 2em; height: .2em; background-color: rgba(var(--bs-black-rgb),.4); margin: 0 .5em 0 0; }
 .slider_itinerari .splide__pagination__page .is-active { background-color: var(--bs-primary) }
 
+/* CHI SIAMO */
+
+#chi-siamo-luoghi { overflow: hidden; }
+.slider_luoghi .splide__track { overflow: visible; }
+
 .slider_bandi { position: relative; }
 .slider_bandi .splide__track { overflow: visible; }
 .slider_bandi .splide__pagination { display: flex; justify-content: flex-start; margin-top: 1em; }
