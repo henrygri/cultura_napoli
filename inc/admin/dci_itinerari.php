@@ -219,9 +219,9 @@ function dci_add_itinerario_metaboxes() {
         'id' => 'docs_tipo',
         'name'        => __( 'Tipo', 'design_comuni_italia' ),
         'desc'        => __( 'Scegli se allegare un file o inserire un link esterno', 'design_comuni_italia' ),
-        'type'        => 'radio_inline',
-        'default_cb'  => function() { return 'file'; },
+        'type'        => 'select',
         'options'     => array(
+            '' => __( 'Seleziona', 'design_comuni_italia' ),
             'file' => __( 'File', 'design_comuni_italia' ),
             'link' => __( 'Link', 'design_comuni_italia' ),
         ),
