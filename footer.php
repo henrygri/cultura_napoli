@@ -17,89 +17,69 @@
             <div class="row">
                 <div class="col-12 footer-items-wrapper logo-wrapper">
                 <img class="ue-logo" src="<?php echo esc_url( get_template_directory_uri()); ?>/assets/img/logo-eu-inverted.svg" alt="logo Unione Europea">
-                    <div class="it-brand-wrapper">
-                        <a href="<?php echo home_url() ?>">
-                            <?php get_template_part("template-parts/common/logo");?>
-                            <?php /*
-                            <div class="it-brand-text">
-                                <h2 class="no_toc"><?php echo dci_get_option("nome_comune");?></h2>
-                            </div>
-                            */ ?>
-                        </a>
+                <div class="it-brand-wrapper">
+                  <a href="https://www.comune.napoli.it" class="" data-focus-mouse="false">
+                    <svg width="82" height="82" class="icon" aria-hidden="true">
+                      <image xlink:href="https://static-www.comune.napoli.it/wp-content/uploads/2024/03/Logo-Napoli.png" width="82" height="82"></image>
+                    </svg>
+                    <div class="it-brand-text">
+                      <h2 class="no_toc">Comune di Napoli</h2>
                     </div>
+                  </a>
                 </div>
+                <div class="it-brand-wrapper">
+                  <a href="<?php echo home_url() ?>">
+                      <?php get_template_part("template-parts/common/logo");?>
+                      <?php /*
+                      <div class="it-brand-text">
+                          <h2 class="no_toc"><?php echo dci_get_option("nome_comune");?></h2>
+                      </div>
+                      */ ?>
+                  </a>
+              </div>
             </div>
             <div class="row">
-                <div class="col-md-3 footer-items-wrapper">
-                    <?php
-                    $location = "menu-footer-col-1";
-                    if ( has_nav_menu( $location ) ) { ?>
-                        <h3 class="footer-heading-title">
-                            <?php echo wp_get_nav_menu_name($location); ?>
-                        </h3>
-                        <?php wp_nav_menu(array(
-                            "theme_location" => $location,
-                            "depth" => 0,
-                            "menu_class" => "footer-list",
-                            'walker' => new Footer_Menu_Walker()
-                        ));
-                    }
-                    ?>
-                </div>
-                <div class="col-md-6 footer-items-wrapper">
+              <div class="col-md-6 footer-items-wrapper">
+                  <?php
+                  $location = "menu-footer-col-1";
+                  if ( has_nav_menu( $location ) ) {
+                      $theme_locations = get_nav_menu_locations();
+                      $menu = get_term( $theme_locations[$location], 'nav_menu' );
+                      $menu_count = $menu->count;
+                  ?>
+                      <h3 class="footer-heading-title">
+                        Mappa del sito
+                        <?php // echo wp_get_nav_menu_name($location); ?>
+                      </h3>
+                      <div class="row">
+                          <div class="col-md-6">
+                          <?php wp_nav_menu(array(
+                              "theme_location" => $location,
+                              "depth" => 0,
+                              "menu_class" => "footer-list",
+                              "li_slice" => array(0, ceil($menu_count / 2)),
+                              'walker' => new Footer_Menu_Walker()
+                          ));?>
+                          </div>
+                          <div class="col-md-6">
+                          <?php wp_nav_menu(array(
+                              "theme_location" => $location,
+                              "depth" => 0,
+                              "menu_class" => "footer-list",
+                              "li_slice" => array(ceil($menu_count / 2), $menu_count),
+                              'walker' => new Footer_Menu_Walker()
+                          ));?>
+                          </div>
+                      </div>
+                  <?php } ?>
+              </div>
+              <div class="col-md-3 footer-items-wrapper">
                     <?php
                     $location = "menu-footer-col-2";
-                    if ( has_nav_menu( $location ) ) { 
-                        $theme_locations = get_nav_menu_locations();
-                        $menu = get_term( $theme_locations[$location], 'nav_menu' );
-                        $menu_count = $menu->count;
-                    ?>
-                        <h3 class="footer-heading-title">
-                            <?php echo wp_get_nav_menu_name($location); ?>
-                        </h3>
-                        <div class="row">
-                            <div class="col-md-6">
-                            <?php wp_nav_menu(array(
-                                "theme_location" => $location,
-                                "depth" => 0,
-                                "menu_class" => "footer-list",
-                                "li_slice" => array(0, ceil($menu_count / 2)),
-                                'walker' => new Footer_Menu_Walker()
-                            ));?>
-                            </div>
-                            <div class="col-md-6">
-                            <?php wp_nav_menu(array(
-                                "theme_location" => $location,
-                                "depth" => 0,
-                                "menu_class" => "footer-list",
-                                "li_slice" => array(ceil($menu_count / 2), $menu_count),
-                                'walker' => new Footer_Menu_Walker()
-                            ));?>
-                            </div>
-                        </div>
-                    <?php } ?>
-                </div>
-                <div class="col-md-3 footer-items-wrapper">
-                    <?php
-                    $location = "menu-footer-col-3-1";
                     if ( has_nav_menu( $location ) ) { ?>
                         <h3 class="footer-heading-title">
-                            <?php echo wp_get_nav_menu_name($location); ?>
-                        </h3>
-                        <?php wp_nav_menu(array(
-                            "theme_location" => $location,
-                            "depth" => 0,
-                            "menu_class" => "footer-list",
-                            "container_class" => "footer-list",
-                            'walker' => new Footer_Menu_Walker()
-                        ));
-                    }
-                    ?>
-                    <?php
-                    $location = "menu-footer-col-3-2";
-                    if ( has_nav_menu( $location ) ) { ?>
-                        <h3 class="footer-heading-title">
-                            <?php echo wp_get_nav_menu_name($location); ?>
+                          Argomenti
+                          <?php // echo wp_get_nav_menu_name($location); ?>
                         </h3>
                         <?php wp_nav_menu(array(
                             "theme_location" => $location,
@@ -109,10 +89,53 @@
                         ));
                     }
                     ?>
-                </div>
+              </div>
+              <div class="col-md-3 footer-items-wrapper">
+                  <?php
+                  $location = "menu-footer-col-3-1";
+                  if ( has_nav_menu( $location ) ) { ?>
+                      <h3 class="footer-heading-title">
+                        Legal
+                        <?php // echo wp_get_nav_menu_name($location); ?>
+                      </h3>
+                      <?php wp_nav_menu(array(
+                          "theme_location" => $location,
+                          "depth" => 0,
+                          "menu_class" => "footer-list",
+                          "container_class" => "footer-list",
+                          'walker' => new Footer_Menu_Walker()
+                      ));
+                  }
+                  ?>
+                  <?php /*
+                  $location = "menu-footer-col-3-2";
+                  if ( has_nav_menu( $location ) ) { ?>
+                      <h3 class="footer-heading-title">
+                          <?php echo wp_get_nav_menu_name($location); ?>
+                      </h3>
+                      <?php wp_nav_menu(array(
+                          "theme_location" => $location,
+                          "depth" => 0,
+                          "menu_class" => "footer-list",
+                          'walker' => new Footer_Menu_Walker()
+                      ));
+                  } */
+                  ?>
+              </div>
                 <div class="col-md-9 mt-md-4 footer-items-wrapper">
                     <h3 class="footer-heading-title">Contatti</h3>
                     <div class="row">
+                      <div class="col-md-6">
+                        <strong>Area Cultura</strong><br>
+                        Sede di Palazzo Cavalcanti<br>
+                        Via Toledo 348 - 80134 - Napoli
+                      </div>
+                      <div class="col-md-6">
+                        <br>
+                        <strong>Telefono:</strong> 0039 0817955237<br>
+                        <strong>E-mail:</strong> area.cultura.turismo@comune.napoli.it
+                      </div>
+                      <?php /*
                         <div class="col-md-4">
                             <p class="footer-info">
                                 <?php echo dci_get_option("nome_comune"); ?>
@@ -131,14 +154,14 @@
                                 <?php if(dci_get_option("SMS_Whatsapp",'footer')) echo '<br />SMS e WhatsApp: ' . dci_get_option("SMS_Whatsapp",'footer'); ?>
                                 <?php
                                     if (dci_get_option("contatti_PEC",'footer')) echo '<br />PEC: '; ?>
-                                        <a href="mailto:<?php echo dci_get_option("contatti_PEC",'footer'); ?>" class="list-item" title="PEC <?php echo dci_get_option("nome_comune");?>"><?php echo dci_get_option("contatti_PEC",'footer'); ?></a>
-								<?php if(dci_get_option("centralino_unico",'footer')) echo '<br />Centralino unico: ' . dci_get_option("centralino_unico",'footer'); ?>
+                                    <a href="mailto:<?php echo dci_get_option("contatti_PEC",'footer'); ?>" class="list-item" title="PEC <?php echo dci_get_option("nome_comune");?>"><?php echo dci_get_option("contatti_PEC",'footer'); ?></a>
+                    								<?php if(dci_get_option("centralino_unico",'footer')) echo '<br />Centralino unico: ' . dci_get_option("centralino_unico",'footer'); ?>
                             </p>
                         </div>
                         <div class="col-md-4">
-                            <?php 
+                            <?php
                             $location = "menu-footer-info-1";
-                            if ( has_nav_menu( $location ) ) { 
+                            if ( has_nav_menu( $location ) ) {
                                 wp_nav_menu(array(
                                     "theme_location" => $location,
                                     "depth" => 0,
@@ -149,9 +172,9 @@
                             ?>
                         </div>
                         <div class="col-md-4">
-                            <?php 
+                            <?php
                             $location = "menu-footer-info-2";
-                            if ( has_nav_menu( $location ) ) { 
+                            if ( has_nav_menu( $location ) ) {
                                 wp_nav_menu(array(
                                     "theme_location" => $location,
                                     "depth" => 0,
@@ -161,6 +184,7 @@
                             }
                             ?>
                         </div>
+                      */ ?>
                     </div>
                 </div>
                 <div class="col-md-3 mt-md-4 footer-items-wrapper">
@@ -224,7 +248,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const colorThief = new ColorThief();
 
-    document.querySelectorAll('.card:not(.no-hover) img').forEach(img => {
+    document.querySelectorAll('.card:not(.card-full) img').forEach(img => {
         if (img.complete) {
             setColor(img);
         } else {
