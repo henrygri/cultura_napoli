@@ -277,14 +277,14 @@ function dci_add_page_metaboxes() {
     $cmb_chi_siamo_bandi->add_group_field( $group_field_bandi_id, array(
         'id'   => 'data_pubblicazione',
         'name' => __( 'Data pubblicazione', 'design_comuni_italia' ),
-        'type' => 'text_date',
+        'type' => 'text_date_timestamp',
         'date_format' => 'd/m/Y',
     ) );
 
     $cmb_chi_siamo_bandi->add_group_field( $group_field_bandi_id, array(
         'id'   => 'data_chiusura',
         'name' => __( 'Data chiusura', 'design_comuni_italia' ),
-        'type' => 'text_date',
+        'type' => 'text_date_timestamp',
         'date_format' => 'd/m/Y',
     ) );
 

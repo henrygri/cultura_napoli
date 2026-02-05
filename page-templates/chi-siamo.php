@@ -243,11 +243,11 @@ get_header();
 														<div>
 															<?php if ( $pubb ) : ?>
 																<span><?php esc_html_e( 'Pubblicazione:', 'design_comuni_italia' ); ?></span>
-																<?php echo esc_html( $pubb ); ?><br>
+																<?php echo date( 'd/m/Y', $pubb ); ?><br>
 															<?php endif; ?>
 															<?php if ( $chius ) : ?>
 																<span><?php esc_html_e( 'Scadenza:', 'design_comuni_italia' ); ?></span>
-																<?php echo esc_html( $chius ); ?>
+																<?php echo date( 'd/m/Y', $chius  ); ?>
 															<?php endif; ?>
 														</div>
 														<span class="bando-icon ms-3">
