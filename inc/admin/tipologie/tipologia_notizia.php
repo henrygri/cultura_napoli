@@ -131,7 +131,7 @@ function dci_add_notizia_metaboxes() {
     $cmb_apertura->add_field( array(
         'id' => $prefix . 'data_pubblicazione',
         'name'    => __( 'Data della notizia', 'design_comuni_italia' ),
-        'desc' => __( 'Data di pubblicazione della notizia. Se non compilato a front end viene mostrata la data di pubblicazione del post.' , 'design_comuni_italia' ),
+        'desc' => __( 'Data di pubblicazione, da usare in caso di bandi o avvisi pubblici.' , 'design_comuni_italia' ),
         'type'    => 'text_date_timestamp',
         'date_format' => 'd-m-Y',
     ) );
@@ -139,21 +139,22 @@ function dci_add_notizia_metaboxes() {
     $cmb_apertura->add_field( array(
         'id' => $prefix . 'data_scadenza',
         'name'    => __( 'Data di scadenza', 'design_comuni_italia' ),
-        'desc' => __( 'Data di pubblicazione della notizia. Eventuale data di scadenza (in caso di avviso pubblicato)' , 'design_comuni_italia' ),
+        'desc' => __( 'Data di scadenza, da usare in caso di bandi o avvisi pubblici.' , 'design_comuni_italia' ),
         'type'    => 'text_date_timestamp',
         'date_format' => 'd-m-Y',
     ) );
 
-    $cmb_apertura->add_field( array(
-        'id' => $prefix . 'persone',
-        'name'    => __( 'Persone', 'design_comuni_italia' ),
-        'desc' => __( 'Riferimenti a persone dell\'amministrazione citate nella notizia' , 'design_comuni_italia' ),
-        'type'    => 'pw_multiselect',
-        'options' => dci_get_posts_options('persona_pubblica'),
-        'attributes' => array(
-            'placeholder' =>  __( 'Seleziona le Persone Pubbliche', 'design_comuni_italia' ),
-        ),
-    ) );
+    // $cmb_apertura->add_field( array(
+    //     'id' => $prefix . 'persone',
+    //     'name'    => __( 'Persone', 'design_comuni_italia' ),
+    //     'desc' => __( 'Riferimenti a persone dell\'amministrazione citate nella notizia' , 'design_comuni_italia' ),
+    //     'type'    => 'pw_multiselect',
+    //     'options' => dci_get_posts_options('persona_pubblica'),
+    //     'attributes' => array(
+    //         'placeholder' =>  __( 'Seleziona le Persone Pubbliche', 'design_comuni_italia' ),
+    //     ),
+    // ) );
+
     $cmb_apertura->add_field( array(
         'id' => $prefix . 'luoghi',
         'name'    => __( 'Luoghi', 'design_comuni_italia' ),

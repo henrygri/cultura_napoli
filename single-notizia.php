@@ -7,13 +7,13 @@
  * @package Design_Comuni_Italia
  */
 
-global $uo_id, $inline;
+global $inline;
 
 get_header();
 ?>
 
     <main>
-        <?php 
+        <?php
         while ( have_posts() ) :
             the_post();
             $user_can_view_post = dci_members_can_user_view_post(get_current_user_id(), $post->ID);
@@ -114,11 +114,6 @@ get_header();
                                                                     </a>
                                                                 </li>
                                                                 <?php } ?>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link" href="#a-cura-di">
-                                                                    <span>A cura di</span>
-                                                                    </a>
-                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -164,7 +159,7 @@ get_header();
                                 $action_label = ( 'file' === $doc_type ) ? __( 'Scarica', 'design_comuni_italia' ) : __( 'Apri', 'design_comuni_italia' );
                                 $title_attr   = sprintf( '%s %s', $action_label, $label );
                             ?>
-                            <div class="card card-teaser shadow-sm p-4 mt-3 rounded border border-light flex-nowrap">
+                            <div class="card card-teaser shadow-sm p-4 mt-3 rounded-3 border border-light flex-nowrap no-hover">
                                 <svg class="icon" aria-hidden="true">
                                 <use
                                     xlink:href="#it-clip"
@@ -207,24 +202,6 @@ get_header();
                             </div>
                         </article>
                         <?php } ?>
-                    <article class="it-page-section anchor-offset mt-5">
-                        <h4 id="a-cura-di">A cura di</h4>
-                        <div class="row">
-                        <div class="col-12 col-sm-8">
-                            <h6><small>Questa pagina è gestita da</small></h6>
-                            <?php foreach ($a_cura_di as $uo_id) {
-                                $with_border = true;
-                                get_template_part("template-parts/unita-organizzativa/card");
-                            } ?>
-                        </div>
-                        <?php if(is_array($persone) && count($persone)) { ?>
-                            <div class="col-12 col-sm-4">
-                                <h6><small>Persone</small></h6>
-                                <?php get_template_part("template-parts/single/persone"); ?>
-                            </div>
-                        <?php } ?>
-                        </div>
-                    </article>
                     <!-- <article
                         id="ulteriori-informazioni"
                         class="it-page-section anchor-offset mt-5"

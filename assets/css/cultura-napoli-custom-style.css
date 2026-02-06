@@ -567,6 +567,12 @@ a.card.card-focus { text-decoration: none; }
 .card-focus .card-body .card-title.h4,
 .card-focus .card-body h4.card-title { color: var(--bs-black); font-size: 1.3em; line-height: 1.1em; margin-bottom:0; }
 
+a.card.card-novita { text-decoration: none; }
+.card-novita .img-responsive { overflow: hidden; border-radius: var(--bs-border-radius-lg) var(--bs-border-radius-lg) 0 0; z-index: 2; }
+.card.card-novita .card-body { padding: 1em 1em; background: #fff; border-radius: 0 0 8px 8px; z-index: 2; }
+.card-novita .card-body .card-title.h4,
+.card-novita .card-body h4.card-title { color: var(--bs-black); font-size: 1.3em; line-height: 1.1em; margin-bottom:.5em; }
+
 .bg-100 .card-luogo.card-luogo-small,
 .bg-200 .card-luogo.card-luogo-small { border: 1px solid rgba(var(--cn-giallo-rgb), .4); }
 

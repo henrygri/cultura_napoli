@@ -10,12 +10,12 @@
     if (is_array($contenuti_evidenza) && count($contenuti_evidenza)) {
 ?>
 <div class="container py-5">
-    <h2 class="title-xxlarge mb-4">
+    <h2 class="h4 mb-4">
         In evidenza
     </h2>
     <div class="row g-4">
-        <?php 
-            $posts = $contenuti_evidenza; 
+        <?php
+            $posts = $contenuti_evidenza;
             foreach ($posts as $post_id) {
                 $post = get_post($post_id);
                 get_template_part('template-parts/novita/cards-list');
