@@ -36,7 +36,7 @@
               </div>
             </div>
             */ ?>
-            <?php get_template_part("template-parts/header/header-press"); ?>
+            <?php get_template_part("template-parts/header/header-newsletter"); ?>
             <?php /*
                 if(!is_user_logged_in()) {
                     get_template_part("template-parts/header/header-anon");
