@@ -240,6 +240,25 @@ function dci_add_project_metaboxes() {
         'type' => 'text',
     ) );
 
+    //NOTIZIE
+    $cmb_notizie = new_cmb2_box( array(
+        'id'           => $prefix . 'box_notizie',
+        'title'        => __( 'Notizie correlate', 'design_comuni_italia' ),
+        'object_types' => array( 'progetto' ),
+        'context'      => 'normal',
+        'priority'     => 'high',
+    ) );
+    $cmb_notizie = $cmb_notizie->add_field( array(
+        'id' =>  $prefix . 'notizie_progetto',
+        'name'    => __( 'Notizie correlate al progetto', 'design_comuni_italia' ),
+        'desc' => __( 'Seleziona le notizie correlate.' , 'design_comuni_italia' ),
+        'type'    => 'pw_multiselect',
+        'options' =>  dci_get_posts_options('notizia'),
+        'attributes'    => array(
+            'placeholder' =>  __( 'Seleziona una o più notizie', 'design_comuni_italia' ),
+        ),
+    ) );
+
     //CONTATTI
     $cmb_contatti = new_cmb2_box( array(
         'id'           => $prefix . 'box_contatti',
