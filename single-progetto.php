@@ -7,7 +7,7 @@
  * @package Design_Comuni_Italia
  */
 
-global $show_calendar, $gallery, $video, $trascrizione, $luogo, $pc_id, $uo_id, $appuntamento, $inline;
+global $show_calendar, $gallery, $video, $trascrizione, $luogo, $pc_id, $uo_id, $inline;
 
 get_header();
 ?>
@@ -45,11 +45,6 @@ get_header();
     $has_documents = ! empty( $documenti );
     $punti_contatto = dci_get_meta("punti_contatto", $prefix, $post->ID);
     $specifica_contatto = dci_get_meta("specifica_contatti", $prefix, $post->ID);
-    $organizzatori = dci_get_meta("organizzatore", $prefix, $post->ID);
-    $appuntamenti = dci_get_eventi_figli();
-    $patrocinato = dci_get_meta("patrocinato", $prefix, $post->ID);
-    $sponsor = dci_get_meta("sponsor", $prefix, $post->ID);
-    $more_info = dci_get_wysiwyg_field("ulteriori_informazioni", $prefix, $post->ID);
     ?>
 
     <section class="it-hero-wrapper it-wrapped-container custom-overlapping">
@@ -175,21 +170,6 @@ get_header();
                                                 <li class="nav-item">
                                                 <a class="nav-link" href="#contatti">
                                                 <span>Contatti</span>
-                                                </a>
-                                                </li>
-                                                <?php } ?>
-                                                <?php if( is_array($appuntamenti) && count($appuntamenti) ) { ?>
-                                                <li class="nav-item">
-                                                <a class="nav-link" href="#appuntamenti">
-                                                <span>Appuntamenti</span>
-                                                </a>
-                                                </li>
-                                                <?php } ?>
-                                                <?php if ( (is_array($patrocinato) && count($patrocinato)) ||
-                                                    (is_array($sponsor) && count($sponsor)) ) {  ?>
-                                                <li class="nav-item">
-                                                <a class="nav-link" href="#ulteriori-informazioni">
-                                                <span>Ulteriori informazioni</span>
                                                 </a>
                                                 </li>
                                                 <?php } ?>
@@ -367,21 +347,10 @@ get_header();
           </article>
           <?php } ?>
 
-          <?php if( is_array($appuntamenti) && count($appuntamenti) ) { ?>
-          <article id="appuntamenti" class="it-page-section mb-5">
-              <h2 class="h3 mb-2">Appuntamenti</h2>
-              <div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
-                  <?php foreach ($appuntamenti as $appuntamento) {
-                      get_template_part('template-parts/single/appuntamento');
-                  } ?>
-              </div>
-          </article>
-          <?php }?>
-
           <article id="contatti" class="it-page-section mb-5">
           <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
             <h2 class="h3 mb-2">Contatti</h2>
-            <div class="card card-teaser mt-3 rounded no-glow no-pop">
+            <div class="card card-teaser mt-3 rounded no-glow no-pop no-hover">
                 <div class="card-body">
                   <?php foreach ($punti_contatto as $pc_id) {
                       get_template_part('template-parts/single/punto-contatto-card-content');
@@ -396,53 +365,7 @@ get_header();
             </div>
           <?php } ?>
 
-          <?php if( is_array($organizzatori) && count($organizzatori) ) { ?>
-            <h4 class="h3 h5 mt-4">Con il supporto di:</h4>
-            <?php foreach ($organizzatori as $uo_id) {
-                get_template_part("template-parts/unita-organizzativa/card-full");
-            } ?>
-          <?php } ?>
-          </article>
-
-          <article id="ulteriori-informazioni" class="it-page-section mb-5">
-          <?php
-              if ( (is_array($patrocinato) && count($patrocinato)) ||
-              (is_array($sponsor) && count($sponsor)) ) { ?>
-            <h3 class="mb-3">Ulteriori informazioni</h3>
-          <?php
-              if ( is_array($patrocinato) && count($patrocinato) ) {
-                  echo '<h4 class="h5">Patrocinato da:</h4>';
-                  echo '<div class="link-list-wrapper mb-3"><ul class="link-list">';
-                  foreach ($patrocinato as $item) { ?>
-                      <li><a class="list-item px-0" href="<?php echo $item['_dci_evento_url']; ?>" target="_blank"><span><?php echo $item['_dci_evento_nome']; ?></span></a>
-                      </li>
-                  <?php }
-                  echo '</ul></div>';
-              }
-              if ( is_array($sponsor) && count($sponsor) ) {
-                  echo '<h4 class="h5">Sponsor:</h4>';
-                  echo '<div class="link-list-wrapper"><ul class="link-list">';
-                  foreach ($sponsor as $item) { ?>
-                      <li><a class="list-item px-0" href="<?php echo $item['_dci_evento_url']; ?>" target="_blank"><span><?php echo $item['_dci_evento_nome']; ?></span></a>
-                      </li>
-                  <?php }
-                  echo '</ul></div>';
-              }}
-          ?>
-          <?php if ($more_info) { ?>
-              <div class="mt-5">
-                  <div class="callout">
-                      <div class="callout-title">
-                          <svg class="icon">
-                          <use xlink:href="#it-info-circle"></use>
-                          </svg>
-                      </div>
-                      <?php echo $more_info; ?>
-                  </div>
-              </div>
-          <?php } ?>
-          </article>
-          <?php get_template_part('template-parts/single/page_bottom'); ?>
+          <?php // get_template_part('template-parts/single/page_bottom'); ?>
           </section>
       </div>
     </div>
@@ -472,79 +395,46 @@ get_header();
         <?php endif;
     } ?>
 
+
     <?php
-    $progetti = dci_get_meta('progetti_evento', '_dci_evento_');
-    if (is_array($progetti) && count($progetti) > 0) : ?>
-    <section class="pt-4 pb-5 bg-200">
+    // Ottieni l'ID del progetto corrente
+    $progetto_id = get_the_ID();
+    $related_events = new WP_Query(array(
+        'post_type' => 'evento',
+        'posts_per_page' => -1,
+        'meta_query' => array(
+            array(
+                'key' => '_dci_evento_progetti_evento',
+                'value' => '"' . $progetto_id . '"',
+                'compare' => 'LIKE' // LIKE perché è un campo multiselect serializzato
+            )
+        ),
+        'meta_key' => '_dci_evento_data_orario_inizio', // Campo per ordinamento
+        'orderby' => 'meta_value_num', // meta_value_num perché è un timestamp
+        'order' => 'DESC' // DESC per i più recenti prima, ASC per i più vecchi
+    ));
+
+    if ($related_events->have_posts()) : ?>
+    <section class="bg-100 pt-4 pb-5">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h3 class="h4 mt-4 mb-4">Questo evento fa parte del progetto</h3>
+                    <h3 class="h4 mt-4 mb-4">Gli eventi che fanno parte di questo progetto</h3>
                 </div>
             </div>
-            <div class="link-list-wrapper">
-                <ul class="link-list">
-                    <?php
-                    foreach ($progetti as $progetto_id) {
-                        $progetto = get_post($progetto_id);
-                        if ($progetto && $progetto->post_type == 'progetto') {
-                            ?>
-                            <li>
-                                <a class="list-item" href="<?php echo get_permalink($progetto); ?>">
-                                    <span><?php echo $progetto->post_title; ?></span>
-                                </a>
-                            </li>
-                            <?php
-                        }
-                    }
-                    ?>
-                </ul>
+            <div class="row">
+                <?php
+                while ($related_events->have_posts()) :
+                    $related_events->the_post();
+                    get_template_part("template-parts/evento/card");
+                endwhile;
+                ?>
             </div>
         </div>
     </section>
-    <?php endif; ?>
-
     <?php
-    $current_args = wp_get_post_terms($post->ID, 'argomenti', array('fields' => 'ids'));
-
-    if (!empty($current_args)) {
-
-        $related_events = new WP_Query(array(
-            'post_type' => 'evento',
-            'posts_per_page' => 6,
-            'post__not_in' => array($post->ID),
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'argomenti',
-                    'field' => 'term_id',
-                    'terms' => $current_args,
-                    'operator' => 'IN'
-                )
-            )
-        ));
-
-        if ($related_events->have_posts()) : ?>
-        <section class="pt-4 pb-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h3 class="h4 mt-4 mb-4">Potrebbe interessarti anche...</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <?php
-                    while ($related_events->have_posts()) :
-                        $related_events->the_post();
-                        get_template_part("template-parts/evento/card");
-                    endwhile;
-                    ?>
-                </div>
-            </div>
-        </section>
-        <?php
-        endif;
-        wp_reset_postdata();
-    }
+    endif;
+    wp_reset_postdata();
     ?>
 
   <?php
