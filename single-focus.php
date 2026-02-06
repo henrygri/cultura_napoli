@@ -161,7 +161,7 @@ get_header();
         			    case 'wysiwyg': ?>
                     <div class="pt-3 mb-5">
                       <div class="richtext-wrapper">
-                        immagine
+                        <?php echo wpautop( $modulo['modulo_testo'] ); ?>
                       </div>
                     </div>
                   <?php
