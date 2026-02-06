@@ -28,7 +28,8 @@ class Menu_Header_Right_Walker extends Walker_Nav_Menu {
 
 		$output .= '<a class="nav-link" href="' . $item->url . '" '.$data_element.'>';
 		if ($item->menu_order == $args->menu->count) {
-			$output .= '<span class="fw-bold">'.$item->title.'</span>';
+			// $output .= '<span class="fw-bold">'.$item->title.'</span>';
+			$output .= $item->title;
 		} else {
 			$output .= $item->title;
 		}
