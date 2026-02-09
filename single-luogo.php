@@ -115,7 +115,7 @@ get_header();
                                                     <span>Luoghi collegati</span>
                                                     </a>
                                                     </li>
-                                                <?php } ?>  
+                                                <?php } ?>
                                                 <?php if( $servizi) { ?>
                                                     <li class="nav-item">
                                                     <a class="nav-link" href="#servizi">
@@ -171,70 +171,70 @@ get_header();
         </aside>
 
         <section class="col-lg-8 it-page-sections-container border-light">
-          
+
           <?php if( $descrizione_estesa) { ?>
           <article id="cos-e" class="it-page-section mb-5" data-audio>
               <h2 class="h3 mb-3">Descrizione</h2>
               <div class="richtext-wrapper">
-                  <?php echo apply_filters('the_content', $descrizione_estesa); ?>
+                <?php echo apply_filters('the_content', $descrizione_estesa); ?>
               </div>
           </article>
           <?php } ?>
 
           <?php if(is_array($luoghi_collegati) && count($luoghi_collegati)) {?>
-          <article id="luoghi-collegati" class="it-page-section mb-5">
-            <h2 class="h3 mb-3">Luoghi collegati</h2>
-            <div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
-              <?php foreach ($luoghi_collegati as $luogo_id) {
-                $with_border=false;
-                get_template_part("template-parts/luogo/card-light");
-              }?>
-            </div>
+          <article id="luoghi-collegati" class="it-page-section mb-5" data-audio>
+              <h2 class="h3 mb-3">Luoghi collegati</h2>
+        				<div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
+        				<?php foreach ($luoghi_collegati as $luogo_id) {
+      						$with_border=false;
+      						get_template_part("template-parts/luogo/card-light");
+      					}?>
+      			    </div>
     		  </article>
           <?php } ?>
-          
+
 
           <?php if($servizi) {?>
-          <article id="servizi" class="it-page-section mb-5">
-            <h2 class="mb-3">Servizi</h2>
+          <article id="servizi" class="it-page-section mb-5" data-audio>
+            <h2 class="h3 mb-3">Servizi</h2>
             <div class="richtext-wrapper">
               <?php echo apply_filters('the_content', $servizi); ?>
-            </div>
+      			</div>
           </article>
           <?php  } ?>
 
           <?php if($modalita_accesso) {?>
-          <article id="modalita-accesso" class="it-page-section mb-5">
-            <h2 class="mb-3">Modalità di accesso</h2>
+          <article id="modalita-accesso" class="it-page-section mb-5" data-audio>
+            <h2 class="h3 mb-3">Modalità di accesso</h2>
             <div class="richtext-wrapper">
               <?php echo apply_filters('the_content', $modalita_accesso); ?>
-            </div>
+      			</div>
           </article>
           <?php } ?>
 
           <?php if($indirizzo) {?>
           <article id="indirizzo" class="it-page-section mb-5">
-            <h2 class="mb-3">Indirizzo</h2>
-              <?php 
-                $luoghi = array($luogo);
-                get_template_part("template-parts/luogo/map"); 
-              ?>
-              <div class="richtext-wrapper mt-3">
-              <?php echo $indirizzo; ?>
-            </div>
-          </article>
-          <?php } ?>	
-
-          <?php if($orario_pubblico) {?>
-          <article id="orario-pubblico" class="it-page-section mb-5">
-            <h2 class="mb-3">Orario per il pubblico</h2>
-            <div class="richtext-wrapper">
-              <?php echo apply_filters('the_content', $orario_pubblico); ?>
-            </div>
+            <h2 data-audio class="h3 mb-3">Indirizzo</h2>
+      			<?php
+      				$luoghi = array($luogo);
+      				get_template_part("template-parts/luogo/map");
+      			?>
+            <div data-audio class="richtext-wrapper mt-3">
+      				<?php echo $indirizzo; ?>
+      			</div>
           </article>
           <?php } ?>
 
-          <article id="contatti" class="it-page-section mb-3">
+          <?php if($orario_pubblico) {?>
+          <article id="orario-pubblico" class="it-page-section mb-5" data-audio>
+            <h2 class="h3 mb-3">Orario per il pubblico</h2>
+            <div class="richtext-wrapper">
+              <?php echo apply_filters('the_content', $orario_pubblico); ?>
+      			</div>
+          </article>
+          <?php } ?>
+
+          <article id="contatti" class="it-page-section mb-5" data-audio>
             <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
               <h2 class="h3 mb-2">Contatti</h2>
               <div class="card card-teaser mt-3 rounded no-glow no-pop no-hover">
@@ -252,34 +252,34 @@ get_header();
               </div>
             <?php } ?>
           </article>
-			
+
           <?php if($struttura_responsabile) {?>
           <article id="struttura-responsabile" class="it-page-section mb-5">
-            <h2 class="mb-3">Struttura responsabile</h2>
-			<div class="row">
-				<div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
-					<?php foreach ($struttura_responsabile as $uo_id) {
-						$with_border = true;
-						get_template_part("template-parts/unita-organizzativa/card");
-					} ?>
-				</div>
-			</div>
+            <h2 class="h3 mb-3">Struttura responsabile</h2>
+      			<div class="row">
+      				<div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
+      					<?php foreach ($struttura_responsabile as $uo_id) {
+      						$with_border = true;
+      						get_template_part("template-parts/unita-organizzativa/card");
+      					} ?>
+      				</div>
+      			</div>
           </article>
           <?php } ?>
-			
+
           <?php if($ulteriori_informazioni) {?>
-          <article id="ulteriori-informazioni" class="it-page-section mb-5">
-            <h2 class="mb-3">Ulteriori informazioni</h2>
+          <article id="ulteriori-informazioni" class="it-page-section mb-3">
+            <h2 class="h3 mb-3">Ulteriori informazioni</h2>
             <p><?php echo $ulteriori_informazioni; ?></p>
           </article>
  		  <?php } ?>
-			  
+
           <?php // get_template_part('template-parts/single/page_bottom'); ?>
           </section>
       </div>
     </div>
-    
-    <?php 
+
+    <?php
     // Get related events for this place
     $related_events = dci_get_eventi_by_luogo();
     if($related_events && count($related_events) > 0) {

@@ -43,16 +43,17 @@ get_header();
     $luogo_evento_id = dci_get_meta("luogo_evento", $prefix, $post->ID);
     //if ($luogo_evento_id) $luogo_evento = get_post($luogo_evento_id);
     $luogo_evento = isset($luogo_evento_id) ? get_post($luogo_evento_id) : '';
-    $costi = dci_get_meta( 'costi' );            
+    $costi = dci_get_meta( 'costi' );
+    $allegati = dci_get_meta("allegati", $prefix, $post->ID);
     $documenti = dci_get_meta( 'docs', $prefix, $post->ID );
     $documenti = is_array( $documenti ) ? $documenti : array();
-    $has_documents = ! empty( $documenti );
+    $has_documents = ( ! empty( $documenti ) || $allegati );
     $punti_contatto = dci_get_meta("punti_contatto", $prefix, $post->ID);
     $specifica_contatto = dci_get_meta("specifica_contatti", $prefix, $post->ID);
     $organizzatori = dci_get_meta("organizzatore", $prefix, $post->ID);
     $appuntamenti = dci_get_eventi_figli();
     $patrocinato = dci_get_meta("patrocinato", $prefix, $post->ID);
-    $sponsor = dci_get_meta("sponsor", $prefix, $post->ID);     
+    $sponsor = dci_get_meta("sponsor", $prefix, $post->ID);
     $more_info = dci_get_wysiwyg_field("ulteriori_informazioni", $prefix, $post->ID);
     //
     $progetti = dci_get_meta('progetti_evento', '_dci_evento_');
@@ -83,11 +84,11 @@ get_header();
             <?php get_template_part("template-parts/common/breadcrumb"); ?>
         </div>
       </div>
-      <div class="row">
+      <div class="row page-intro">
         <div class="col-lg-8 px-lg-4 py-lg-2">
           <h1 class="h2" data-audio><?php the_title(); ?></h1>
           <?php if ($start_timestamp) { ?>
-            <h2 class="h4">
+            <h2 class="h4" data-audio>
               <?php
                   if ($end_timestamp and $end_arrdata[0] != $start_arrdata[0]) {
                       echo 'Dal '.$start_arrdata[0].' '.$start_arrdata[1].' al '.$end_arrdata[0].' '.$end_arrdata[1];
@@ -116,7 +117,7 @@ get_header();
     </div>
 
     <?php // get_template_part('template-parts/single/image-large'); ?>
-  
+
     <div class="container">
       <div class="row border-top row-column-border row-column-menu-left border-light">
         <aside class="col-lg-4">
@@ -158,7 +159,7 @@ get_header();
                                                     <span>A chi è rivolto</span>
                                                     </a>
                                                     </li>
-                                                <?php } ?>  
+                                                <?php } ?>
                                                 <?php if( $luogo_evento) { ?>
                                                     <li class="nav-item">
                                                     <a class="nav-link" href="#luogo">
@@ -201,7 +202,7 @@ get_header();
                                                 </a>
                                                 </li>
                                                 <?php } ?>
-                                                <?php if ( (is_array($patrocinato) && count($patrocinato)) || 
+                                                <?php if ( (is_array($patrocinato) && count($patrocinato)) ||
                                                     (is_array($sponsor) && count($sponsor)) ) {  ?>
                                                 <li class="nav-item">
                                                 <a class="nav-link" href="#ulteriori-informazioni">
@@ -270,7 +271,7 @@ get_header();
           </article>
 
           <?php if($destinatari) {?>
-          <article id="destinatari" class="it-page-section mb-5">
+          <article id="destinatari" class="it-page-section mb-5" data-audio>
             <h2 class="h3 mb-2">A chi è rivolto</h2>
             <p class="text-secondary"><?php echo $destinatari; ?></p>
           </article>
@@ -278,7 +279,7 @@ get_header();
 
           <?php if ($luogo_evento_id) {?>
           <article id="luogo" class="it-page-section">
-            <h2 class="h3 mb-2">Luogo</h2>
+            <h2 class="h3 mb-2" data-audio>Luogo</h2>
             <?php
                 $luogo = $luogo_evento;
                 get_template_part("template-parts/single/luogo");
@@ -363,36 +364,53 @@ get_header();
           <?php if( $has_documents ) { ?>
           <article id="allegati" class="it-page-section mb-5">
               <h2 class="h3 mb-2">Allegati</h2>
-              <?php foreach ( $documenti as $documento ) {
-                  $doc_type = ! empty( $documento['docs_tipo'] ) ? $documento['docs_tipo'] : 'file';
-                  $file_url = ( 'link' === $doc_type ) ? ( $documento['docs_link'] ?? '' ) : ( $documento['docs_allegato'] ?? '' );
+              <?php if ( ! empty( $documenti ) ) { ?>
+                  <?php foreach ( $documenti as $documento ) {
+                      $doc_type = ! empty( $documento['docs_tipo'] ) ? $documento['docs_tipo'] : 'file';
+                      $file_url = ( 'link' === $doc_type ) ? ( $documento['docs_link'] ?? '' ) : ( $documento['docs_allegato'] ?? '' );
 
-                  if ( empty( $file_url ) ) {
-                      continue;
-                  }
+                      if ( empty( $file_url ) ) {
+                          continue;
+                      }
 
-                  $file_id = ( 'file' === $doc_type ) ? attachment_url_to_postid( $file_url ) : 0;
-                  $label   = ! empty( $documento['label_allegato'] ) ? $documento['label_allegato'] : '';
+                      $file_id = ( 'file' === $doc_type ) ? attachment_url_to_postid( $file_url ) : 0;
+                      $label   = ! empty( $documento['label_allegato'] ) ? $documento['label_allegato'] : '';
 
-                  if ( empty( $label ) && $file_id ) {
-                      $label = get_the_title( $file_id );
-                  }
+                      if ( empty( $label ) && $file_id ) {
+                          $label = get_the_title( $file_id );
+                      }
 
-                  if ( empty( $label ) ) {
-                      $path  = wp_parse_url( $file_url, PHP_URL_PATH );
-                      $label = $path ? basename( $path ) : __( 'Documento', 'design_comuni_italia' );
-                  }
+                      if ( empty( $label ) ) {
+                          $path  = wp_parse_url( $file_url, PHP_URL_PATH );
+                          $label = $path ? basename( $path ) : __( 'Documento', 'design_comuni_italia' );
+                      }
 
-                  $action_label = ( 'file' === $doc_type ) ? __( 'Scarica', 'design_comuni_italia' ) : __( 'Apri', 'design_comuni_italia' );
-                  $title_attr   = sprintf( '%s %s', $action_label, $label );
+                      $action_label = ( 'file' === $doc_type ) ? __( 'Scarica', 'design_comuni_italia' ) : __( 'Apri', 'design_comuni_italia' );
+                      $title_attr   = sprintf( '%s %s', $action_label, $label );
+                      ?>
+                      <div class="card card-teaser no-hover no-pop mt-3 rounded">
+                          <div class="card-body">
+                          <h3 class="card-title h5 m-0">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#it-clip"></use>
+                            </svg>
+                            <a class="text-decoration-none" <?php echo ( 'file' === $doc_type ) ? 'download' : ''; ?> href="<?php echo esc_url( $file_url ); ?>" title="<?php echo esc_attr( $title_attr ); ?>" aria-label="<?php echo esc_attr( $title_attr ); ?>"><?php echo esc_html( $label ); ?></a>
+                          </h3>
+                          </div>
+                      </div>
+                  <?php } ?>
+              <?php } elseif ( $allegati ) {
+                  $doc = get_post( attachment_url_to_postid( $allegati ) );
+                  $doc_title = $doc ? $doc->post_title : __( 'Documento', 'design_comuni_italia' );
+                  $title_attr = sprintf( __( 'Scarica %s', 'design_comuni_italia' ), $doc_title );
                   ?>
-                  <div class="card card-teaser no-hover no-pop mt-3 rounded">
+                  <div class="card card-teaser shadow mt-3 rounded">
                       <div class="card-body">
                       <h3 class="card-title h5 m-0">
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#it-clip"></use>
                         </svg>
-                        <a class="text-decoration-none" <?php echo ( 'file' === $doc_type ) ? 'download' : ''; ?> href="<?php echo esc_url( $file_url ); ?>" title="<?php echo esc_attr( $title_attr ); ?>" aria-label="<?php echo esc_attr( $title_attr ); ?>"><?php echo esc_html( $label ); ?></a>
+                          <a class="text-decoration-none" download href="<?php echo esc_url( $allegati ); ?>" title="<?php echo esc_attr( $title_attr ); ?>" aria-label="<?php echo esc_attr( $title_attr ); ?>"><?php echo esc_html( $doc_title ); ?></a>
                       </h3>
                       </div>
                   </div>
@@ -414,7 +432,7 @@ get_header();
           </article>
           <?php }?>
 
-          <article id="contatti" class="it-page-section mb-3">
+          <article id="contatti" class="it-page-section mb-3" data-audio>
           <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
             <h2 class="h3 mb-2">Contatti</h2>
             <div class="card card-teaser mt-3 rounded no-glow no-pop no-hover">
@@ -431,7 +449,7 @@ get_header();
                 </div>
             </div>
           <?php } ?>
-          
+
           <?php if( is_array($organizzatori) && count($organizzatori) ) { ?>
             <h4 class="h3 h5 mt-4">Con il supporto di:</h4>
             <?php foreach ($organizzatori as $uo_id) {
@@ -491,7 +509,7 @@ get_header();
     if ($parent_event_id) {
         $parent_event = get_post($parent_event_id);
         if ($parent_event && $parent_event->post_type == 'evento') : ?>
-        <section class="pt-4 pb-5 bg-100 parent-event">
+        <section class="pt-4 pb-5 bg-100 parent-event" data-audio>
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -513,7 +531,7 @@ get_header();
 
     <?php
     $current_args = wp_get_post_terms($post->ID, 'argomenti', array('fields' => 'ids'));
-    
+
     if (!empty($current_args)) {
 
         $related_events = new WP_Query(array(
@@ -543,11 +561,11 @@ get_header();
                     </div>
                 </div>
                 <div class="row">
-                    <?php 
-                    while ($related_events->have_posts()) : 
+                    <?php
+                    while ($related_events->have_posts()) :
                         $related_events->the_post();
                         get_template_part("template-parts/evento/card");
-                    endwhile; 
+                    endwhile;
                     ?>
                 </div>
             </div>

@@ -217,7 +217,7 @@ get_header();
             if ( ! empty( $targets ) && ! is_wp_error( $targets ) ) {
               $target_names = wp_list_pluck( $targets, 'name' );
           ?>
-            <article id="destinatari" class="it-page-section mb-5">
+            <article id="destinatari" class="it-page-section mb-5" data-audio>
               <h2 class="h3 mb-2">A chi è rivolto</h2>
               <p><?php echo esc_html( implode( ', ', $target_names ) ); ?></p>
             </article>
@@ -234,7 +234,7 @@ get_header();
           <?php } ?>
 
           <?php if ($start_timestamp && $end_timestamp) { ?>
-          <article id="date-e-orari" class="it-page-section mb-5">
+          <article id="date-e-orari" class="it-page-section mb-5" data-audio>
               <h2 class="h3 mb-2">Date e orari</h2>
               <div class="point-list-wrapper my-4">
                 <div class="point-list">
@@ -285,7 +285,7 @@ get_header();
           <?php } ?>
 
           <?php if( is_array($costi) && count($costi) ) { ?>
-          <article id="costi" class="it-page-section mb-5">
+          <article id="costi" class="it-page-section mb-5" data-audio>
               <h2 class="h3 mb-2">Costi</h2>
               <?php foreach ($costi as $costo) { ?>
               <div class="card no-after border-start mt-3">
@@ -308,7 +308,7 @@ get_header();
           <?php } ?>
 
           <?php if( $has_documents ) { ?>
-          <article id="allegati" class="it-page-section mb-5">
+          <article id="allegati" class="it-page-section mb-5" data-audio>
               <h2 class="h3 mb-2">Allegati</h2>
               <?php foreach ( $documenti as $documento ) {
                   $doc_type = ! empty( $documento['docs_tipo'] ) ? $documento['docs_tipo'] : 'file';
@@ -347,7 +347,7 @@ get_header();
           </article>
           <?php } ?>
 
-          <article id="contatti" class="it-page-section mb-5">
+          <article id="contatti" class="it-page-section mb-5" data-audio>
           <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
             <h2 class="h3 mb-2">Contatti</h2>
             <div class="card card-teaser mt-3 rounded no-glow no-pop no-hover">
@@ -371,32 +371,6 @@ get_header();
     </div>
 
     <?php
-    $parent_event_id = dci_get_meta('evento_genitore', '_dci_evento_');
-    if ($parent_event_id) {
-        $parent_event = get_post($parent_event_id);
-        if ($parent_event && $parent_event->post_type == 'evento') : ?>
-        <section class="pt-4 pb-5 bg-100">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h3 class="h4 mt-4 mb-4">Questo evento fa parte di</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <?php
-                    $post = $parent_event;
-                    setup_postdata($post);
-                    get_template_part("template-parts/evento/card");
-                    wp_reset_postdata();
-                    ?>
-                </div>
-            </div>
-        </section>
-        <?php endif;
-    } ?>
-
-
-    <?php
     // Ottieni l'ID del progetto corrente
     $progetto_id = get_the_ID();
     $related_events = new WP_Query(array(
@@ -415,7 +389,7 @@ get_header();
     ));
 
     if ($related_events->have_posts()) : ?>
-    <section class="bg-100 pt-4 pb-5 more-events">
+    <section class="bg-100 pt-4 pb-5" data-audio>
         <div class="container">
             <div class="row">
                 <div class="col-12">

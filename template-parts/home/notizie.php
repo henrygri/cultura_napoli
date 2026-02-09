@@ -127,7 +127,7 @@ if ($schede && count($schede) > 0) { ?>
                   <div class="row mb-2">
                     <div class="splide slider_novita px-0" data-splide='{
                           "type":"slide",
-                          "perPage":2,
+                          "perPage":3,
                           "perMove":1,
                           "gap":"24px",
                           "arrows":false,

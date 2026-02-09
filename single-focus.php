@@ -159,7 +159,7 @@ get_header();
               switch ($tipo) {
 
         			    case 'wysiwyg': ?>
-                    <div class="pt-3 mb-5">
+                    <div class="pt-3 mb-5" data-audio>
                       <div class="richtext-wrapper">
                         <?php echo wpautop( $modulo['modulo_testo'] ); ?>
                       </div>
@@ -168,10 +168,9 @@ get_header();
                   break;
 
                   case 'image':
-                  $image = $modulo['modulo_gallery'];
-                  if (is_array($gallery) && count($gallery)) {
-                      echo '<div class="py-3"></div>';
-                      get_template_part("template-parts/single/gallery");
+                  $image_url = $modulo['modulo_file'];
+                  if ($image_url) {
+                      echo '<div class="my-5"><img class="w-100" src="'. $image_url.'"/></div>';
                   }
                   break;
 
@@ -247,7 +246,7 @@ get_header();
 
 
           <?php if($destinatari) {?>
-          <article id="destinatari" class="it-page-section mb-5">
+          <article id="destinatari" class="it-page-section mb-5" data-audio>
             <h2 class="h3 mb-2">A chi è rivolto</h2>
             <p><?php echo $destinatari; ?></p>
           </article>
