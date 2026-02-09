@@ -27,7 +27,7 @@ $monthName         = date_i18n('M', mktime(0, 0, 0, $arrdata[1], 10));
 $descrizione_breve = dci_get_meta("descrizione_breve", '_dci_notizia_', $post->ID);
 $argomenti         = dci_get_meta("argomenti", '_dci_notizia_', $post->ID);
 
-$schede = dci_get_option('schede_evidenziate', 'homepage') ?? null;
+$schede = dci_get_option('notizie_evidenziate', 'homepage') ?? null;
 
 $overlapping = "";
 ?>
@@ -81,7 +81,7 @@ $overlapping = "";
                     </div>
                 <?php } ?>
                 <div class="row mb-2">
-                    <div class="card-wrapper px-0 <?php echo $overlapping; ?> card-teaser-wrapper card-teaser-wrapper-equal card-teaser-block-3">
+                    <div class="card-wrapper px-0 <?php // echo $overlapping; ?> card-teaser-wrapper card-teaser-wrapper-equal card-teaser-block-3">
                         <?php
                         foreach ($posts as $post) {
                             if ($post) {
@@ -92,7 +92,7 @@ $overlapping = "";
                     </div>
                 </div>
                 <div class="row my-4 justify-content-md-center">
-                    <a class="read-more pb-3" href="<?php echo dci_get_template_page_url("page-templates/novita.php"); ?>">
+                    <a class="read-more pb-3" href="<?php echo esc_url(get_permalink( get_option( 'page_for_posts' ) ) ); ?>">
                         <button type="button" class="btn btn-outline-primary">Tutte le novità
                             <svg class="icon">
                                 <use xlink:href="#it-arrow-right"></use>
@@ -106,26 +106,57 @@ $overlapping = "";
 </section>
 <?php
 if ($schede && count($schede) > 0) { ?>
-    <section aria-describedby="contenuti_evidenza">
+    <section aria-describedby="contenuti_evidenza" id="novita_evidenza">
         <div class="section-content">
-            <div class="section-muted pb-90 pb-lg-50 px-lg-5 pt-0">
+            <div class="pb-90 pb-lg-50 px-lg-5 pt-0">
                 <div class="container">
-                    <div class="row row-title pt-5 pt-lg-60 pb-3">
-                        <div class="col-12 d-lg-flex justify-content-between">
-                            <h2 id="contenuti_evidenza" class="mb-lg-0">Contenuti in evidenza</h2>
-                        </div>
+                  <div class="row row-title pt-5 pt-lg-60 pb-3">
+                    <div class="col-12 col-md-8">
+                      <h2 id="contenuti_evidenza" class="mb-lg-0">Novità in evidenza</h2>
                     </div>
-                    <div class="row mb-2">
-                        <div class="card-wrapper px-0 card-teaser-wrapper card-teaser-wrapper-equal card-teaser-block-3">
-                            <?php $count = 1;
-                            foreach ($schede as $scheda) {
-                                if ($scheda) {
-                                    get_template_part("template-parts/home/scheda-evidenza");
-                                }
-                                ++$count;
-                            } ?>
-                        </div>
+                    <div class="d-none d-md-block col-md-4 text-end">
+                      <?php $page = get_page_by_path('novita'); ?>
+                      <a class="btn btn-xs btn-outline-dark btn-round" href="<?php echo esc_url( get_permalink($page->ID) ); ?>">
+                        Leggi tutte le notizie
+                        <svg class="icon ms-2">
+                          <use xlink:href="#it-arrow-right" aria-hidden="true"></use>
+                        </svg>
+                      </a>
                     </div>
+                  </div>
+                  <div class="row mb-2">
+                    <div class="splide slider_novita px-0" data-splide='{
+                          "type":"slide",
+                          "perPage":2,
+                          "perMove":1,
+                          "gap":"24px",
+                          "arrows":false,
+                          "pagination":true,
+                          "mediaQuery":"max",
+                          "breakpoints":{
+                            "992":{"perPage":2},
+                            "768":{"perPage":1}
+                          }
+                        }'>
+                      <div class="splide__track">
+                        <ul class="splide__list">
+                          <?php $count = 1;
+                          foreach ($schede as $scheda) {
+                              if ($scheda) {
+                                $post = get_post($scheda); // ID del post
+                                setup_postdata($post);
+                                  echo '<li class="splide__slide">';
+                                  get_template_part("template-parts/novita/cards-list");
+                                  echo '</li>';
+                              }
+                              ++$count;
+                          }
+                          wp_reset_postdata();
+                          ?>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>

@@ -415,7 +415,7 @@ get_header();
     ));
 
     if ($related_events->have_posts()) : ?>
-    <section class="bg-100 pt-4 pb-5">
+    <section class="bg-100 pt-4 pb-5 more-events">
         <div class="container">
             <div class="row">
                 <div class="col-12">

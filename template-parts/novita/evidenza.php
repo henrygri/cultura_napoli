@@ -18,7 +18,9 @@
             $posts = $contenuti_evidenza;
             foreach ($posts as $post_id) {
                 $post = get_post($post_id);
+                echo '<div class="col-md-6 col-xl-4">';
                 get_template_part('template-parts/novita/cards-list');
+                echo '</div>';
             }
         ?>
     </div>

@@ -50,7 +50,7 @@ function dci_add_notizia_metaboxes() {
     //argomenti
     $cmb_argomenti = new_cmb2_box( array(
         'id'           => $prefix . 'box_argomenti',
-        'title'        => __( 'Argomenti *', 'design_comuni_italia' ),
+        'title'        => __( 'Argomenti', 'design_comuni_italia' ),
         'object_types' => array( 'notizia' ),
         'context'      => 'side',
         'priority'     => 'high',
@@ -153,7 +153,7 @@ function dci_add_notizia_metaboxes() {
     //     'attributes' => array(
     //         'placeholder' =>  __( 'Seleziona le Persone Pubbliche', 'design_comuni_italia' ),
     //     ),
-    // ) );
+    // )
 
     $cmb_apertura->add_field( array(
         'id' => $prefix . 'luoghi',

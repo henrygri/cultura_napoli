@@ -12,15 +12,18 @@ jQuery( document ).ready(function() {
         /**
          * controllo compilazione campo Argomenti
          */
-        if(document.activeElement.id === 'publish' && jQuery('input[name^="_dci_notizia_argomenti"]:checked').length == 0){
-            dci_highlight_missing_field('.cmb2-id--dci-notizia-argomenti');
-            return false;
-        }
+        // rimuovo controllo su compilazione argomenti
+        // if(document.activeElement.id === 'publish' && jQuery('input[name^="_dci_notizia_argomenti"]:checked').length == 0){
+        //     dci_highlight_missing_field('.cmb2-id--dci-notizia-argomenti');
+        //     return false;
+        // }
         inputDataPubblicazione = jQuery('input[name^="_dci_notizia_data_pubblicazione"]').val();
         check_pubblicato = jQuery("#timestamp b").text();
         console.log(document.activeElement.id);
         if (document.activeElement.id === 'publish') {
             if (!inputDataPubblicazione) { // Verifica sia null che stringa vuota
+              // rimuovo controllo su campo data_pubblicazione
+              /*
                 const getCurrentDate = () => {
                     const date = new Date();
                     const day = String(date.getDate()).padStart(2, '0'); // Aggiunge lo 0 se necessario
@@ -46,6 +49,7 @@ jQuery( document ).ready(function() {
         
                 // Imposta il valore nel campo
                 jQuery('input[name^="_dci_notizia_data_pubblicazione"]').val(dataDaRiportare);
+              */
             }
         }
         

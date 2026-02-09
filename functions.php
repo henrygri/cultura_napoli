@@ -318,7 +318,8 @@ function my_custom_one_time_function() {
         update_option('my_custom_function_executed', 1);
     }
 }
-add_action('init', 'my_custom_one_time_function');
+// Rimuovo controllo su campo data_pubblicazione
+// add_action('init', 'my_custom_one_time_function');
 
 add_action( 'admin_enqueue_scripts', function() {
     wp_enqueue_style(

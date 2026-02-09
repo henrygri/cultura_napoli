@@ -53,6 +53,28 @@ function initSliderItinerari() {
   console.warn('Ne Bootstrap Italia CarouselBI ne Splide disponibili.');
 }
 
+function initSliderNovita() {
+  var el = document.querySelector('.slider_novita');
+  if (!el) return;
+
+  var BI = window.bootstrap;
+
+  if (BI && typeof BI.CarouselBI === 'function') {
+    var instance = BI.CarouselBI.getOrCreateInstance(el);
+    attachBandiArrows(instance && instance._splide, el);
+    return;
+  }
+
+  if (window.Splide) {
+    var splide = new Splide(el);
+    splide.mount();
+    attachBandiArrows(splide, el);
+    return;
+  }
+
+  console.warn('Ne Bootstrap Italia CarouselBI ne Splide disponibili (slider_novita).');
+}
+
 function initSliderLuoghi() {
   var el = document.querySelector('.slider_luoghi');
   if (!el) return;
@@ -72,7 +94,7 @@ function initSliderLuoghi() {
     return;
   }
 
-  console.warn('Ne Bootstrap Italia CarouselBI ne Splide disponibili (slider_bandi).');
+  console.warn('Ne Bootstrap Italia CarouselBI ne Splide disponibili (slider_luoghi).');
 }
 
 function initSliderBandi() {
@@ -113,6 +135,7 @@ function attachBandiArrows(splideInstance, el) {
 document.addEventListener('DOMContentLoaded', function () {
     initSliderHome();
     initSliderItinerari();
+    initSliderNovita();
     initSliderLuoghi();
     initSliderBandi();
 });

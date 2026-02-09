@@ -6,11 +6,12 @@ global $the_query, $load_posts, $load_card_type;
     $query = isset($_GET['search']) ? dci_removeslashes($_GET['search']) : null;
     $args = array(
         'post_type' => 'notizia',
-        'meta_query' => array(
-            array(
-                'key' => '_dci_notizia_data_pubblicazione',
-            )
-        ),
+        // rimuovo controllo su campo data_pubblicazione
+        // 'meta_query' => array(
+        //     array(
+        //         'key' => '_dci_notizia_data_pubblicazione',
+        //     )
+        // ),
         'meta_type' => 'text_date_timestamp',
         'orderby'   => 'meta_value_num',
         'order'     => 'desc',
@@ -61,7 +62,9 @@ global $the_query, $load_posts, $load_card_type;
                 <?php
                 foreach ( $posts as $post ) {
                     $load_card_type = 'notizia';
+                    echo '<div class="col-md-6 col-xl-4">';
                     get_template_part('template-parts/novita/cards-list');
+                    echo '</div>';
                 }
                 wp_reset_postdata();
                 ?>
