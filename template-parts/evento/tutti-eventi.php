@@ -18,6 +18,11 @@ global $the_query, $load_posts, $load_card_type;
         'parent'   => 0,
         'hide_empty' => false,
     ));
+    if ( ! empty( $quartieri_parents ) && ! is_wp_error( $quartieri_parents ) ) {
+        usort($quartieri_parents, function($a, $b) {
+            return strnatcasecmp($a->name, $b->name);
+        });
+    }
     $quartieri_selected = isset($_GET['quartieri']) ? array_map('intval', (array)$_GET['quartieri']) : array();
 
     $date_from_ts = $date_from ? strtotime($date_from) : null;
