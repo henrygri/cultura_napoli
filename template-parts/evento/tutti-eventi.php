@@ -430,10 +430,10 @@ global $the_query, $load_posts, $load_card_type;
                 <button
                     type="button"
                     class="btn btn-outline-secondary me-auto"
-                    data-bs-dismiss="modal"
-                    aria-label="Chiudi modale Filtri"
+                    aria-label="Rimuovi filtri"
+                    id="clear-filters"
                 >
-                    Chiudi
+                    Rimuovi filtri
                 </button>
                 <button
                     type="button"
@@ -472,6 +472,7 @@ global $the_query, $load_posts, $load_card_type;
         const argomentoHiddenContainer = document.getElementById('argomenti-hidden-inputs');
         const targetHiddenContainer = document.getElementById('target-hidden-inputs');
         const quartieriHiddenContainer = document.getElementById('quartieri-hidden-inputs');
+        const clearBtn = document.getElementById('clear-filters');
 
         if (applyBtn && form) {
             applyBtn.addEventListener('click', function() {
@@ -520,6 +521,26 @@ global $the_query, $load_posts, $load_card_type;
                     });
                 }
                 form.submit();
+            });
+        }
+
+        if (clearBtn && form) {
+            clearBtn.addEventListener('click', function() {
+                if (fromInput) fromInput.value = '';
+                if (toInput) toInput.value = '';
+                if (hiddenFrom) hiddenFrom.value = '';
+                if (hiddenTo) hiddenTo.value = '';
+                if (accessibileSwitch) accessibileSwitch.checked = false;
+                if (accessibileHidden) accessibileHidden.value = '';
+                if (argomentoHiddenContainer) argomentoHiddenContainer.innerHTML = '';
+                if (targetHiddenContainer) targetHiddenContainer.innerHTML = '';
+                if (quartieriHiddenContainer) quartieriHiddenContainer.innerHTML = '';
+
+                const allCheckboxes = document.querySelectorAll('[data-argomento-checkbox], [data-target-checkbox], [data-quartiere-checkbox]');
+                allCheckboxes.forEach(function(cb) {
+                    cb.checked = false;
+                });
+
             });
         }
     })();
