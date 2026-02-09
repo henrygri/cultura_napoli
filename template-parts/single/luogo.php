@@ -3,14 +3,14 @@
     $prefix = '_dci_luogo_';
     $indirizzo = dci_get_meta('indirizzo', $prefix, $luogo->ID);
 ?>
-<?php 
+<?php
     $luoghi = array($luogo);
     $posizione_gps = dci_get_meta("posizione_gps", $prefix, $luogo->ID);
-    get_template_part("template-parts/luogo/map"); 
+    get_template_part("template-parts/luogo/map");
 ?>
 <div class="card no-after no-pop no-glow no-hover">
   <div class="card-body d-lg-flex flex-lg-row justify-content-between">
-    <div class="">
+    <div class="" data-audio>
       <h3 class="card-title h5">
         <svg class="icon">
           <use xlink:href="#it-map-marker" aria-hidden="true"></use>
