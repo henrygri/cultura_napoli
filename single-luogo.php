@@ -217,14 +217,15 @@ get_header();
             <h2 data-audio class="h3 mb-3">Indirizzo</h2>
       			<?php
       				$luoghi = array($luogo);
-      				get_template_part("template-parts/luogo/map");
+              get_template_part("template-parts/single/luogo");
       			?>
+            <?php /*
             <div data-audio class="richtext-wrapper mt-3">
       				<?php echo $indirizzo; ?>
-      			</div>
+      			</div> */ ?>
           </article>
           <?php } ?>
-
+          
           <?php if($orario_pubblico) {?>
           <article id="orario-pubblico" class="it-page-section mb-5" data-audio>
             <h2 class="h3 mb-3">Orario per il pubblico</h2>

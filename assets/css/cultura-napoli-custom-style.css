@@ -729,6 +729,11 @@ select.just-validate-success-field {
 */
 .single-luogo .it-page-section:not(:first-of-type) { border-top: 1px solid #c5c7c9; padding-top: 2rem; }
 
+.single-luogo #indirizzo .card .card-title .icon { display: none; }
+.single-luogo #indirizzo .card .card-body { padding-top: 1em; padding-left: 0; padding-right: 0; }
+.single-luogo #indirizzo .card .card-body .card-title.h5,
+.single-luogo #indirizzo .card .card-body h5.card-title { margin-bottom: 0; }
+.single-luogo #indirizzo .card::after { margin-top: 0; }
 
 
 /*
