@@ -236,7 +236,7 @@ function dci_add_luogo_metaboxes() {
         ),
     ) );
 
-    /**
+    // GALLERIE MULTIMEDIALI
     $cmb_gallerie_multimediali = new_cmb2_box( array(
         'id'           => $prefix . 'box_gallerie_multimediali',
         'title'        => __( 'Gallerie multimediali', 'design_comuni_italia' ),
@@ -244,6 +244,31 @@ function dci_add_luogo_metaboxes() {
         'context'      => 'normal',
         'priority'     => 'high',
     ) );
+
+		$cmb_gallerie_multimediali->add_field( array(
+        'id'         => $prefix . 'gallery',
+        'name'       => __( 'Galleria di immagini', 'design_comuni_italia' ),
+        'desc'       => __( 'Una o più immagini corredate da didascalie', 'design_comuni_italia' ),
+        'type' => 'file_list',
+        'query_args' => array( 'type' => 'image' ),
+    ) );
+
+    $cmb_gallerie_multimediali->add_field( array(
+        'id'         => $prefix . 'video',
+        'name'       => __( 'Video', 'design_comuni_italia' ),
+        'desc'       => __( 'Un video rappresentativo dell\'evento (è possibile insirerire un url esterno).', 'design_comuni_italia' ),
+        'type' => 'file',
+        'query_args' => array( 'type' => 'video' ),
+    ) );
+
+    $cmb_gallerie_multimediali->add_field( array(
+        'id'         => $prefix . 'trascrizione',
+        'name'       => __( 'Trascrizione', 'design_comuni_italia' ),
+        'desc'       => __( 'Trascrizione del video', 'design_comuni_italia' ),
+        'type' => 'textarea'
+    ) );
+
+	/*
     // repeater Gallerie Multimediali
     $group_field_id = $cmb_gallerie_multimediali->add_field( array(
         'id'          => $prefix . 'gallerie_multimediali',

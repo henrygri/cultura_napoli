@@ -178,6 +178,12 @@ get_header();
               <div class="richtext-wrapper">
                 <?php echo apply_filters('the_content', $descrizione_estesa); ?>
               </div>
+              <?php if (is_array($gallery) && count($gallery)) {
+                  get_template_part("template-parts/single/gallery");
+              } ?>
+              <?php if ($video) {
+                  get_template_part("template-parts/single/video");
+              } ?>
           </article>
           <?php } ?>
 
