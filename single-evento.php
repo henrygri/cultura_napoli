@@ -421,10 +421,11 @@ get_header();
           <?php if( is_array($appuntamenti) && count($appuntamenti) ) { ?>
           <article id="appuntamenti" class="it-page-section mb-5">
               <h2 class="h3 mb-2">Appuntamenti</h2>
-              <div class="card-wrapper card-teaser-wrapper card-teaser-wrapper-equal">
+              <div class="row">
                   <?php foreach ($appuntamenti as $appuntamento) {
                     $post = $appuntamento;
                     setup_postdata($post);
+                    set_query_var('in_appuntamenti', true);
                     get_template_part("template-parts/evento/card");
                     wp_reset_postdata();
                   } ?>
@@ -564,6 +565,7 @@ get_header();
                     <?php
                     while ($related_events->have_posts()) :
                         $related_events->the_post();
+                        set_query_var('in_appuntamenti', false);
                         get_template_part("template-parts/evento/card");
                     endwhile;
                     ?>

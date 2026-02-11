@@ -177,9 +177,9 @@ get_header();
                   case 'gallery':
                   $gallery = $modulo['modulo_gallery'];
                   if (is_array($gallery) && count($gallery)) {
-                      echo '<div class="py-3"></div>';
+                      echo '<div class="py-4">';
                       get_template_part("template-parts/single/gallery");
-                  }
+                      echo '</div>';                  }
                   break;
 
                   case 'youtube_video':
