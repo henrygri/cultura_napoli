@@ -755,7 +755,7 @@ select.just-validate-success-field {
 /* Splide
 */
 .it-carousel-same-height .it-single-slide-wrapper { height: 100%; }
-.it-carousel-same-height figure { height: 100%; }
+.it-carousel-same-height figure { height: 100%; padding-bottom: 1.5rem; }
 .it-carousel-same-height figure img { height: 100%; width: auto; border-radius: .5rem; }
 
 
