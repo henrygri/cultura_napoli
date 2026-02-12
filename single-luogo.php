@@ -25,6 +25,10 @@ get_header();
     $descrizione_breve = dci_get_meta("descrizione_breve", $prefix, $post->ID);
   	$descrizione_estesa = dci_get_meta("descrizione_estesa", $prefix, $post->ID);
   	$luoghi_collegati = dci_get_meta("luoghi_collegati", $prefix, $post->ID);
+    //media
+    $gallery = dci_get_meta("gallery", $prefix, $post->ID);
+    $video = dci_get_meta("video", $prefix, $post->ID);
+    $trascrizione = dci_get_meta("trascrizione", $prefix, $post->ID);
   	$servizi = dci_get_meta("servizi", $prefix, $post->ID);
   	$modalita_accesso = dci_get_meta("modalita_accesso", $prefix, $post->ID);
   	$indirizzo = dci_get_meta("indirizzo", $prefix, $post->ID);
