@@ -29,7 +29,7 @@ function dci_register_post_type_itinerario() {
         'rewrite'               => array( 'slug' => 'itinerari', 'with_front' => false ),
         'map_meta_cap'          => true,
         'capability_type'       => 'post',
-        'description'           => __( "Sezione per la gestione degli itinerari culturali di lungo corso", 'design_comuni_italia' ),
+        'description'           => __( "Vivi la cultura, passo dopo passo.", 'design_comuni_italia' ),
         'show_in_rest'          => true,
     );
 

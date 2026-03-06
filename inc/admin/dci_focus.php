@@ -29,7 +29,7 @@ function dci_register_post_type_focus() {
         'has_archive'           => true,
         'map_meta_cap'          => true,
         'capability_type'       => 'post',
-        'description'           => __( "Sezione per la gestione di una mediateca", 'design_comuni_italia' ),
+        'description'           => __( "Metti a fuoco, scopri di più.", 'design_comuni_italia' ),
     );
 
     register_post_type( 'focus', $args );

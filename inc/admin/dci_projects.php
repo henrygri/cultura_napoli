@@ -29,7 +29,7 @@ function dci_register_post_type_project() {
         'has_archive'           => true,
         'map_meta_cap'          => true,
         'capability_type'       => 'post',
-        'description'           => __( "Sezione per la gestione dei progetti culturali di lungo corso", 'design_comuni_italia' ),
+        'description'           => __( "Piccoli semi per grandi visioni.", 'design_comuni_italia' ),
     );
     
     register_post_type( 'progetto', $args );
