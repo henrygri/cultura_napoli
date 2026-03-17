@@ -36,9 +36,9 @@ $in_appuntamenti = get_query_var('in_appuntamenti');
 				<?php // echo $descrizione; ?>
 				<?php
           if ($end_timestamp and $end_arrdata[0] != $start_arrdata[0]) {
-            echo 'Dal '.$start_arrdata[0].' '.$start_arrdata[1].' al '.$end_arrdata[0].' '.$end_arrdata[1];
+            echo 'Dal '.$start_arrdata[0].' '.$start_arrdata[1].' '.$start_arrdata[2].' al '.$end_arrdata[0].' '.$end_arrdata[1].' '.$end_arrdata[2];
           } else {
-            echo $start_arrdata[0].' '.$start_arrdata[1];
+            echo $start_arrdata[0].' '.$start_arrdata[1].' '.$start_arrdata[2];
           } ?>
         <?php echo ($luogo_evento) ? '<br>'.$luogo_evento : ''; ?>
 			</p>

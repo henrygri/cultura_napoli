@@ -46,8 +46,8 @@ $page_macro = get_page_by_path($page_macro_slug);
             <?php switch ( $page->post_title ) {
               case 'Eventi':
                   // codice per titolo "evento"
-                  echo 'Dal '.$start_date_arr[0].' '.$start_date_arr[1];
-                  echo ' al '.$end_date_arr[0].' '.$end_date_arr[1];
+                  echo 'Dal '.$start_date_arr[0].' '.$start_date_arr[1].' '.$start_date_arr[2];
+                  echo ' al '.$end_date_arr[0].' '.$end_date_arr[1].' '.$end_date_arr[2];
                   echo ($luogo_evento) ? '<br>'.$luogo_evento : '';
                   break;
               default: ?>
