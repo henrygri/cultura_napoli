@@ -7,7 +7,7 @@ $descrizione = dci_get_meta('descrizione_breve', $prefix, $post->ID);
 $indirizzo = dci_get_meta("indirizzo", '_dci_luogo_', $luogo->ID);
 ?>
 
-<div class="col-lg-6 col-xl-4">
+<div class="col-lg-6 col-xl-4 mb-3 mb-md-4">
     <div class="card-wrapper">
         <a class="card card-luogo no-glow no-after" href="<?php echo get_permalink($post->ID); ?>">
             <div class="img-responsive-wrapper">

@@ -5,7 +5,7 @@
     $img = dci_get_meta("immagine", '_dci_project_', $post->ID);
     if ($img) {
 ?>
-<div class="col-md-6">
+<div class="col-md-6 mb-3 mb-md-4">
   <div class="card-wrapper">
     <a class="card card-progetto no-after rounded-3 border border-light no-glow" href="<?php echo get_permalink(); ?>">
 
