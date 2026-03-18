@@ -836,11 +836,11 @@ select.just-validate-success-field {
 .modulo_spotify:last-of-type { margin-bottom: 3em; }
 
 .it-footer { border-top: 1px solid; }
-.it-footer-main { background: #FFF; color: var(--bs-primary); }
+.it-footer-main { background: #c2dcff; color: var(--bs-primary); }
 .it-footer-main a { color: var(--bs-primary); }
 .it-footer-main a:hover { color: var(--bs-body-color); }
 .it-footer .footer-heading-title,
 .it-footer .footer-bottom  { border-color: var(--bs-primary); }
 
 .it-footer-main .it-brand-wrapper a .icon { height: 60px; width: auto; }
-
+.it-footer-main .social a { background: var(--bs-primary); border-radius: 50%; display: inline-block; }

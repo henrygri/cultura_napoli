@@ -38,6 +38,8 @@ get_header();
     $specifica_contatto = dci_get_meta("specifica_contatti", $prefix, $post->ID);
   	$struttura_responsabile = dci_get_meta("struttura_responsabile", $prefix, $post->ID);
   	$ulteriori_informazioni = dci_get_wysiwyg_field("ulteriori_informazioni", $prefix, $post->ID);
+    $titolo_evidenza = dci_get_wysiwyg_field("titolo_evidenza", $prefix, $post->ID);
+    $testo_evidenza = dci_get_wysiwyg_field("testo_evidenza", $prefix, $post->ID);
     ?>
     <section class="it-hero-wrapper it-wrapped-container custom-overlapping">
       <div class="container px-4 pt-4 mb-4 rounded-3 bg-white" id="main-container">
@@ -108,6 +110,13 @@ get_header();
                                         <div id="collapse-one" class="accordion-collapse collapse show" role="region" aria-labelledby="accordion-title-one">
                                             <div class="accordion-body">
                                                 <ul class="link-list" data-element="page-index">
+                                                  <?php if( $titolo_evidenza || $testo_evidenza) { ?>
+                                                    <li class="nav-item">
+                                                      <a class="nav-link" href="#avvisi">
+                                                      <span>Avvisi</span>
+                                                      </a>
+                                                    </li>
+                                                  <?php } ?>
                                                     <li class="nav-item">
                                                     <a class="nav-link" href="#descrizione-estesa">
                                                     <span>Descrizione</span>
@@ -175,6 +184,15 @@ get_header();
         </aside>
 
         <section class="col-lg-8 it-page-sections-container border-light">
+
+          <?php if( $testo_evidenza) { ?>
+          <article id="avvisi" class="it-page-section mb-5" data-audio>
+            <div class="card bg-200 p-3 rounded-3 no-after no-glow no-pop no-hover">
+              <h2 class="h3 mb-3"><?php echo esc_html( str_replace(['<p>', '</p>'], '', $titolo_evidenza ?: 'Avvisi') ); ?></h2>
+              <?php echo apply_filters('the_content', $testo_evidenza); ?>
+            </div>
+          </article>
+          <?php } ?>
 
           <?php if( $descrizione_estesa) { ?>
           <article id="cos-e" class="it-page-section mb-5" data-audio>

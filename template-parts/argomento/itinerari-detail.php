@@ -17,7 +17,9 @@
             <div class="row pt-4 mt-lg-2 pb-lg-4">
               <?php
                 foreach ($posts as $post) {
+                  echo '<div class="col-md-6 mb-4">';
                   get_template_part('template-parts/itinerario/cards-list');
+                  echo '</div>';
                 }
               ?>
             </div>
