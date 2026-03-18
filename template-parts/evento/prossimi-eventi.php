@@ -1,29 +1,62 @@
 <?php
   global $max_posts;
+  $today = current_time('timestamp');
 
   $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 12;
   $args = array(
       'post_type'      => 'evento',
       'post_status'    => 'publish',
       'posts_per_page' => $max_posts,
-      // Filtra: escludi eventi con rassegna flaggato
       'meta_query' => array(
-          'relation' => 'OR',
+          'relation' => 'AND',
+
+          // Filtro rassegna
           array(
-              'key'     => '_dci_evento_rassegna',
-              'value'   => 'on',
-              'compare' => '!=', // Prende quelli diversi da "on"
+              'relation' => 'OR',
+              array(
+                  'key'     => '_dci_evento_rassegna',
+                  'value'   => 'on',
+                  'compare' => '!=',
+              ),
+              array(
+                  'key'     => '_dci_evento_rassegna',
+                  'compare' => 'NOT EXISTS',
+              ),
           ),
+
+          // Logica eventi attuali/futuri
           array(
-              'key'     => '_dci_evento_rassegna',
-              'compare' => 'NOT EXISTS', // Prende quelli senza il meta
+              'relation' => 'OR',
+
+              // Caso 1: ha data fine → deve essere >= oggi
+              array(
+                  'key'     => '_dci_evento_data_orario_fine',
+                  'value'   => $today,
+                  'compare' => '>=',
+                  'type'    => 'NUMERIC',
+              ),
+
+              // Caso 2: NON ha data fine → uso data inizio
+              array(
+                  'relation' => 'AND',
+                  array(
+                      'key'     => '_dci_evento_data_orario_fine',
+                      'compare' => 'NOT EXISTS',
+                  ),
+                  array(
+                      'key'     => '_dci_evento_data_orario_inizio',
+                      'value'   => $today,
+                      'compare' => '>=',
+                      'type'    => 'NUMERIC',
+                  ),
+              ),
           ),
       ),
+
       // Ordina per data di inizio crescente
       'meta_key' => '_dci_evento_data_orario_inizio',
       'orderby'  => 'meta_value_num',
       'order'          => 'ASC'
-      //TO TO: meta query per prendere eventi con e data di fine evento superiore alla data odierna
   );
   $the_query = new WP_Query( $args );
   $posts = $the_query->posts;
