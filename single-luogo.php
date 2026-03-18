@@ -40,6 +40,7 @@ get_header();
   	$ulteriori_informazioni = dci_get_wysiwyg_field("ulteriori_informazioni", $prefix, $post->ID);
     $titolo_evidenza = dci_get_wysiwyg_field("titolo_evidenza", $prefix, $post->ID);
     $testo_evidenza = dci_get_wysiwyg_field("testo_evidenza", $prefix, $post->ID);
+    $testo_operatori = dci_get_wysiwyg_field("testo_operatori", $prefix, $post->ID);
     ?>
     <section class="it-hero-wrapper it-wrapped-container custom-overlapping">
       <div class="container px-4 pt-4 mb-4 rounded-3 bg-white" id="main-container">
@@ -157,6 +158,13 @@ get_header();
                                                     </a>
                                                     </li>
                                                 <?php } ?>
+                                                <?php if( $testo_operatori ) { ?>
+                                                  <li class="nav-item">
+                                                  <a class="nav-link" href="#info-operatori">
+                                                  <span>Per operatori</span>
+                                                  </a>
+                                                  </li>
+                                                <?php } ?>
                                                 <?php if( is_array($punti_contatto) && count($punti_contatto) || $specifica_contatto ) { ?>
                                                 <li class="nav-item">
                                                 <a class="nav-link" href="#contatti">
@@ -260,6 +268,15 @@ get_header();
             <div class="richtext-wrapper">
               <?php echo apply_filters('the_content', $orario_pubblico); ?>
       			</div>
+          </article>
+          <?php } ?>
+
+          <?php if ($testo_operatori) { ?>
+          <article id="info-operatori" class="it-page-section mb-5" data-audio>
+            <h2 class="h3 mb-3">Per operatori</h2>
+            <div class="richtext-wrapper">
+              <?php echo apply_filters('the_content', $testo_operatori); ?>
+            </div>
           </article>
           <?php } ?>
 
