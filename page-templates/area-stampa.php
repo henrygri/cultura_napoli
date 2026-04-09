@@ -85,6 +85,70 @@ get_header();
 								<?php } ?>
 
 							</article>
+
+							<hr class="my-5">
+
+							<div class="p-5 border rounded-3 mt-4 mb-5">
+								<script async type='text/javascript' src='https://app.emailchef.com/mcwebscript/7o226163636s756r745s6964223n22383231363636227q'></script>
+
+								<form method="POST" action="https://app.emailchef.com/signupwl/7o22666s726q5s6964223n2237343833227q/it" id="form1">
+									<div class="mb-3">
+										<h4 class="mc-header mb-4">Iscriviti alla newsletter <br>per gli operatori della Stampa</h4>
+									</div>
+									<div class="mb-3">
+										<label style=""  class="mc-label">Nome<span class="mc-asterisk">*</span></label>
+										<input value="" style="" class="mc-inputfield" id="field-2" name="field[-2]" type="text">
+									</div>
+									<div class="mb-3">
+										<label style=""  class="mc-label">Cognome<span class="mc-asterisk">*</span></label>
+										<input value="" style="" class="mc-inputfield" id="field-3" name="field[-3]" type="text">
+									</div>
+									<div class="mb-3">
+										<label style=""  class="mc-label">E-mail<span class="mc-asterisk">*</span></label>
+										<input value="" style="" class="mc-inputfield" id="field-1" name="field[-1]" type="email">
+									</div>
+									<div class="mb-3">
+										<label style="" class="mc-label">Testata giornalistica<span class="mc-asterisk">*</span></label>
+										<input value="" style="" class="mc-inputfield" id="field210094" name="field[210094]" type="text">
+									</div>
+									<div class="mb-3">
+										<label style="" class="mc-label">Telefono</label>
+										<input value="" style="" class="mc-inputfield" id="field210098" name="field[210098]" type="number">
+									</div>
+									<div class="mb-3">
+										<p class="mc-privacy">
+											<input value="1" class="mc-inputfield" name="field[-4]" type="checkbox" required > Dichiaro di aver letto e compreso la <a href="https://cultura.comune.napoli.it/informativa-privacy/" target="_blank">Privacy Policy.</a><span class="mc-asterisk">*</span>
+										</p>
+									</div>
+									<div class="mb-3">
+										<p class="mc-terms">
+											<input value="1" class="mc-inputfield" name="field[-5]" type="checkbox" required > Acconsento al trattamento dei miei dati personali per la finalità di invio della newsletter.<span class="mc-asterisk">*</span>
+										</p>
+									</div>
+									<div class="mb-3">
+										<input type="submit" class="btn btn-primary mc-signup-button" id="mc-signup-form-button-submit" name="mc-signup-form-button-submit" value="Iscriviti" style="">
+									</div>
+									<input type="hidden" name="form_id" value="7483" />
+									<input type="hidden" name="lang" value="" />
+									<input type="hidden" name="referrer" id="ec_referrer" value="" />
+									<div id="ec_recaptcha"></div>
+								</form>
+								<script src="https://app.emailchef.com/signup/form.js/7o22666s726q5s6964223n2237343833227q/it/api"></script>
+								<script src="https://www.google.com/recaptcha/api.js?onload=renderRecaptcha&render=explicit"></script>
+
+								<style>
+								#form1 .label { width: 100%; }
+								#form1 input[type="text"],
+								#form1 input[type="number"],
+								#form1 input[type="email"] { width: 100%; }
+								#form1 input[type="checkbox"] {-webkit-appearance: checkbox !important; }
+								#form1 select { width: 100%; height: 3em; margin: .5em 0 0; }
+								</style>
+
+							</div>
+
+
+
 						</div>
 					</div>
 				</div>
