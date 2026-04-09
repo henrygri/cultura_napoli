@@ -1,11 +1,12 @@
 <?php
 global $the_query, $load_posts, $load_card_type;
+    $today = current_time('timestamp');
 
-    $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 12;
-    $load_posts = 12;
+    $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 8;
+    $load_posts = 2;
     $query = isset($_GET['search']) ? dci_removeslashes($_GET['search']) : null;
-    $date_from = isset($_GET['date_from']) ? sanitize_text_field($_GET['date_from']) : '';
-    $date_to = isset($_GET['date_to']) ? sanitize_text_field($_GET['date_to']) : '';
+    $date_from = isset($_GET['date_from']) && $_GET['date_from'] !== '' ? sanitize_text_field($_GET['date_from']) : '';
+    $date_to   = isset($_GET['date_to'])   && $_GET['date_to']   !== '' ? sanitize_text_field($_GET['date_to'])   : '';
     $accessibile = isset($_GET['accessibile']) && $_GET['accessibile'];
     $argomenti_options = dci_get_terms_options('argomenti');
     $argomenti_ids = array_keys((array)$argomenti_options);
@@ -44,14 +45,32 @@ global $the_query, $load_posts, $load_card_type;
         ),
     );
 
-    if ( $date_from_ts ) {
-        $meta_query[] = array(
+    $effective_date_from = $date_from_ts ? $date_from_ts : strtotime('today midnight');
+
+    $meta_query[] = array(
+        'relation' => 'OR',
+        // Caso 1: ha data fine → deve essere >= date_from (o today)
+        array(
             'key'     => '_dci_evento_data_orario_fine',
-            'value'   => $date_from_ts,
+            'value'   => $effective_date_from,
             'compare' => '>=',
             'type'    => 'NUMERIC',
-        );
-    }
+        ),
+        // Caso 2: NON ha data fine → usa data inizio >= date_from (o today)
+        array(
+            'relation' => 'AND',
+            array(
+                'key'     => '_dci_evento_data_orario_fine',
+                'compare' => 'NOT EXISTS',
+            ),
+            array(
+                'key'     => '_dci_evento_data_orario_inizio',
+                'value'   => $effective_date_from,
+                'compare' => '>=',
+                'type'    => 'NUMERIC',
+            ),
+        ),
+    );
 
     if ( $date_to_ts ) {
         $meta_query[] = array(
@@ -110,7 +129,7 @@ global $the_query, $load_posts, $load_card_type;
         // Ordina per data di inizio crescente
         'meta_key' => '_dci_evento_data_orario_inizio',
         'orderby'  => 'meta_value_num',
-        'order'    => 'DESC'
+        'order'    => 'ASC'
     );
     $the_query = new WP_Query( $args );
 

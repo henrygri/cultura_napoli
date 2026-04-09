@@ -75,7 +75,114 @@ function load_more(){
 	if ( isset($url_query_params["post_types"]) ) $args['post_type'] = $url_query_params["post_types"];
 	if ( isset($url_query_params["s"]) ) $args['s'] = $url_query_params["s"];
 	if ( isset($additional_filter) ) $args = $args + $additional_filter;
- 
+
+
+	// QUESTO PER MANTENERE LA STESSA LOGICA IMPOSTATA NELLA PAGINA EVENTI
+	if ($load_card_type == "evento") {
+	    $date_from = isset($url_query_params['date_from']) && $url_query_params['date_from'] !== '' ? $url_query_params['date_from'] : '';
+	    $date_to   = isset($url_query_params['date_to'])   && $url_query_params['date_to']   !== '' ? $url_query_params['date_to']   : '';
+
+	    $date_from_ts = $date_from ? strtotime($date_from) : null;
+	    $date_to_ts   = $date_to   ? strtotime($date_to . ' 23:59:59') : null;
+
+	    $effective_date_from = $date_from_ts ? $date_from_ts : strtotime('today midnight');
+
+	    $meta_query = array(
+	        'relation' => 'AND',
+	        array(
+	            'relation' => 'OR',
+	            array(
+	                'key'     => '_dci_evento_rassegna',
+	                'value'   => 'on',
+	                'compare' => '!=',
+	            ),
+	            array(
+	                'key'     => '_dci_evento_rassegna',
+	                'compare' => 'NOT EXISTS',
+	            ),
+	        ),
+	        array(
+	            'relation' => 'OR',
+	            array(
+	                'key'     => '_dci_evento_data_orario_fine',
+	                'value'   => $effective_date_from,
+	                'compare' => '>=',
+	                'type'    => 'NUMERIC',
+	            ),
+	            array(
+	                'relation' => 'AND',
+	                array(
+	                    'key'     => '_dci_evento_data_orario_fine',
+	                    'compare' => 'NOT EXISTS',
+	                ),
+	                array(
+	                    'key'     => '_dci_evento_data_orario_inizio',
+	                    'value'   => $effective_date_from,
+	                    'compare' => '>=',
+	                    'type'    => 'NUMERIC',
+	                ),
+	            ),
+	        ),
+	    );
+
+	    if ( $date_to_ts ) {
+	        $meta_query[] = array(
+	            'relation' => 'OR',
+	            array(
+	                'key'     => '_dci_evento_data_orario_inizio',
+	                'value'   => $date_to_ts,
+	                'compare' => '<=',
+	                'type'    => 'NUMERIC',
+	            ),
+	            array(
+	                'relation' => 'AND',
+	                array(
+	                    'key'     => '_dci_evento_data_orario_inizio',
+	                    'compare' => 'NOT EXISTS',
+	                ),
+	                array(
+	                    'key'     => '_dci_evento_data_orario_fine',
+	                    'value'   => $date_to_ts,
+	                    'compare' => '<=',
+	                    'type'    => 'NUMERIC',
+	                ),
+	            ),
+	        );
+	    }
+
+	    // tax_query
+	    $tax_query = array();
+	    $argomenti_selected = isset($url_query_params['argomenti']) ? array_map('intval', (array)$url_query_params['argomenti']) : array();
+	    $target_selected    = isset($url_query_params['target'])    ? array_map('intval', (array)$url_query_params['target'])    : array();
+	    $quartieri_selected = isset($url_query_params['quartieri']) ? array_map('intval', (array)$url_query_params['quartieri']) : array();
+
+	    if ( ! empty( $argomenti_selected ) ) {
+	        $tax_query[] = array('taxonomy' => 'argomenti', 'field' => 'term_id', 'terms' => $argomenti_selected, 'operator' => 'IN');
+	    }
+	    if ( ! empty( $target_selected ) ) {
+	        $tax_query[] = array('taxonomy' => 'target', 'field' => 'term_id', 'terms' => $target_selected, 'operator' => 'IN');
+	    }
+	    if ( ! empty( $quartieri_selected ) ) {
+	        $tax_query[] = array('taxonomy' => 'quartieri', 'field' => 'term_id', 'terms' => $quartieri_selected, 'operator' => 'IN');
+	    }
+	    if ( ! empty( $tax_query ) ) {
+	        $tax_query['relation'] = 'AND';
+	    }
+
+	    $args = array(
+	        's'              => $_POST['search'],
+	        'posts_per_page' => $_POST['post_count'] + $_POST['load_posts'],
+	        'post_type'      => 'evento',
+	        'post_status'    => 'publish',
+	        'meta_query'     => $meta_query,
+	        'tax_query'      => $tax_query,
+	        'meta_key'       => '_dci_evento_data_orario_inizio',
+	        'orderby'        => 'meta_value_num',
+	        'order'          => 'ASC',
+	    );
+	}
+
+
 	// it is always better to use WP_Query but not here
 	$new_query = query_posts( $args );
 
@@ -90,35 +197,35 @@ function load_more(){
 
 		if ($load_card_type == "servizio"){
 			$servizio = $post;
-			$out .= load_template_part("template-parts/servizio/card");  
+			$out .= load_template_part("template-parts/servizio/card");
 		}
 		if ($load_card_type == "categoria_servizio"){
 			$servizio = $post;
 			$hide_categories = true;
-			$out .= load_template_part("template-parts/servizio/card");  
+			$out .= load_template_part("template-parts/servizio/card");
 		}
 		if ($load_card_type == "notizia"){
-			$out .= load_template_part("template-parts/novita/cards-list");  
+			$out .= load_template_part("template-parts/novita/cards-list");
 		}
 		if ($load_card_type == "documento"){
-			$out .= load_template_part("template-parts/documento/cards-list");  
+			$out .= load_template_part("template-parts/documento/cards-list");
 		}
 		if ($load_card_type == "global-search"){
-			$out .= load_template_part("template-parts/search/item");  
-		}	
+			$out .= load_template_part("template-parts/search/item");
+		}
 		if ($load_card_type == "domanda-frequente"){
-			$out .= load_template_part("template-parts/domanda-frequente/item");  
+			$out .= load_template_part("template-parts/domanda-frequente/item");
 		}
 		if ($load_card_type == "luogo"){
-			$out .= load_template_part("template-parts/luogo/card");  
-		}	
-		if ($load_card_type == "evento"){
-			$out .= load_template_part("template-parts/evento/card");  
+			$out .= load_template_part("template-parts/luogo/card");
 		}
- 
- 
+		if ($load_card_type == "evento"){
+			$out .= load_template_part("template-parts/evento/card");
+		}
+
+
 		endwhile;
- 
+
 	endif;
 
 	$res = array();
