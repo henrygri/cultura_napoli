@@ -1,5 +1,5 @@
 <?php
-    global $post, $posts;
+    global $post, $posts, $wrap_card;
     // Per selezionare i contenuti in evidenza tramite flag
     // $post_types = dci_get_post_types_grouped('novita');
     // $contenuti_evidenza = dci_get_highlighted_posts( $post_types, 3);
@@ -18,9 +18,8 @@
             $posts = $contenuti_evidenza;
             foreach ($posts as $post_id) {
                 $post = get_post($post_id);
-                echo '<div class="col-md-6 col-xl-4">';
+                $wrap_card = true;
                 get_template_part('template-parts/novita/cards-list');
-                echo '</div>';
             }
         ?>
     </div>

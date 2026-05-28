@@ -27,10 +27,11 @@ function load_template_part($template_name, $part_name=null) {
 add_action("wp_ajax_load_more" , "load_more");
 add_action("wp_ajax_nopriv_load_more" , "load_more");
 function load_more(){
-	global $wp_query, $servizio, $i, $hide_categories;
-	
-    // prepare our arguments for the query
+	global $wp_query, $servizio, $i, $hide_categories, $wrap_card;
+
+  // prepare our arguments for the query
 	$load_card_type = $_POST['load_card_type'];
+	$wrap_card = isset($_POST['wrap_card']) && $_POST['wrap_card'] === '1';
 	$post_types = json_decode( stripslashes( $_POST['post_types'] ), true );
 	$url_query_params =  json_decode( stripslashes( $_POST['query_params'] ), true );
 	$additional_filter =  json_decode( stripslashes( $_POST['additional_filter'] ), true );
@@ -41,11 +42,11 @@ function load_more(){
         'post_type'      => $post_types,
 		'post_status'    => 'publish',
         'order'          => 'DESC',
-		'meta_query' => array(
-            array(
-                'key' => '_dci_notizia_data_pubblicazione',
-            )
-        ),
+				// 'meta_query' => array(
+        //     array(
+        //         'key' => '_dci_notizia_data_pubblicazione',
+        //     )
+        // ),
         'meta_type' => 'text_date_timestamp',
         'orderby'   => 'meta_value_num',
     );

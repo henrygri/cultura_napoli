@@ -1,5 +1,5 @@
 <?php
-global $the_query, $load_posts, $load_card_type;
+global $the_query, $load_posts, $load_card_type, $wrap_card;
 
     $max_posts = isset($_GET['max_posts']) ? $_GET['max_posts'] : 3;
     $load_posts = 3;
@@ -62,14 +62,17 @@ global $the_query, $load_posts, $load_card_type;
                 <?php
                 foreach ( $posts as $post ) {
                     $load_card_type = 'notizia';
-                    echo '<div class="col-md-6 col-xl-4">';
+                    $wrap_card = true;
                     get_template_part('template-parts/novita/cards-list');
-                    echo '</div>';
                 }
                 wp_reset_postdata();
+                $wrap_card = false;
                 ?>
             </div>
-            <?php get_template_part("template-parts/search/more-results"); ?>
+            <?php
+              $wrap_card = true;
+              get_template_part("template-parts/search/more-results");
+            ?>
         </div>
     </form>
 </div>

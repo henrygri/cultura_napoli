@@ -1,5 +1,6 @@
 <?php
-    global $post;
+    global $post, $wrap_card;
+    if ($wrap_card) echo '<div class="col-md-6 col-xl-4">';
 
         $description = dci_get_meta('descrizione_breve');
         $arrdata = dci_get_data_pubblicazione_arr("data_pubblicazione", '_dci_notizia_', $post->ID);
@@ -10,11 +11,11 @@
         $tipo = get_the_terms($post->term_id, 'tipi_notizia')[0];
         if ($img) {
 ?>
-  <div class="card-wrapper h-100 border rounded-3 ">
+  <div class="card-wrapper h-100 border rounded-3 <?php echo $wrap_card; ?>">
     <a class="card card-novita no-after rounded-3" href="<?php echo get_permalink(); ?>">
 
       <div class="img-responsive-wrapper">
-        <div class="img-responsive img-responsive-panoramic">
+        <div class="img-responsive img-responsive-panoramic ">
           <figure class="img-wrapper">
             <?php dci_get_img($img, ''); ?>
           </figure>
@@ -77,3 +78,4 @@
     </div>
   </div>
 <?php } ?>
+<?php if ($wrap_card) echo '</div>'; ?>
