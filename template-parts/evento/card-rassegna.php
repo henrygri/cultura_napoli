@@ -34,7 +34,7 @@ if ( ! empty( $luogo_evento_id ) ) {
 			<p class="card-text">
         <?php // echo $descrizione; ?>
 				<?php
-            if ($end_timestamp and $end_arrdata[0] != $start_arrdata[0]) {
+            if ($end_timestamp and $end_arrdata != $start_arrdata) {
                 echo 'Dal '.$start_arrdata[0].' '.$start_arrdata[1].' '.$start_arrdata[2].' al '.$end_arrdata[0].' '.$end_arrdata[1].' '.$end_arrdata[2];
             } else {
                 echo $start_arrdata[0].' '.$start_arrdata[1].' '.$start_arrdata[2];

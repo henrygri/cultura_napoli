@@ -162,7 +162,7 @@ global $the_query, $load_posts, $load_card_type;
             </div>
             <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-3">
                 <h2 class="title-xlarge mb-0">
-                    Esplora tutti gli eventi
+                    Scopri i prossimi appuntamenti
                 </h2>
                 <button
                     type="button"
