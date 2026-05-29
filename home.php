@@ -31,14 +31,16 @@ get_header();
           </div>
         </section>
 
+        <?php $testo_evidenziato = dci_get_option('testo_evidenziato','homepage'); ?>
+        <?php if ( $testo_evidenziato ) : ?>
         <section>
           <div class="container py-5 border-top border-bottom">
             <p class="h2">
-              Il calendario ufficiale della cultura a Napoli, <br>
-              scopri cosa succede ogni giorno in città.
+              <?php echo wp_kses_post( nl2br( $testo_evidenziato ) ); ?>
             </p>
           </div>
         </section>
+        <?php endif; ?>
 
         <?php get_template_part("template-parts/evento/prossimi-eventi"); ?>
 

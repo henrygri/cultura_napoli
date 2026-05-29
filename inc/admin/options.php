@@ -34,6 +34,12 @@ function dci_register_main_options_metabox() {
 
 	dci_register_pagina_eventi_options();
 
+	dci_register_pagina_itinerari_options();
+
+	dci_register_pagina_focus_options();
+
+	dci_register_pagina_progetti_options();
+
     dci_register_pagina_argomenti_options();
 
     dci_register_scheda_assistenza_options();

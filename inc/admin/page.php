@@ -55,7 +55,7 @@ function dci_add_page_metaboxes() {
         // Get the name of the Page Template file.
         $template_file = get_post_meta( $curr_page_id, '_wp_page_template', true );
         $template_name = basename($template_file, ".php");
-        $editable_templates = array('area-stampa');
+        $editable_templates = array('area-stampa', 'chi-siamo');
 
         //se la pagina utilizza un template del Sito dei Comuni
         if (in_array($template_name, dci_get_pagine_template_names())) {
