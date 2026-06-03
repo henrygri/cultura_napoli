@@ -48,8 +48,8 @@ get_header();
         </div>
     </div>
 
-    <?php get_template_part("template-parts/argomento/itinerari-detail"); ?>
     <?php get_template_part("template-parts/argomento/eventi-detail"); ?>
+    <?php get_template_part("template-parts/argomento/itinerari-detail"); ?>
     <?php // get_template_part("template-parts/argomento/novita-detail"); ?>
     <?php // get_template_part("template-parts/argomento/amministrazione-detail"); ?>
     <?php // get_template_part("template-parts/argomento/servizi-detail"); ?>

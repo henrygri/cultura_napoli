@@ -2,6 +2,7 @@
     global $argomento;
 
     $posts = dci_get_grouped_posts_by_term( 'itinerari' , 'argomenti', $argomento->slug, 3 );
+    if (!empty($posts)) :
 ?>
 
 <section id="itinerari">
@@ -12,6 +13,7 @@
                   <h3 class="title-large-semi-bold mb-0">
                     Itinerari
                   </h3>
+                  <p>Itinerari che puoi percorrere autonomamente alla scoperta del territorio</p>
                 </div>
             </div>
             <div class="row pt-4 mt-lg-2 pb-lg-4">
@@ -36,3 +38,5 @@
             </div>
         </div>
     </div>
+</section>
+<?php endif; ?>
