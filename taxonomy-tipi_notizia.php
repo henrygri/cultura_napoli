@@ -40,11 +40,10 @@ get_header();
 
 			<?php if ( have_posts() ) : ?>
 			<div class="row g-4">
-				<?php while ( have_posts() ) : the_post(); ?>
-
-					<?php get_template_part( 'template-parts/' . 'novita/cards-list' ); ?>
-
-				<?php endwhile; ?>
+				<?php while ( have_posts() ) : the_post();
+					$wrap_card = true;
+					get_template_part('template-parts/novita/cards-list');
+				endwhile; ?>
 			</div>
 
 			<div class="row my-4">
