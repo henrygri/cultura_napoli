@@ -51,6 +51,15 @@ function dci_register_pagina_home_options(){
     );
 
     $home_options->add_field( array(
+		    'name'        => __('Testo in evidenza', 'design_comuni_italia'),
+		    'desc' => __( 'Definisci il testo da mettere in evidenza in homepage' , 'design_comuni_italia' ),
+            'id' => $prefix . 'testo_evidenziato',
+            'type'    => 'textarea',
+            'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
+        )
+    );
+
+    $home_options->add_field( array(
 		    'name'        => __('Novità in evidenza', 'design_comuni_italia'),
 		    'desc' => __( 'Scegli le notizie da mettere in evidenza in homepage' , 'design_comuni_italia' ),
             'id' => $prefix . 'notizie_evidenziate',
