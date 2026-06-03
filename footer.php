@@ -23,7 +23,7 @@
                 </div>
                 <div class="it-brand-wrapper">
                   <a href="<?php echo home_url() ?>">
-                    <img class="logo-comune icon" src="<?php echo esc_url( get_template_directory_uri()); ?>/assets/img/logo-cultura-napoli-color.svg" alt="logo Cultura Napoli">
+                    <img class="logo-comune icon" src="<?php echo esc_url( get_template_directory_uri()); ?>/assets/img/logo-cultura-napoli-vertical-color.svg" alt="logo Cultura Napoli">
                   </a>
                 </div>
               </div>

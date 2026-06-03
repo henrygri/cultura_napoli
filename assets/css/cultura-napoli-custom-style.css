@@ -684,7 +684,7 @@ select.just-validate-success-field {
 }
 .it-header-center-wrapper .it-header-center-content-wrapper .it-brand-wrapper a .icon {
     width: auto;
-    height: 3.2rem;
+    height: 4.2rem;
     margin-right: 16px
 }
 
@@ -842,5 +842,6 @@ select.just-validate-success-field {
 .it-footer .footer-heading-title,
 .it-footer .footer-bottom  { border-color: #0077b3; border-width: 3px; }
 
-.it-footer-main .it-brand-wrapper a .icon { height: 60px; width: auto; }
+.it-footer .logo-wrapper { gap:1em; }
+.it-footer-main .it-brand-wrapper a .icon { height: 88px; width: auto; }
 .it-footer-main .social a { background: #0077b3; border-radius: 50%; display: inline-block; }

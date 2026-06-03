@@ -42,7 +42,8 @@ $current_group = dci_get_current_group();
                 href="<?php echo home_url(); ?>" 
                 <?php if(!is_front_page()) echo 'title="Vai alla Homepage"'; ?>>
                     <div class="it-brand-text d-flex align-items-center">
-                      <?php get_template_part("template-parts/common/logo"); ?>
+                      <img class="logo-comune icon" src="<?php echo esc_url( get_template_directory_uri()); ?>/assets/img/LogoComuneNapoli-Cultura-combinbato-white.png" alt="logo Comune di Napoli">
+                      <?php // get_template_part("template-parts/common/logo"); ?>
                       <div>
                         <?php /*
                         <div class="it-brand-title"><?php echo dci_get_option("nome_comune"); ?></div>
