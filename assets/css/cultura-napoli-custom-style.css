@@ -101,11 +101,11 @@
 */
 
 :root {
-  --bs-primary: #0090D4; /* verde originale: #007a52 */
+  --bs-primary: #007bb6; /* 0090D4 brand, ma non accessibile /* verde originale: #007a52 */
   --bs-primary-rgb: 0, 144, 212; /* verde originale: 0, 122, 82 */
   --bs-primary-hover: #007fba;
   --bs-primary-dark: #00547a;
-  --bs-link-color: #0090D4;
+  --bs-link-color: var(--bs-primary);
   --bs-link-hover-color: #00547a;
   --bs-font-sans-serif: "Archivo",Geneva,Tahoma,sans-serif;
 
@@ -836,12 +836,12 @@ select.just-validate-success-field {
 .modulo_spotify:last-of-type { margin-bottom: 3em; }
 
 .it-footer { border-top: 1px solid; }
-.it-footer-main { background: #f7f7f7; color: #0077b3; }
-.it-footer-main a { color: #0077b3; }
-.it-footer-main a:hover { color: var(--bs-body-color); }
+.it-footer-main { background: #f7f7f7; color: var(--bs-primary); font-weight: 500; }
+.it-footer-main a { color: var(--bs-primary); }
+.it-footer-main a:hover { color: var(--bs-link-hover-color); }
 .it-footer .footer-heading-title,
-.it-footer .footer-bottom  { border-color: #0077b3; border-width: 3px; }
+.it-footer .footer-bottom  { border-color: var(--bs-primary); border-width: 3px; }
 
 .it-footer .logo-wrapper { gap:1em; }
 .it-footer-main .it-brand-wrapper a .icon { height: 88px; width: auto; }
-.it-footer-main .social a { background: #0077b3; border-radius: 50%; display: inline-block; }
+.it-footer-main .social a { background: var(--bs-primary); border-radius: 50%; display: inline-block; }
